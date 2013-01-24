@@ -11,7 +11,8 @@ class CATACTION_EXPORT CatAction
 {
 public:
 	typedef QSharedPointer<CatAction> Pointer;
-	virtual ~CatAction() {}
+	CatAction();
+	virtual ~CatAction();
 
 	virtual bool doIt () =0;
 
@@ -32,36 +33,11 @@ class CATACTION_EXPORT ActionGroup : public CatAction
 {
 	QList<Pointer> myActions;
 public:
-	bool doIt()
-	{
-		foreach(const Pointer& act,myActions)
-		{
-			if(!act->doIt())
-				return false;
-		}
-		return true;
-	}
+	bool doIt();
 
-	void add(const Pointer& ad) { myActions.append(ad); }
-	void remove(const Pointer& rm) { myActions.removeAll(rm); }
-	int count() const { return myActions.size(); }
+	void add(const Pointer& ad);
+	void remove(const Pointer& rm);
+	int count() const;
 };
 
-class CATACTION_EXPORT Check : public CatAction
-{
-public:
-	bool doIt()
-	{
-		if(myCond->doIt())
-			return myResult->doIt();
-		else
-			return false;
-	}
-
-	void SetCondition(const Pointer& cond) {myCond = cond;}
-	void SetResult(const Pointer& rst) {myResult = rst;}
-private:
-	Pointer myCond;
-	Pointer myResult;
-};
 #endif // CATACTION_H
