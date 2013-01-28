@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>CatMainWindow</class>
+ <widget class="QMainWindow" name="CatMainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>699</width>
+    <height>447</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>CatMainWindow</string>
+  </property>
+  <property name="windowIcon">
+   <iconset resource="Res.qrc">
+    <normaloff>:/CatMainWindow/Resources/hardware.png</normaloff>:/CatMainWindow/Resources/hardware.png</iconset>
+  </property>
+  <widget class="QWidget" name="centralWidget">
+   <layout class="QVBoxLayout" name="verticalLayout">
+    <property name="spacing">
+     <number>0</number>
+    </property>
+    <property name="margin">
+     <number>0</number>
+    </property>
+    <item>
+     <widget class="QTreeWidget" name="solutionTree"/>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QToolBar" name="toolBar">
+   <property name="movable">
+    <bool>false</bool>
+   </property>
+   <property name="floatable">
+    <bool>false</bool>
+   </property>
+   <attribute name="toolBarArea">
+    <enum>TopToolBarArea</enum>
+   </attribute>
+   <attribute name="toolBarBreak">
+    <bool>false</bool>
+   </attribute>
+   <addaction name="actionNewSolution"/>
+   <addaction name="actionOpen"/>
+   <addaction name="actionSave"/>
+   <addaction name="actionSaveAs"/>
+   <addaction name="separator"/>
+   <addaction name="actionNewAction"/>
+   <addaction name="actionRemoveAction"/>
+   <addaction name="separator"/>
+   <addaction name="actionGo"/>
+   <addaction name="separator"/>
+   <addaction name="actionAbout"/>
+  </widget>
+  <widget class="QStatusBar" name="statusBar"/>
+  <action name="actionNewSolution">
+   <property name="icon">
+    <iconset resource="Res.qrc">
+     <normaloff>:/CatMainWindow/Resources/filenew.png</normaloff>:/CatMainWindow/Resources/filenew.png</iconset>
+   </property>
+   <property name="text">
+    <string>新建方案</string>
+   </property>
+   <property name="toolTip">
+    <string>新建一个检查方案</string>
+   </property>
+  </action>
+  <action name="actionSave">
+   <property name="icon">
+    <iconset resource="Res.qrc">
+     <normaloff>:/CatMainWindow/Resources/filesave.png</normaloff>:/CatMainWindow/Resources/filesave.png</iconset>
+   </property>
+   <property name="text">
+    <string>保存方案</string>
+   </property>
+   <property name="toolTip">
+    <string>保存当前检查方案</string>
+   </property>
+  </action>
+  <action name="actionSaveAs">
+   <property name="icon">
+    <iconset resource="Res.qrc">
+     <normaloff>:/CatMainWindow/Resources/filesaveas.png</normaloff>:/CatMainWindow/Resources/filesaveas.png</iconset>
+   </property>
+   <property name="text">
+    <string>另存方案</string>
+   </property>
+   <property name="toolTip">
+    <string>另存当前检查方案</string>
+   </property>
+  </action>
+  <action name="actionOpen">
+   <property name="icon">
+    <iconset resource="Res.qrc">
+     <normaloff>:/CatMainWindow/Resources/fileopen.png</normaloff>:/CatMainWindow/Resources/fileopen.png</iconset>
+   </property>
+   <property name="text">
+    <string>打开方案</string>
+   </property>
+   <property name="toolTip">
+    <string>打开一个现有的检查方案</string>
+   </property>
+  </action>
+  <action name="actionNewAction">
+   <property name="icon">
+    <iconset resource="Res.qrc">
+     <normaloff>:/CatMainWindow/Resources/edit_add.png</normaloff>:/CatMainWindow/Resources/edit_add.png</iconset>
+   </property>
+   <property name="text">
+    <string>新增命令</string>
+   </property>
+   <property name="toolTip">
+    <string>新增一个检测命令</string>
+   </property>
+  </action>
+  <action name="actionRemoveAction">
+   <property name="icon">
+    <iconset resource="Res.qrc">
+     <normaloff>:/CatMainWindow/Resources/editdelete.png</normaloff>:/CatMainWindow/Resources/editdelete.png</iconset>
+   </property>
+   <property name="text">
+    <string>移除命令</string>
+   </property>
+   <property name="toolTip">
+    <string>移除选中的命令</string>
+   </property>
+  </action>
+  <action name="actionAbout">
+   <property name="icon">
+    <iconset resource="Res.qrc">
+     <normaloff>:/CatMainWindow/Resources/kdeprint_printer_infos.png</normaloff>:/CatMainWindow/Resources/kdeprint_printer_infos.png</iconset>
+   </property>
+   <property name="text">
+    <string>关于</string>
+   </property>
+   <property name="toolTip">
+    <string>关于本程序</string>
+   </property>
+  </action>
+  <action name="actionGo">
+   <property name="icon">
+    <iconset resource="Res.qrc">
+     <normaloff>:/CatMainWindow/Resources/apply.png</normaloff>:/CatMainWindow/Resources/apply.png</iconset>
+   </property>
+   <property name="text">
+    <string>Go</string>
+   </property>
+   <property name="toolTip">
+    <string>运行检查</string>
+   </property>
+  </action>
+ </widget>
+ <layoutdefault spacing="6" margin="11"/>
+ <resources>
+  <include location="Res.qrc"/>
+ </resources>
+ <connections/>
+</ui>

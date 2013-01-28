@@ -1,4 +1,13 @@
 <RCC>
-    <qresource prefix="CatMainWindow">
-    </qresource>
+  <qresource prefix="CatMainWindow">
+    <file>Resources/apply.png</file>
+    <file>Resources/kdeprint_printer_infos.png</file>
+    <file>Resources/edit_add.png</file>
+    <file>Resources/editdelete.png</file>
+    <file>Resources/filenew.png</file>
+    <file>Resources/fileopen.png</file>
+    <file>Resources/filesave.png</file>
+    <file>Resources/filesaveas.png</file>
+    <file>Resources/hardware.png</file>
+  </qresource>
 </RCC>

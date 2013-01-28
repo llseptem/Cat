@@ -2,7 +2,9 @@
 #define CATACTIONPLUGIN_H
 
 #include <QObject>
+#include <QUuid>
 #include <QtPlugin>
+#include <QDomElement>
 #include "../CatAction/CatAction.h"
 
 class CatActionPlugin : public QObject
@@ -13,7 +15,10 @@ public:
 	CatActionPlugin(QObject* parent = 0);
 	~CatActionPlugin();
 
-	virtual CatAction::Pointer CreateAction() =0; 
+	virtual QUuid Identifier() const =0;
+	virtual CatAction::Pointer CreateAction() =0;
+	virtual CatAction::Pointer RestoreAction(const QDomElement& elem) =0;
+	virtual void WriteAction(const CatAction::Pointer& ins,QDomElement& elem) =0;
 
 	QString title() const;
 	QString description() const;
