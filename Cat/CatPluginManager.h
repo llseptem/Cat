@@ -2,8 +2,10 @@
 #define CATPLUGINMANAGER_H
 
 #include <QObject>
+#include <QDomDocument>
 #include <QList>
 #include <QMap>
+#include "../CatAction/CatAction.h"
 
 class QUuid;
 class CatActionPlugin;
@@ -18,8 +20,13 @@ public:
 
 	void LoadPlugins();
 	void UnloadPlugins();
-	CatActionPlugin* plugin(const QUuid& uuid);
-	QList<CatActionPlugin*> plugins() const;
+
+	QList<QUuid> plugins() const;
+	QString pluginTitle(const QUuid& id) const;
+	QString pluginDescription(const QUuid& id) const;
+	CatAction::Pointer createAction(const QUuid& id) const;
+	CatAction::Pointer restoreAction(const QDomElement& elem) const;
+	void writeAction(const CatAction::Pointer& act, QDomElement& elem) const;
 private:
 	QMap<QUuid,CatActionPlugin*> myPlugins;
 };
