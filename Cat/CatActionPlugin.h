@@ -7,6 +7,10 @@
 #include <QDomElement>
 #include "../CatAction/CatAction.h"
 
+/************************************************************************/
+/* Format: Tag:Uuid,Attribe:anyInfo you need							*/
+/************************************************************************/
+
 class CatActionPlugin : public QObject
 {
 	Q_OBJECT
@@ -17,6 +21,7 @@ public:
 
 	virtual QUuid Identifier() const =0;
 	virtual CatAction::Pointer CreateAction() =0;
+	virtual bool RunAction(const QDomElement& elem) =0;
 	virtual CatAction::Pointer RestoreAction(const QDomElement& elem) =0;
 	virtual void WriteAction(const CatAction::Pointer& ins,QDomElement& elem) =0;
 

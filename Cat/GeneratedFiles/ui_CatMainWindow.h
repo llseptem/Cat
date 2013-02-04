@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'CatMainWindow.ui'
 **
-** Created: Mon Jan 28 14:57:48 2013
+** Created: Mon Feb 4 11:34:52 2013
 **      by: Qt User Interface Compiler version 4.8.4
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
@@ -18,8 +18,6 @@
 #include <QtGui/QMainWindow>
 #include <QtGui/QStatusBar>
 #include <QtGui/QToolBar>
-#include <QtGui/QTreeWidget>
-#include <QtGui/QVBoxLayout>
 #include <QtGui/QWidget>
 
 QT_BEGIN_NAMESPACE
@@ -36,8 +34,6 @@ public:
     QAction *actionAbout;
     QAction *actionGo;
     QWidget *centralWidget;
-    QVBoxLayout *verticalLayout;
-    QTreeWidget *solutionTree;
     QToolBar *toolBar;
     QStatusBar *statusBar;
 
@@ -91,15 +87,6 @@ public:
         actionGo->setIcon(icon8);
         centralWidget = new QWidget(CatMainWindow);
         centralWidget->setObjectName(QString::fromUtf8("centralWidget"));
-        verticalLayout = new QVBoxLayout(centralWidget);
-        verticalLayout->setSpacing(0);
-        verticalLayout->setContentsMargins(0, 0, 0, 0);
-        verticalLayout->setObjectName(QString::fromUtf8("verticalLayout"));
-        solutionTree = new QTreeWidget(centralWidget);
-        solutionTree->setObjectName(QString::fromUtf8("solutionTree"));
-
-        verticalLayout->addWidget(solutionTree);
-
         CatMainWindow->setCentralWidget(centralWidget);
         toolBar = new QToolBar(CatMainWindow);
         toolBar->setObjectName(QString::fromUtf8("toolBar"));

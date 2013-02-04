@@ -17,19 +17,7 @@
    <iconset resource="Res.qrc">
     <normaloff>:/CatMainWindow/Resources/hardware.png</normaloff>:/CatMainWindow/Resources/hardware.png</iconset>
   </property>
-  <widget class="QWidget" name="centralWidget">
-   <layout class="QVBoxLayout" name="verticalLayout">
-    <property name="spacing">
-     <number>0</number>
-    </property>
-    <property name="margin">
-     <number>0</number>
-    </property>
-    <item>
-     <widget class="QTreeWidget" name="solutionTree"/>
-    </item>
-   </layout>
-  </widget>
+  <widget class="QWidget" name="centralWidget"/>
   <widget class="QToolBar" name="toolBar">
    <property name="movable">
     <bool>false</bool>
