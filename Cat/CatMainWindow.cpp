@@ -32,7 +32,3 @@ void CatMainWindow::addAction()
 
 }
 
-void CatMainWindow::addActionGroup()
-{
-
-}

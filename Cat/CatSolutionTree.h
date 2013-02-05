@@ -2,10 +2,9 @@
 #define CATSOLUTIONTREE_H
 
 #include <QTreeWidget>
-#include <QDomDocument>
+#include <QDomElement>
 #include <QMap>
 
-class QUuid;
 class CatSolutionTree : public QTreeWidget
 {
 	Q_OBJECT
@@ -17,16 +16,14 @@ public:
 	void readSolution(const QString& fp);
 	void writeSolution(const QString& fp);
 
-	void addCommand(const QUuid& uid);
+	void addCommand(const QDomElement& cmd);
 	void removeCurrentCommand();
+	QDomElement currentCommand();
 private:
 	QTreeWidgetItem* createItem(const QString& tt,const QString& desc,
 		QTreeWidgetItem* parentItem = 0);
-	QTreeWidgetItem* createItem(const QDomElement& cmd,QTreeWidgetItem* parentItem = 0);
 private:
 	QMap<QTreeWidgetItem*,QDomElement> myCmdMap;
-	QDomDocument myDoc;
-	QDomElement myRoot;
 };
 
 #endif // CATSOLUTIONTREE_H

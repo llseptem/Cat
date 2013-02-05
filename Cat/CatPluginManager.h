@@ -1,11 +1,11 @@
 #ifndef CATPLUGINMANAGER_H
 #define CATPLUGINMANAGER_H
 
+#include <QObject>
 #include <QUuid>
 #include <QDomDocument>
 #include <QList>
 #include <QMap>
-#include "../CatAction/CatAction.h"
 
 class CatActionPlugin;
 
@@ -25,10 +25,11 @@ public:
 	QString pluginDescription(const QUuid& id) const;
 
 	bool configurePlugin(const QUuid& id);//maybe ui
-	void createAction(const QUuid& id, QDomElement& cmd) const;
+	bool createAction(const QUuid& id, QDomElement& cmd) const;
 	bool runAction(const QDomElement& cmd) const;//maybe ui
 private:
 	CatPluginManager(QObject *parent = 0);
+	QStringList getPlugins() const;
 	QMap<QUuid,CatActionPlugin*> myPlugins;
 };
 

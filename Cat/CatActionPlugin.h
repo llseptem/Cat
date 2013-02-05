@@ -5,7 +5,6 @@
 #include <QUuid>
 #include <QtPlugin>
 #include <QDomElement>
-#include "../CatAction/CatAction.h"
 
 /************************************************************************/
 /* Format: Tag:Uuid,Attribe:anyInfo you need							*/
@@ -20,10 +19,9 @@ public:
 	~CatActionPlugin();
 
 	virtual QUuid Identifier() const =0;
-	virtual CatAction::Pointer CreateAction() =0;
+	virtual bool CreateAction(QDomElement& cmd) =0;
 	virtual bool RunAction(const QDomElement& elem) =0;
-	virtual CatAction::Pointer RestoreAction(const QDomElement& elem) =0;
-	virtual void WriteAction(const CatAction::Pointer& ins,QDomElement& elem) =0;
+	virtual bool Configure() =0;
 
 	QString title() const;
 	QString description() const;
