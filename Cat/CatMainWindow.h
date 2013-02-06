@@ -2,10 +2,11 @@
 #define CATMAINWINDOW_H
 
 #include <QMainWindow>
-#include <QDomDocument>
 #include "ui_CatMainWindow.h"
 
 class CatSolutionTree;
+class CatActionList;
+class CatSolution;
 
 class CatMainWindow : public QMainWindow
 {
@@ -26,11 +27,13 @@ private slots:
 private:
 	void setupWidget();
 	void setupConnection();
+	void initialDoc();
 	bool maybeSave();
 private:
 	Ui::CatMainWindow ui;
 	CatSolutionTree* mySolutionTree;
-	QDomDocument myDoc;
+	CatActionList* myActionList;
+	CatSolution* mySolution;
 };
 
 #endif // CATMAINWINDOW_H

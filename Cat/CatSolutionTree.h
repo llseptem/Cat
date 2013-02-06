@@ -13,9 +13,6 @@ public:
 	CatSolutionTree(QWidget *parent = 0);
 	~CatSolutionTree();
 
-	void readSolution(const QString& fp);
-	void writeSolution(const QString& fp);
-
 	void addCommand(const QDomElement& cmd);
 	void removeCurrentCommand();
 	QDomElement currentCommand();
