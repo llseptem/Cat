@@ -10,7 +10,7 @@ int main(int argc, char *argv[])
 
 	CatPluginManager::GetInstance()->LoadPlugins();
 	CatMainWindow w;
-	w.show();
+	w.showMaximized();
 
 	int returnCode = a.exec();
 	CatPluginManager::GetInstance()->UnloadPlugins();

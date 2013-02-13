@@ -12,22 +12,17 @@
 
 class CatActionPlugin : public QObject
 {
-	Q_OBJECT
-
 public:
-	CatActionPlugin(QObject* parent = 0);
-	~CatActionPlugin();
+	CatActionPlugin() {}
+	~CatActionPlugin(){}
 
 	virtual QUuid Identifier() const =0;
 	virtual bool CreateAction(QDomElement& cmd) =0;
 	virtual bool RunAction(const QDomElement& elem) =0;
 	virtual bool Configure() =0;
 
-	QString title() const;
-	QString description() const;
-protected:
-	QString myTitle;
-	QString myDescription;
+	virtual QString title() const =0;
+	virtual QString description() const =0;
 };
 
 Q_DECLARE_INTERFACE(CatActionPlugin,"cat.action.plugin/1.0")

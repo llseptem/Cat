@@ -25,7 +25,10 @@ void CatActionList::initialList()
 
 	connect(ui.actionList,SIGNAL(currentIndexChanged(int)),this,SLOT(onSelectionChange(int)));
 	if(ui.actionList->count())
-	{ui.actionList->setCurrentIndex(0);}
+	{
+		ui.actionList->setCurrentIndex(0);
+		onSelectionChange(0);
+	}
 }
 
 void CatActionList::setDescription( const QString& desc )

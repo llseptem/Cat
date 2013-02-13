@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'CatMainWindow.ui'
 **
-** Created: Mon Feb 4 11:34:52 2013
+** Created: Wed Feb 13 12:54:44 2013
 **      by: Qt User Interface Compiler version 4.8.4
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
@@ -116,7 +116,7 @@ public:
 
     void retranslateUi(QMainWindow *CatMainWindow)
     {
-        CatMainWindow->setWindowTitle(QApplication::translate("CatMainWindow", "CatMainWindow", 0, QApplication::UnicodeUTF8));
+        CatMainWindow->setWindowTitle(QApplication::translate("CatMainWindow", "\346\243\200\346\265\213\346\226\271\346\241\210\347\274\226\350\276\221", 0, QApplication::UnicodeUTF8));
         actionNewSolution->setText(QApplication::translate("CatMainWindow", "\346\226\260\345\273\272\346\226\271\346\241\210", 0, QApplication::UnicodeUTF8));
 #ifndef QT_NO_TOOLTIP
         actionNewSolution->setToolTip(QApplication::translate("CatMainWindow", "\346\226\260\345\273\272\344\270\200\344\270\252\346\243\200\346\237\245\346\226\271\346\241\210", 0, QApplication::UnicodeUTF8));

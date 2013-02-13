@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>CatWizzard</class>
+ <widget class="QDialog" name="CatWizzard">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>446</width>
+    <height>145</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>向导</string>
+  </property>
+  <layout class="QVBoxLayout" name="verticalLayout">
+   <item>
+    <widget class="QCommandLinkButton" name="openBtn">
+     <property name="text">
+      <string>打开已有检测方案</string>
+     </property>
+     <property name="description">
+      <string>打开并运行一个已经存在的解决方案</string>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QCommandLinkButton" name="newBtn">
+     <property name="text">
+      <string>新建检测方案</string>
+     </property>
+     <property name="description">
+      <string>新建并保存一个新的解决方案</string>
+     </property>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <layoutdefault spacing="6" margin="11"/>
+ <resources/>
+ <connections/>
+</ui>

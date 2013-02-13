@@ -11,7 +11,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>CatMainWindow</string>
+   <string>检测方案编辑</string>
   </property>
   <property name="windowIcon">
    <iconset resource="Res.qrc">

@@ -15,6 +15,7 @@ public:
 
 	void addCommand(const QDomElement& cmd);
 	void removeCurrentCommand();
+	void removeAllCommand();
 	QDomElement currentCommand();
 private:
 	QTreeWidgetItem* createItem(const QString& tt,const QString& desc,

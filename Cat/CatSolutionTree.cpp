@@ -22,7 +22,7 @@ CatSolutionTree::~CatSolutionTree()
 void CatSolutionTree::addCommand( const QDomElement& cmd )
 {
 	CatPluginManager* mgr = CatPluginManager::GetInstance();
-	const QUuid& uid = cmd.tagName();
+	const QUuid& uid = QUuid(cmd.tagName());
 
 	QTreeWidgetItem* cmdItem = createItem(mgr->pluginTitle(uid),mgr->pluginDescription(uid));
 	myCmdMap.insert(cmdItem,cmd);
@@ -66,4 +66,23 @@ void CatSolutionTree::removeCurrentCommand()
 			item = item->parent();
 		}
 	}
+}
+
+void CatSolutionTree::removeAllCommand()
+{
+	myCmdMap.clear();
+	clear();
+}
+
+QDomElement CatSolutionTree::currentCommand()
+{
+	QTreeWidgetItem* item = currentItem();
+	while(item)
+	{
+		if(myCmdMap.contains(item))
+		{
+			return myCmdMap.value(item);
+		}
+	}
+	return QDomElement();
 }
