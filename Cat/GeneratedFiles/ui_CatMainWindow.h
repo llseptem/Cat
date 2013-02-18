@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'CatMainWindow.ui'
 **
-** Created: Wed Feb 13 12:54:44 2013
+** Created: Mon Feb 18 13:41:27 2013
 **      by: Qt User Interface Compiler version 4.8.4
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
@@ -33,6 +33,7 @@ public:
     QAction *actionRemoveAction;
     QAction *actionAbout;
     QAction *actionGo;
+    QAction *actionNewGroup;
     QWidget *centralWidget;
     QToolBar *toolBar;
     QStatusBar *statusBar;
@@ -41,7 +42,7 @@ public:
     {
         if (CatMainWindow->objectName().isEmpty())
             CatMainWindow->setObjectName(QString::fromUtf8("CatMainWindow"));
-        CatMainWindow->resize(699, 447);
+        CatMainWindow->resize(800, 600);
         QIcon icon;
         icon.addFile(QString::fromUtf8(":/CatMainWindow/Resources/hardware.png"), QSize(), QIcon::Normal, QIcon::Off);
         CatMainWindow->setWindowIcon(icon);
@@ -67,11 +68,13 @@ public:
         actionOpen->setIcon(icon4);
         actionNewAction = new QAction(CatMainWindow);
         actionNewAction->setObjectName(QString::fromUtf8("actionNewAction"));
+        actionNewAction->setEnabled(false);
         QIcon icon5;
         icon5.addFile(QString::fromUtf8(":/CatMainWindow/Resources/edit_add.png"), QSize(), QIcon::Normal, QIcon::Off);
         actionNewAction->setIcon(icon5);
         actionRemoveAction = new QAction(CatMainWindow);
         actionRemoveAction->setObjectName(QString::fromUtf8("actionRemoveAction"));
+        actionRemoveAction->setEnabled(false);
         QIcon icon6;
         icon6.addFile(QString::fromUtf8(":/CatMainWindow/Resources/editdelete.png"), QSize(), QIcon::Normal, QIcon::Off);
         actionRemoveAction->setIcon(icon6);
@@ -85,6 +88,11 @@ public:
         QIcon icon8;
         icon8.addFile(QString::fromUtf8(":/CatMainWindow/Resources/apply.png"), QSize(), QIcon::Normal, QIcon::Off);
         actionGo->setIcon(icon8);
+        actionNewGroup = new QAction(CatMainWindow);
+        actionNewGroup->setObjectName(QString::fromUtf8("actionNewGroup"));
+        QIcon icon9;
+        icon9.addFile(QString::fromUtf8(":/CatMainWindow/Resources/tab_new_background.png"), QSize(), QIcon::Normal, QIcon::Off);
+        actionNewGroup->setIcon(icon9);
         centralWidget = new QWidget(CatMainWindow);
         centralWidget->setObjectName(QString::fromUtf8("centralWidget"));
         CatMainWindow->setCentralWidget(centralWidget);
@@ -102,6 +110,7 @@ public:
         toolBar->addAction(actionSave);
         toolBar->addAction(actionSaveAs);
         toolBar->addSeparator();
+        toolBar->addAction(actionNewGroup);
         toolBar->addAction(actionNewAction);
         toolBar->addAction(actionRemoveAction);
         toolBar->addSeparator();
@@ -149,6 +158,7 @@ public:
 #ifndef QT_NO_TOOLTIP
         actionGo->setToolTip(QApplication::translate("CatMainWindow", "\350\277\220\350\241\214\346\243\200\346\237\245", 0, QApplication::UnicodeUTF8));
 #endif // QT_NO_TOOLTIP
+        actionNewGroup->setText(QApplication::translate("CatMainWindow", "\346\226\260\345\273\272\345\221\275\344\273\244\347\273\204", 0, QApplication::UnicodeUTF8));
     } // retranslateUi
 
 };

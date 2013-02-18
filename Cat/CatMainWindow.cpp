@@ -1,11 +1,10 @@
 #include "CatMainWindow.h"
 #include "CatAbout.h"
 #include "CatSolutionTree.h"
-#include "CatSolution.h"
 #include "CatActionList.h"
-#include "CatPluginManager.h"
 #include <QDomDocument>
 #include <QFileDialog>
+#include <QInputDialog>
 #include <QMessageBox>
 #include <QStringList>
 
@@ -32,14 +31,27 @@ void CatMainWindow::setupWidget()
 
 	myAbout = new CatAbout();
 	myAbout->setParent(this,Qt::Dialog);
-
-	mySolution = new CatSolution(this);
 }
 
 void CatMainWindow::setupConnection()
 {
+	connect(ui.actionNewSolution,SIGNAL(triggered()),this,SLOT(newSolution()));
+	connect(ui.actionSave,SIGNAL(triggered()),this,SLOT(saveSolution()));
+	connect(ui.actionSaveAs,SIGNAL(triggered()),this,SLOT(saveAsSolution()));
+	connect(ui.actionOpen,SIGNAL(triggered()),this,SLOT(openSolution()));
+
 	connect(ui.actionNewAction,SIGNAL(triggered()),this,SLOT(addAction()));
+	connect(ui.actionNewGroup,SIGNAL(triggered()),this,SLOT(addGroup()));
+	connect(ui.actionRemoveAction,SIGNAL(triggered()),mySolutionTree,SLOT(removeCurrent()));
+
+	connect(ui.actionGo,SIGNAL(triggered()),this,SLOT(runActions()));
+
 	connect(ui.actionAbout,SIGNAL(triggered()),this,SLOT(about()));
+
+	connect(mySolutionTree,SIGNAL(currentCanBeDeleted(bool)),
+		ui.actionRemoveAction,SLOT(setEnabled(bool)));
+	connect(mySolutionTree,SIGNAL(commandCanBeAdded(bool)),
+		ui.actionNewAction,SLOT(setEnabled(bool)));
 }
 
 void CatMainWindow::addAction()
@@ -49,31 +61,30 @@ void CatMainWindow::addAction()
 		const QUuid& uid = myActionList->selectedCommand();
 		if(!uid.isNull())
 		{
-			CatPluginManager* mgr = CatPluginManager::GetInstance();
-			if(mgr->configurePlugin(uid))
-			{
-				QDomElement cmd = mySolution->createCommand();
-				if(mgr->createAction(uid,cmd))
-				{
-					mySolution->appendCommand(cmd);
-					mySolutionTree->addCommand(cmd);
-					setWindowModified(true);
-				}
-			}
+			mySolutionTree->createCommand(uid);
 		}
+	}
+}
+
+void CatMainWindow::addGroup()
+{
+	const QString& grp = QInputDialog::getText(this,tr("添加新组"),
+		tr("请输入组名"));
+	if(!grp.isEmpty())
+	{
+		mySolutionTree->createGroup(grp);
 	}
 }
 
 bool CatMainWindow::maybeSave()
 {
-	if(isWindowModified())
+	if(mySolutionTree->isWindowModified())
 	{
 		int code = QMessageBox::question(this,tr("提示"),tr("是否保存现在方案?"),
-			QMessageBox::Ok,QMessageBox::No,QMessageBox::Cancel);
-		if(code == QMessageBox::Ok)
+			QMessageBox::Yes,QMessageBox::No,QMessageBox::Cancel);
+		if(code == QMessageBox::Yes)
 		{
-			saveSolution();
-			return !solutionPath.isEmpty();
+			return saveSolution();
 		}
 
 		return code != QMessageBox::Cancel;
@@ -85,12 +96,11 @@ void CatMainWindow::newSolution()
 {
 	if(maybeSave())
 	{
-		mySolutionTree->removeAllCommand();
-		mySolution->newSolution();
+		mySolutionTree->newDoc();
 	}
 }
 
-void CatMainWindow::saveSolution()
+bool CatMainWindow::saveSolution()
 {
 	if(solutionPath.isEmpty())
 	{
@@ -99,9 +109,9 @@ void CatMainWindow::saveSolution()
 	}
 	if(!solutionPath.isEmpty())
 	{
-		mySolution->writeTo(solutionPath);
-		setWindowModified(false);
+		mySolutionTree->save(solutionPath);
 	}
+	return !solutionPath.isEmpty();
 }
 
 void CatMainWindow::saveAsSolution()
@@ -117,17 +127,6 @@ void CatMainWindow::saveAsSolution()
 	}
 }
 
-void CatMainWindow::removeAction()
-{
-	const QDomElement& cmd = mySolutionTree->currentCommand();
-	if(!cmd.isNull())
-	{
-		mySolutionTree->removeCurrentCommand();
-		mySolution->removeCommand(cmd);
-		setWindowModified(true);
-	}
-}
-
 void CatMainWindow::runActions()
 {
 
@@ -138,7 +137,7 @@ void CatMainWindow::about()
 	myAbout->exec();
 }
 
-void CatMainWindow::onOpenSolution()
+void CatMainWindow::openSolution()
 {
 	if(!maybeSave()) return;
 
@@ -146,12 +145,7 @@ void CatMainWindow::onOpenSolution()
 		QDir::currentPath(),"Cat Solution (*.catsln)");
 	if(!solutionPath.isEmpty())
 	{
-		mySolutionTree->removeAllCommand();
-		mySolution->readFrom(solutionPath);
-		foreach(const QDomElement& cmd, mySolution->commands())
-		{
-			mySolutionTree->addCommand(cmd);
-		}
+		mySolutionTree->read(solutionPath);
 	}
 }
 

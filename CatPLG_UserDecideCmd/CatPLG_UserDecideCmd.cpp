@@ -23,7 +23,7 @@ QUuid CatPLG_UserDecideCmd::Identifier() const
 
 bool CatPLG_UserDecideCmd::CreateAction( QDomElement& cmd )
 {
-	cmd.setTagName(Identifier().toString());
+	cmd.setAttribute("UID",Identifier().toString());
 	cmd.setAttribute("ImagePath",myDlg->imagePath());
 	cmd.setAttribute("Description",myDlg->description());
 	return true;

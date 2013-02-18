@@ -1,6 +1,7 @@
 #include "CatSolution.h"
 #include <QFile>
-#include <QTextStream>
+#include <QStringList>
+#include <QDebug>
 
 CatSolution::CatSolution(QObject *parent)
 	: QObject(parent)
@@ -15,13 +16,7 @@ CatSolution::~CatSolution()
 
 QDomElement CatSolution::createCommand()
 {
-	return myDoc.createElement("Unnamed");
-}
-
-void CatSolution::appendCommand( const QDomElement& cmd )
-{
-	QDomElement root = myDoc.documentElement();
-	root.appendChild(cmd);
+	return myDoc.createElement("Command");
 }
 
 bool CatSolution::writeTo( const QString& pth )
@@ -38,39 +33,112 @@ bool CatSolution::writeTo( const QString& pth )
 
 bool CatSolution::readFrom( const QString& pth )
 {
+	bool success;
 	QFile fl(pth);
-	if(fl.open(QFile::ReadOnly))
+	if(success = fl.open(QFile::ReadOnly))
 	{
-		bool success = myDoc.setContent(&fl);
-		if(!success){myDoc.clear();}
-		return success;
+		QString msg;
+		int line,col;
+		if(success = myDoc.setContent(&fl,false,&msg,&line,&col))
+		{
+			QDomElement grp = myDoc.documentElement().firstChildElement();
+			while(!grp.isNull())
+			{
+				if(hasGroup(grp.tagName()))
+				{
+					success = false;
+					break;
+				}
+				myGroups.insert(grp.tagName());
+				grp = grp.nextSiblingElement();
+			}
+		}
+		qDebug() << msg;
 	}
-	return false;
+	if(!success)
+	{
+		newSolution();
+	}
+	return success;
 }
 
 QList<QDomElement> CatSolution::commands() const
 {
 	QList<QDomElement> cmds;
-	QDomElement root = myDoc.documentElement();
-	QDomElement cmd = root.firstChildElement();
-	while(!cmd.isNull())
+	foreach(const QString& grp,myGroups)
 	{
-		cmds.append(cmd);
-		cmd = cmd.nextSiblingElement();
+		cmds.append(commands(grp));
+	}
+	return cmds;
+}
+
+QList<QDomElement> CatSolution::commands( const QString& grp ) const
+{
+	QList<QDomElement> cmds;
+	if(hasGroup(grp))
+	{
+		QDomElement grpNode = myDoc.documentElement().firstChildElement(grp);
+		QDomElement cmd = grpNode.firstChildElement();
+		while(!cmd.isNull())
+		{
+			cmds.append(cmd);
+			cmd = cmd.nextSiblingElement();
+		}
 	}
 	return cmds;
 }
 
 void CatSolution::newSolution()
 {
+	myGroups.clear();
 	myDoc.clear();
 	QDomElement root = myDoc.createElement("Solution");
 	myDoc.appendChild(root);
 }
 
-void CatSolution::removeCommand( const QDomElement& cmd )
+void CatSolution::createGroup( const QString& grpName )
 {
-	QDomElement root = myDoc.documentElement();
-	root.removeChild(cmd);
+	if(hasGroup(grpName)) {return;}
+	QDomElement grp = myDoc.createElement(grpName);
+	if(!grp.isNull())
+	{
+		QDomElement root = myDoc.documentElement();
+		root.appendChild(grp);
+		myGroups.insert(grpName);
+	}
 }
+
+void CatSolution::removeGroup( const QString& grpName )
+{
+	if(!hasGroup(grpName)) {return;}
+	QDomElement grp = myDoc.documentElement().firstChildElement(grpName);
+	myDoc.documentElement().removeChild(grp);
+	myGroups.remove(grpName);
+}
+
+bool CatSolution::hasGroup( const QString& grp ) const
+{
+	return myGroups.contains(grp);
+}
+
+void CatSolution::appendCommand( const QDomElement& cmd, const QString& grp )
+{
+	if(!hasGroup(grp)) return;
+	QDomElement grpNode = myDoc.documentElement().firstChildElement(grp);
+	grpNode.appendChild(cmd);
+}
+
+void CatSolution::removeCommand( const QDomElement& cmd, const QString& grp )
+{
+	if(!hasGroup(grp)) {return;}
+
+	QDomElement grpNode = myDoc.documentElement().firstChildElement(grp);
+	grpNode.removeChild(cmd);
+}
+
+QStringList CatSolution::groups() const
+{
+	return QStringList::fromSet(myGroups);
+}
+
 

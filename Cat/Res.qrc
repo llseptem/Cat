@@ -1,5 +1,6 @@
 <RCC>
   <qresource prefix="CatMainWindow">
+    <file>Resources/tab_new_background.png</file>
     <file>Resources/apply.png</file>
     <file>Resources/kdeprint_printer_infos.png</file>
     <file>Resources/edit_add.png</file>

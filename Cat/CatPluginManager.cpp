@@ -93,7 +93,7 @@ bool CatPluginManager::createAction( const QUuid& id, QDomElement& cmd ) const
 
 bool CatPluginManager::runAction( const QDomElement& cmd ) const
 {
-	CatActionPlugin* plg = myPlugins.value(QUuid(cmd.tagName()),0);
+	CatActionPlugin* plg = myPlugins.value(QUuid(cmd.attribute("UID")),0);
 	return plg ? plg->RunAction(cmd) : false;
 }
 

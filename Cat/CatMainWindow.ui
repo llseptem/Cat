@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>699</width>
-    <height>447</height>
+    <width>800</width>
+    <height>600</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -36,6 +36,7 @@
    <addaction name="actionSave"/>
    <addaction name="actionSaveAs"/>
    <addaction name="separator"/>
+   <addaction name="actionNewGroup"/>
    <addaction name="actionNewAction"/>
    <addaction name="actionRemoveAction"/>
    <addaction name="separator"/>
@@ -93,6 +94,9 @@
    </property>
   </action>
   <action name="actionNewAction">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
    <property name="icon">
     <iconset resource="Res.qrc">
      <normaloff>:/CatMainWindow/Resources/edit_add.png</normaloff>:/CatMainWindow/Resources/edit_add.png</iconset>
@@ -105,6 +109,9 @@
    </property>
   </action>
   <action name="actionRemoveAction">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
    <property name="icon">
     <iconset resource="Res.qrc">
      <normaloff>:/CatMainWindow/Resources/editdelete.png</normaloff>:/CatMainWindow/Resources/editdelete.png</iconset>
@@ -138,6 +145,15 @@
    </property>
    <property name="toolTip">
     <string>运行检查</string>
+   </property>
+  </action>
+  <action name="actionNewGroup">
+   <property name="icon">
+    <iconset resource="Res.qrc">
+     <normaloff>:/CatMainWindow/Resources/tab_new_background.png</normaloff>:/CatMainWindow/Resources/tab_new_background.png</iconset>
+   </property>
+   <property name="text">
+    <string>新建命令组</string>
    </property>
   </action>
  </widget>

@@ -6,7 +6,6 @@
 
 class CatSolutionTree;
 class CatActionList;
-class CatSolution;
 class CatAbout;
 
 class CatMainWindow : public QMainWindow
@@ -19,11 +18,11 @@ public:
 
 private slots:
 	void newSolution();
-	void onOpenSolution();
-	void saveSolution();
+	void openSolution();
+	bool saveSolution();
 	void saveAsSolution();
 	void addAction();
-	void removeAction();
+	void addGroup();
 	void runActions();
 	void about();
 private:
@@ -35,7 +34,6 @@ private:
 	QString solutionPath;
 	CatSolutionTree* mySolutionTree;
 	CatActionList* myActionList;
-	CatSolution* mySolution;
 	CatAbout* myAbout;
 };
 
