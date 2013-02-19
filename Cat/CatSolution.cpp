@@ -1,5 +1,6 @@
 #include "CatSolution.h"
 #include <QFile>
+#include <QUuid>
 #include <QStringList>
 #include <QDebug>
 
@@ -14,9 +15,24 @@ CatSolution::~CatSolution()
 
 }
 
-QDomElement CatSolution::createCommand()
+QDomElement CatSolution::createCommand(const QUuid& uid)
 {
-	return myDoc.createElement("Command");
+	QDomElement cmd = myDoc.createElement("Command");
+	QDomElement id = myDoc.createElement("UID");
+	QDomText uuidStr = myDoc.createTextNode(uid.toString());
+	id.appendChild(uuidStr);
+	cmd.appendChild(id);
+	return cmd;
+}
+
+QUuid CatSolution::commandID( const QDomElement& cmd ) const
+{
+	QDomElement uid = cmd.firstChildElement("UID");
+	if(!uid.isNull())
+	{
+		return QUuid(uid.text());
+	}
+	return QUuid();
 }
 
 bool CatSolution::writeTo( const QString& pth )

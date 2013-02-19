@@ -5,6 +5,7 @@
 #include <QSet>
 #include <QDomDocument>
 
+class QUuid;
 class CatSolution : public QObject
 {
 	Q_OBJECT
@@ -23,9 +24,10 @@ public:
 	QStringList groups() const;
 	bool hasGroup(const QString& grp) const;
 
-	QDomElement createCommand();
+	QDomElement createCommand(const QUuid& uid);
 	void appendCommand(const QDomElement& cmd, const QString& grp);
 	void removeCommand(const QDomElement& cmd, const QString& grp);
+	QUuid commandID(const QDomElement& cmd) const;
 
 	void createGroup(const QString& grpName);
 	void removeGroup(const QString& grpName);

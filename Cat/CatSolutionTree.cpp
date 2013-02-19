@@ -27,7 +27,7 @@ CatSolutionTree::~CatSolutionTree()
 QTreeWidgetItem* CatSolutionTree::addCommand( const QDomElement& cmd, QTreeWidgetItem* grp )
 {
 	CatPluginManager* mgr = CatPluginManager::GetInstance();
-	const QUuid& uid = QUuid(cmd.attribute("UID"));
+	const QUuid& uid = QUuid(mySolution->commandID(cmd));
 
 	QTreeWidgetItem* cmdItem = createItem(mgr->pluginTitle(uid),mgr->pluginDescription(uid),
 		grp);
@@ -67,7 +67,7 @@ void CatSolutionTree::createCommand(const QUuid& uid)
 		CatPluginManager* mgr = CatPluginManager::GetInstance();
 		if(mgr->configurePlugin(uid))
 		{
-			QDomElement cmd = mySolution->createCommand();
+			QDomElement cmd = mySolution->createCommand(uid);
 			if(mgr->createAction(uid,cmd))
 			{
 				mySolution->appendCommand(cmd,myGroups.value(grp));

@@ -28,7 +28,7 @@ QStringList CatPluginManager::getPlugins() const
 {
 	QDir curDir = qApp->applicationDirPath();
 	QStringList plgs;
-	if(!curDir.cd("Plugins"))
+	if(!curDir.cd("Plugins")) 
 	{
 		qDebug() << tr("Plugin Directory does not exists.");
 		return plgs;
@@ -91,9 +91,9 @@ bool CatPluginManager::createAction( const QUuid& id, QDomElement& cmd ) const
 	return plg ? plg->CreateAction(cmd) : false;
 }
 
-bool CatPluginManager::runAction( const QDomElement& cmd ) const
+bool CatPluginManager::runAction( const QUuid& id, const QDomElement& cmd ) const
 {
-	CatActionPlugin* plg = myPlugins.value(QUuid(cmd.attribute("UID")),0);
+	CatActionPlugin* plg = myPlugins.value(id,0);
 	return plg ? plg->RunAction(cmd) : false;
 }
 

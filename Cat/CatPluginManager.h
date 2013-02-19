@@ -26,7 +26,7 @@ public:
 
 	bool configurePlugin(const QUuid& id);//maybe ui
 	bool createAction(const QUuid& id, QDomElement& cmd) const;
-	bool runAction(const QDomElement& cmd) const;//maybe ui
+	bool runAction(const QUuid& id, const QDomElement& cmd) const;//maybe ui
 private:
 	CatPluginManager(QObject *parent = 0);
 	QStringList getPlugins() const;

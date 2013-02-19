@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'CatPresentation.ui'
 **
-** Created: Wed Feb 13 19:36:55 2013
+** Created: Tue Feb 19 16:28:47 2013
 **      by: Qt User Interface Compiler version 4.8.4
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
@@ -62,7 +62,7 @@ public:
         imagePrev = new QLabel(CatPresentation);
         imagePrev->setObjectName(QString::fromUtf8("imagePrev"));
         imagePrev->setFrameShape(QFrame::StyledPanel);
-        imagePrev->setScaledContents(true);
+        imagePrev->setScaledContents(false);
         imagePrev->setAlignment(Qt::AlignCenter);
 
         horizontalLayout_3->addWidget(imagePrev);
