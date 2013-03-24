@@ -1,17 +1,16 @@
-#ifndef CATPLG_USERDECIDECMD_H
-#define CATPLG_USERDECIDECMD_H
+#ifndef CATPLG_INITIALIZECMD_H
+#define CATPLG_INITIALIZECMD_H
 
 #include "../Cat/CatActionPlugin.h"
 
-class CatPresentation;
-
-class CatPLG_UserDecideCmd : public CatActionPlugin
+class CatInitializeDialog;
+class CatPLG_InitializeCmd : public CatActionPlugin
 {
 	Q_OBJECT
 	Q_INTERFACES(CatActionPlugin)
 public:
-	CatPLG_UserDecideCmd(QObject *parent = 0);
-	~CatPLG_UserDecideCmd();
+	CatPLG_InitializeCmd(QObject *parent = 0);
+	~CatPLG_InitializeCmd();
 
 	virtual QString title() const;
 	virtual QString description() const;
@@ -21,7 +20,7 @@ public:
 	virtual bool CreateAction(QDomElement& cmd);
 	virtual bool RunAction(const QDomElement& elem,CatRunUI* ui);
 private:
-	CatPresentation* myDlg;
+	CatInitializeDialog* myInitDlg;
 };
 
-#endif // CATPLG_USERDECIDECMD_H
+#endif // CATPLG_INITIALIZECMD_H

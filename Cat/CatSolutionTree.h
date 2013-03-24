@@ -7,6 +7,7 @@
 
 class QUuid;
 class CatSolution;
+class CatRunUI;
 class CatSolutionTree : public QTreeWidget
 {
 	Q_OBJECT
@@ -24,6 +25,7 @@ public:
 	void createGroup(const QString& grp);
 public slots:
 	void removeCurrent();
+	void run();
 signals:
 	void currentCanBeDeleted(bool);
 	void commandCanBeAdded(bool);
@@ -41,6 +43,7 @@ private://op tree
 	void clearAll();
 private:
 	CatSolution* mySolution;//doc ops
+	CatRunUI* myRunUI;
 	QMap<QTreeWidgetItem*,QDomElement> myCmdMap;
 	QMap<QTreeWidgetItem*,QString> myGroups;
 };

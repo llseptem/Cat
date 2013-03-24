@@ -23,7 +23,6 @@ private slots:
 	void saveAsSolution();
 	void addAction();
 	void addGroup();
-	void runActions();
 	void about();
 private:
 	void setupWidget();

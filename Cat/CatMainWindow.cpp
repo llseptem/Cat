@@ -2,7 +2,6 @@
 #include "CatAbout.h"
 #include "CatSolutionTree.h"
 #include "CatActionList.h"
-#include <QDomDocument>
 #include <QFileDialog>
 #include <QInputDialog>
 #include <QMessageBox>
@@ -44,7 +43,7 @@ void CatMainWindow::setupConnection()
 	connect(ui.actionNewGroup,SIGNAL(triggered()),this,SLOT(addGroup()));
 	connect(ui.actionRemoveAction,SIGNAL(triggered()),mySolutionTree,SLOT(removeCurrent()));
 
-	connect(ui.actionGo,SIGNAL(triggered()),this,SLOT(runActions()));
+	connect(ui.actionGo,SIGNAL(triggered()),mySolutionTree,SLOT(run()));
 
 	connect(ui.actionAbout,SIGNAL(triggered()),this,SLOT(about()));
 
@@ -125,11 +124,6 @@ void CatMainWindow::saveAsSolution()
 		saveSolution();
 		solutionPath = oldPth;
 	}
-}
-
-void CatMainWindow::runActions()
-{
-
 }
 
 void CatMainWindow::about()

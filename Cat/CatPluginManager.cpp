@@ -91,9 +91,9 @@ bool CatPluginManager::createAction( const QUuid& id, QDomElement& cmd ) const
 	return plg ? plg->CreateAction(cmd) : false;
 }
 
-bool CatPluginManager::runAction( const QUuid& id, const QDomElement& cmd ) const
+bool CatPluginManager::runAction( const QUuid& id, const QDomElement& cmd, CatRunUI* ui ) const
 {
 	CatActionPlugin* plg = myPlugins.value(id,0);
-	return plg ? plg->RunAction(cmd) : false;
+	return plg ? plg->RunAction(cmd,ui) : false;
 }
 

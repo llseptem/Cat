@@ -1,6 +1,8 @@
 #include "CatSolutionTree.h"
 #include "CatPluginManager.h"
 #include "CatSolution.h"
+#include "../CatRunUI/CatRunUI.h"
+#include "../CatDeviceManager/CatDeviceManager.h"
 #include <QDomDocument>
 #include <QStringList>
 #include <QTreeWidgetItem>
@@ -17,6 +19,7 @@ CatSolutionTree::CatSolutionTree(QWidget *parent)
 	mySolution = new CatSolution(this);
 	connect(this,SIGNAL(currentItemChanged(QTreeWidgetItem*,QTreeWidgetItem*)),this,
 		SLOT(onCurrentChanged()));
+	myRunUI = new CatRunUI(this);
 }
 
 CatSolutionTree::~CatSolutionTree()
@@ -193,4 +196,22 @@ void CatSolutionTree::onCurrentChanged()
 	bool canAdd = currentGroupItem() != NULL;
 	emit commandCanBeAdded(canAdd);
 	emit currentCanBeDeleted(canAdd);
+}
+
+void CatSolutionTree::run()
+{
+	const QList<QDomElement>& cmds = mySolution->commands();
+	if(cmds.empty()) return;
+
+	CatPluginManager* mgr = CatPluginManager::GetInstance();
+	myRunUI->show();
+	myRunUI->raise();
+	myRunUI->activateWindow();
+	foreach(const QDomElement& cmd,cmds)
+	{
+		if(!mgr->runAction(mySolution->commandID(cmd),cmd,myRunUI))
+			break;
+		if(myRunUI->wait(1))
+			break;
+	}
 }

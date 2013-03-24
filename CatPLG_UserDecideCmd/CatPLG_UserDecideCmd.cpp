@@ -28,9 +28,11 @@ bool CatPLG_UserDecideCmd::CreateAction( QDomElement& cmd )
 	return true;
 }
 
-bool CatPLG_UserDecideCmd::RunAction( const QDomElement& elem )
+bool CatPLG_UserDecideCmd::RunAction( const QDomElement& elem, CatRunUI* ui )
 {
-	return true;
+	ui->setImage(elem.attribute("ImagePath"));
+	ui->setInformation(elem.attribute("Description"));
+	return ui->waitForDecition();
 }
 
 QString CatPLG_UserDecideCmd::title() const
