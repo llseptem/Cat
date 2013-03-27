@@ -17,6 +17,8 @@ public:
 	IAgilent34410Ptr Get34411() const;
 private:
 	CatDeviceManager(QObject *parent = 0);
+	IAgilent34980A2Ptr ptr34980;
+	IAgilent34410Ptr ptr34411;
 };
 
 #endif // CATDEVICEMANAGER_H

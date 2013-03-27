@@ -3,11 +3,17 @@
 CatDeviceManager::CatDeviceManager(QObject *parent)
 	: QObject(parent)
 {
-	long rst = ::CoInitializeEx(NULL,COINIT_MULTITHREADED);
+	::CoInitialize(NULL);
+	ptr34980 = IAgilent34980A2Ptr(__uuidof(Agilent34980A));
+	ptr34411 = IAgilent34410Ptr(__uuidof(Agilent34410));
 }
 
 CatDeviceManager::~CatDeviceManager()
 {
+// 	if(ptr34980)
+// 		ptr34980->Close();
+// 	if(ptr34411)
+// 		ptr34411->Close();
 	::CoUninitialize();
 }
 
@@ -19,12 +25,10 @@ CatDeviceManager& CatDeviceManager::GetInstance()
 
 IAgilent34980A2Ptr CatDeviceManager::Get34980() const
 {
-	static IAgilent34980A2Ptr ptr(__uuidof(Agilent34980A));
-	return ptr;
+	return ptr34980;
 }
 
 IAgilent34410Ptr CatDeviceManager::Get34411() const
 {
-	static IAgilent34410Ptr ptr(__uuidof(Agilent34410));
-	return ptr;
+	return ptr34411;
 }
