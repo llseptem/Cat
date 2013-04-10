@@ -1,0 +1,12 @@
+#ifndef CATPLG_SCANCMD_GLOBAL_H
+#define CATPLG_SCANCMD_GLOBAL_H
+
+#include <QtCore/qglobal.h>
+
+#ifdef CATPLG_SCANCMD_LIB
+# define CATPLG_SCANCMD_EXPORT Q_DECL_EXPORT
+#else
+# define CATPLG_SCANCMD_EXPORT Q_DECL_IMPORT
+#endif
+
+#endif // CATPLG_SCANCMD_GLOBAL_H
