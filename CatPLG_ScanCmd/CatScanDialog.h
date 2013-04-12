@@ -14,6 +14,7 @@ public:
 
 	QString ports() const;
 	int waitTime() const;
+	void Clear();
 private slots:
 	void onAddPort();
 private:

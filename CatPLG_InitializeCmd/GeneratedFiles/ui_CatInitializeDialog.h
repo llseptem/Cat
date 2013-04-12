@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'CatInitializeDialog.ui'
 **
-** Created: Sun Mar 24 18:08:51 2013
+** Created: Thu Apr 11 21:33:07 2013
 **      by: Qt User Interface Compiler version 4.8.4
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
@@ -14,6 +14,7 @@
 #include <QtGui/QAction>
 #include <QtGui/QApplication>
 #include <QtGui/QButtonGroup>
+#include <QtGui/QCheckBox>
 #include <QtGui/QDialog>
 #include <QtGui/QDialogButtonBox>
 #include <QtGui/QGridLayout>
@@ -32,6 +33,7 @@ public:
     QLabel *label_2;
     QLineEdit *adr34411;
     QDialogButtonBox *buttonBox;
+    QCheckBox *closeDev;
 
     void setupUi(QDialog *CatInitializeDialog)
     {
@@ -68,10 +70,17 @@ public:
 
         gridLayout->addWidget(buttonBox, 2, 1, 1, 1);
 
+        closeDev = new QCheckBox(CatInitializeDialog);
+        closeDev->setObjectName(QString::fromUtf8("closeDev"));
+
+        gridLayout->addWidget(closeDev, 2, 0, 1, 1);
+
 
         retranslateUi(CatInitializeDialog);
         QObject::connect(buttonBox, SIGNAL(accepted()), CatInitializeDialog, SLOT(accept()));
         QObject::connect(buttonBox, SIGNAL(rejected()), CatInitializeDialog, SLOT(reject()));
+        QObject::connect(closeDev, SIGNAL(clicked(bool)), adr34980, SLOT(setDisabled(bool)));
+        QObject::connect(closeDev, SIGNAL(clicked(bool)), adr34411, SLOT(setDisabled(bool)));
 
         QMetaObject::connectSlotsByName(CatInitializeDialog);
     } // setupUi
@@ -81,6 +90,7 @@ public:
         CatInitializeDialog->setWindowTitle(QApplication::translate("CatInitializeDialog", "\350\276\223\345\205\245\345\234\260\345\235\200", 0, QApplication::UnicodeUTF8));
         label->setText(QApplication::translate("CatInitializeDialog", "34980\345\234\260\345\235\200", 0, QApplication::UnicodeUTF8));
         label_2->setText(QApplication::translate("CatInitializeDialog", "34411\345\234\260\345\235\200", 0, QApplication::UnicodeUTF8));
+        closeDev->setText(QApplication::translate("CatInitializeDialog", "\345\205\263\351\227\255\350\256\276\345\244\207", 0, QApplication::UnicodeUTF8));
     } // retranslateUi
 
 };

@@ -15,6 +15,8 @@ public:
 	static CatDeviceManager& GetInstance();
 	IAgilent34980A2Ptr Get34980() const;
 	IAgilent34410Ptr Get34411() const;
+	bool Initialize();
+	void Uinitialize();
 private:
 	CatDeviceManager(QObject *parent = 0);
 	IAgilent34980A2Ptr ptr34980;

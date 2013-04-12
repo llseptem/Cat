@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'catportselectdialog.ui'
 **
-** Created: Mon Mar 25 20:42:49 2013
+** Created: Thu Apr 11 21:32:58 2013
 **      by: Qt User Interface Compiler version 4.8.4
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
@@ -14,6 +14,7 @@
 #include <QtGui/QAction>
 #include <QtGui/QApplication>
 #include <QtGui/QButtonGroup>
+#include <QtGui/QCheckBox>
 #include <QtGui/QDialog>
 #include <QtGui/QDialogButtonBox>
 #include <QtGui/QHBoxLayout>
@@ -33,6 +34,7 @@ public:
     QLineEdit *portEdit;
     QToolButton *addBtn;
     QListWidget *portList;
+    QCheckBox *isOpenBtn;
     QDialogButtonBox *buttonBox;
 
     void setupUi(QDialog *CatPortSelectDialog)
@@ -65,6 +67,11 @@ public:
 
         verticalLayout->addWidget(portList);
 
+        isOpenBtn = new QCheckBox(CatPortSelectDialog);
+        isOpenBtn->setObjectName(QString::fromUtf8("isOpenBtn"));
+
+        verticalLayout->addWidget(isOpenBtn);
+
         buttonBox = new QDialogButtonBox(CatPortSelectDialog);
         buttonBox->setObjectName(QString::fromUtf8("buttonBox"));
         buttonBox->setStandardButtons(QDialogButtonBox::Cancel|QDialogButtonBox::Ok);
@@ -83,6 +90,7 @@ public:
     {
         CatPortSelectDialog->setWindowTitle(QApplication::translate("CatPortSelectDialog", "\346\267\273\345\212\240\347\253\257\345\217\243", 0, QApplication::UnicodeUTF8));
         addBtn->setText(QApplication::translate("CatPortSelectDialog", "\357\274\213", 0, QApplication::UnicodeUTF8));
+        isOpenBtn->setText(QApplication::translate("CatPortSelectDialog", "\346\211\223\345\274\200\347\253\257\345\217\243", 0, QApplication::UnicodeUTF8));
     } // retranslateUi
 
 };

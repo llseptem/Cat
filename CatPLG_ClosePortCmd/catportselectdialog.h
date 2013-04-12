@@ -12,7 +12,9 @@ public:
 	CatPortSelectDialog(QWidget *parent = 0);
 	~CatPortSelectDialog();
 
-	QStringList Ports() const;
+	bool isOpen() const;
+	QString Ports() const;
+	void Clear();
 private slots:
 	void onAdd();
 private:

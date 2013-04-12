@@ -48,12 +48,12 @@ bool CatPLG_ResistenceCmd::RunAction( const QDomElement& elem,CatRunUI* ui )
 		if(elem.attribute("Mode") == "FourWire")
 		{
 			ptr->Measurement->MeasurementFunction =  Agilent34410MeasurementFunctionFResistance;
-			ptr->Resistance->Range = elem.attribute("Range").toInt();
+			ptr->Resistance->AutoRange = Agilent34410AutoRangeOn;
 		}
 		else
 		{
 			ptr->Measurement->MeasurementFunction = Agilent34410MeasurementFunctionResistance;
-			ptr->FResistance->Range = elem.attribute("Range").toInt();
+			ptr->FResistance->AutoRange = Agilent34410AutoRangeOn;
 		}
 		return true;
 	}

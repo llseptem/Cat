@@ -2,6 +2,7 @@
 #include <QFile>
 #include <QUuid>
 #include <QStringList>
+#include <QTextCodec>
 #include <QDebug>
 
 CatSolution::CatSolution(QObject *parent)
@@ -41,7 +42,9 @@ bool CatSolution::writeTo( const QString& pth )
 	if(fl.open(QFile::WriteOnly))
 	{
 		QTextStream ots(&fl);
-		ots << myDoc.toString();
+		ots.setCodec(QTextCodec::codecForLocale());
+//		ots << myDoc.toString();
+		myDoc.save(ots,1);
 		return true;
 	}
 	return false;

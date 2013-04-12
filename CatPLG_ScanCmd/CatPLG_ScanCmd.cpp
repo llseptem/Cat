@@ -25,6 +25,7 @@ QString CatPLG_ScanCmd::description() const
 
 bool CatPLG_ScanCmd::Configure()
 {
+	myDlg->Clear();
 	if(myDlg->exec() == QDialog::Accepted)
 	{
 		return (!myDlg->ports().isEmpty());

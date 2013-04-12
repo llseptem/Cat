@@ -48,12 +48,12 @@ bool CatPLG_VoltageCmd::RunAction( const QDomElement& elem,CatRunUI* ui )
 		if(elem.attribute("Mode") == "AC")
 		{
 			ptr->Measurement->MeasurementFunction =  Agilent34410MeasurementFunctionACVoltage;
-			ptr->Voltage->ACVoltage->Range = elem.attribute("Range").toInt();
+			ptr->Voltage->ACVoltage->AutoRange = Agilent34410AutoRangeOn;
 		}
 		else
 		{
 			ptr->Measurement->MeasurementFunction = Agilent34410MeasurementFunctionDCVoltage;
-			ptr->Voltage->DCVoltage->Range = elem.attribute("Range").toInt();
+			ptr->Voltage->DCVoltage->AutoRange = Agilent34410AutoRangeOn;
 		}
 		return true;
 	}

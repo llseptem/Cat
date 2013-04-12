@@ -26,7 +26,12 @@ QString CatPLG_CheckCmd::description() const
 
 bool CatPLG_CheckCmd::Configure()
 {
-	return myDlg->exec() == QDialog::Accepted;
+	myDlg->Clear();
+	if(myDlg->exec() == QDialog::Accepted)
+	{
+		return !myDlg->ranges().isEmpty();
+	}
+	return false;
 }
 
 QUuid CatPLG_CheckCmd::Identifier() const
@@ -37,8 +42,7 @@ QUuid CatPLG_CheckCmd::Identifier() const
 bool CatPLG_CheckCmd::CreateAction( QDomElement& cmd )
 {
 	cmd.setAttribute("Result",myDlg->resultType());
-	cmd.setAttribute("Lower",myDlg->lowerBound());
-	cmd.setAttribute("Upper",myDlg->upperBound());
+	cmd.setAttribute("Ranges",myDlg->ranges());
 	return true;
 }
 
@@ -50,11 +54,39 @@ bool CatPLG_CheckCmd::RunAction( const QDomElement& elem,CatRunUI* ui )
 		SAFEARRAY* psaData1 = ptr->Measurement->Fetch();
 		CComSafeArray<double> saData1;
 		saData1.Attach(psaData1);
-		double val = saData1.GetAt(0);
-		int lower = elem.attribute("Lower").toInt();
-		int upper = elem.attribute("Upper").toInt();
-		QString disp = tr("%1:%2 Range:(%3,%4) %5");
-		ui->setInformation(disp.arg(elem.attribute("Result")).arg(val).arg(lower).arg(upper).arg((val>lower && val<upper) ? "Pass" : "Failed"));
+		const QStringList& rgs = elem.attribute("Ranges").split(";");
+		QString info;
+		for(int i=0; i<saData1.GetCount(); ++i)
+		{
+			double val = saData1.GetAt(i);
+			QString disp = tr("%1:%2 %3:(%4,%5) %6");
+			disp = disp.arg(elem.attribute("Result"));
+			disp = disp.arg(val);
+			if(i<rgs.size())
+			{
+				const QStringList& rg = rgs[i].split(",");
+				if(rg.size()==3)
+				{
+					int lower = rg[1].toInt();
+					int upper = rg[2].toInt();
+					disp = disp.arg(rg[0]).arg(lower).arg(upper);
+					if(rg[0]=="Lower")
+					{
+						disp = disp.arg(val > lower ? "Pass" : "Failed");
+					}
+					else if(rg[0]=="Upper")
+					{
+						disp = disp.arg(val < upper ? "Pass" : "Failed");
+					}
+					else
+					{
+						disp = disp.arg((val > lower && val < upper) ? "Pass" : "Failed");
+					}
+					info += disp + "\n";
+				}
+			}
+		}
+		ui->setInformation(info);
 		return true;
 	}
 	catch (_com_error& e)

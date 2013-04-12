@@ -48,12 +48,12 @@ bool CatPLG_CurrentCmd::RunAction( const QDomElement& elem,CatRunUI* ui )
 		if(elem.attribute("Mode") == "AC")
 		{
 			ptr->Measurement->MeasurementFunction =  Agilent34410MeasurementFunctionACCurrent;
-			ptr->Current->ACCurrent->Range = elem.attribute("Range").toInt();
+			ptr->Current->ACCurrent->AutoRange = Agilent34410AutoRangeOn;
 		}
 		else
 		{
 			ptr->Measurement->MeasurementFunction = Agilent34410MeasurementFunctionDCCurrent;
-			ptr->Current->DCCurrent->Range = elem.attribute("Range").toInt();
+			ptr->Current->DCCurrent->AutoRange = Agilent34410AutoRangeOn;
 		}
 		return true;
 	}

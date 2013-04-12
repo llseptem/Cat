@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'CatCheckDialog.ui'
 **
-** Created: Wed Apr 10 22:43:19 2013
+** Created: Thu Apr 11 21:33:08 2013
 **      by: Qt User Interface Compiler version 4.8.4
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
@@ -16,12 +16,14 @@
 #include <QtGui/QButtonGroup>
 #include <QtGui/QDialog>
 #include <QtGui/QDialogButtonBox>
-#include <QtGui/QGridLayout>
 #include <QtGui/QGroupBox>
+#include <QtGui/QHBoxLayout>
 #include <QtGui/QHeaderView>
 #include <QtGui/QLabel>
+#include <QtGui/QListWidget>
 #include <QtGui/QRadioButton>
 #include <QtGui/QSpinBox>
+#include <QtGui/QToolButton>
 #include <QtGui/QVBoxLayout>
 
 QT_BEGIN_NAMESPACE
@@ -35,20 +37,28 @@ public:
     QRadioButton *vBtn;
     QRadioButton *rBtn;
     QRadioButton *cBtn;
+    QGroupBox *groupBox_3;
+    QVBoxLayout *verticalLayout_3;
+    QRadioButton *lowerBtn;
+    QRadioButton *upperBtn;
+    QRadioButton *rangeBtn;
     QGroupBox *groupBox;
-    QGridLayout *gridLayout;
+    QHBoxLayout *horizontalLayout;
     QLabel *label;
     QSpinBox *lowerBox;
     QLabel *label_2;
     QSpinBox *upperBox;
+    QToolButton *addBtn;
+    QListWidget *rangeList;
     QDialogButtonBox *buttonBox;
     QButtonGroup *buttonGroup;
+    QButtonGroup *buttonGroup_2;
 
     void setupUi(QDialog *CatCheckDialog)
     {
         if (CatCheckDialog->objectName().isEmpty())
             CatCheckDialog->setObjectName(QString::fromUtf8("CatCheckDialog"));
-        CatCheckDialog->resize(174, 223);
+        CatCheckDialog->resize(303, 466);
         verticalLayout_2 = new QVBoxLayout(CatCheckDialog);
         verticalLayout_2->setSpacing(6);
         verticalLayout_2->setContentsMargins(11, 11, 11, 11);
@@ -83,16 +93,46 @@ public:
 
         verticalLayout_2->addWidget(groupBox_2);
 
+        groupBox_3 = new QGroupBox(CatCheckDialog);
+        groupBox_3->setObjectName(QString::fromUtf8("groupBox_3"));
+        verticalLayout_3 = new QVBoxLayout(groupBox_3);
+        verticalLayout_3->setSpacing(6);
+        verticalLayout_3->setContentsMargins(11, 11, 11, 11);
+        verticalLayout_3->setObjectName(QString::fromUtf8("verticalLayout_3"));
+        lowerBtn = new QRadioButton(groupBox_3);
+        buttonGroup_2 = new QButtonGroup(CatCheckDialog);
+        buttonGroup_2->setObjectName(QString::fromUtf8("buttonGroup_2"));
+        buttonGroup_2->addButton(lowerBtn);
+        lowerBtn->setObjectName(QString::fromUtf8("lowerBtn"));
+
+        verticalLayout_3->addWidget(lowerBtn);
+
+        upperBtn = new QRadioButton(groupBox_3);
+        buttonGroup_2->addButton(upperBtn);
+        upperBtn->setObjectName(QString::fromUtf8("upperBtn"));
+
+        verticalLayout_3->addWidget(upperBtn);
+
+        rangeBtn = new QRadioButton(groupBox_3);
+        buttonGroup_2->addButton(rangeBtn);
+        rangeBtn->setObjectName(QString::fromUtf8("rangeBtn"));
+        rangeBtn->setChecked(true);
+
+        verticalLayout_3->addWidget(rangeBtn);
+
+
+        verticalLayout_2->addWidget(groupBox_3);
+
         groupBox = new QGroupBox(CatCheckDialog);
         groupBox->setObjectName(QString::fromUtf8("groupBox"));
-        gridLayout = new QGridLayout(groupBox);
-        gridLayout->setSpacing(6);
-        gridLayout->setContentsMargins(11, 11, 11, 11);
-        gridLayout->setObjectName(QString::fromUtf8("gridLayout"));
+        horizontalLayout = new QHBoxLayout(groupBox);
+        horizontalLayout->setSpacing(6);
+        horizontalLayout->setContentsMargins(11, 11, 11, 11);
+        horizontalLayout->setObjectName(QString::fromUtf8("horizontalLayout"));
         label = new QLabel(groupBox);
         label->setObjectName(QString::fromUtf8("label"));
 
-        gridLayout->addWidget(label, 0, 0, 1, 1);
+        horizontalLayout->addWidget(label);
 
         lowerBox = new QSpinBox(groupBox);
         lowerBox->setObjectName(QString::fromUtf8("lowerBox"));
@@ -100,12 +140,12 @@ public:
         lowerBox->setMaximum(999999999);
         lowerBox->setSingleStep(100);
 
-        gridLayout->addWidget(lowerBox, 0, 1, 1, 1);
+        horizontalLayout->addWidget(lowerBox);
 
         label_2 = new QLabel(groupBox);
         label_2->setObjectName(QString::fromUtf8("label_2"));
 
-        gridLayout->addWidget(label_2, 1, 0, 1, 1);
+        horizontalLayout->addWidget(label_2);
 
         upperBox = new QSpinBox(groupBox);
         upperBox->setObjectName(QString::fromUtf8("upperBox"));
@@ -113,11 +153,20 @@ public:
         upperBox->setMaximum(999999999);
         upperBox->setSingleStep(100);
 
-        gridLayout->addWidget(upperBox, 1, 1, 1, 1);
+        horizontalLayout->addWidget(upperBox);
 
-        gridLayout->setColumnStretch(1, 1);
+        addBtn = new QToolButton(groupBox);
+        addBtn->setObjectName(QString::fromUtf8("addBtn"));
+
+        horizontalLayout->addWidget(addBtn);
+
 
         verticalLayout_2->addWidget(groupBox);
+
+        rangeList = new QListWidget(CatCheckDialog);
+        rangeList->setObjectName(QString::fromUtf8("rangeList"));
+
+        verticalLayout_2->addWidget(rangeList);
 
         buttonBox = new QDialogButtonBox(CatCheckDialog);
         buttonBox->setObjectName(QString::fromUtf8("buttonBox"));
@@ -140,9 +189,14 @@ public:
         vBtn->setText(QApplication::translate("CatCheckDialog", "Voltage", 0, QApplication::UnicodeUTF8));
         rBtn->setText(QApplication::translate("CatCheckDialog", "Resistance", 0, QApplication::UnicodeUTF8));
         cBtn->setText(QApplication::translate("CatCheckDialog", "Current", 0, QApplication::UnicodeUTF8));
+        groupBox_3->setTitle(QApplication::translate("CatCheckDialog", "\345\210\244\346\226\255", 0, QApplication::UnicodeUTF8));
+        lowerBtn->setText(QApplication::translate("CatCheckDialog", "Lower", 0, QApplication::UnicodeUTF8));
+        upperBtn->setText(QApplication::translate("CatCheckDialog", "Upper", 0, QApplication::UnicodeUTF8));
+        rangeBtn->setText(QApplication::translate("CatCheckDialog", "Range", 0, QApplication::UnicodeUTF8));
         groupBox->setTitle(QApplication::translate("CatCheckDialog", "\350\214\203\345\233\264", 0, QApplication::UnicodeUTF8));
         label->setText(QApplication::translate("CatCheckDialog", "\344\270\213\351\231\220", 0, QApplication::UnicodeUTF8));
         label_2->setText(QApplication::translate("CatCheckDialog", "\344\270\212\351\231\220", 0, QApplication::UnicodeUTF8));
+        addBtn->setText(QApplication::translate("CatCheckDialog", "+", 0, QApplication::UnicodeUTF8));
     } // retranslateUi
 
 };

@@ -2,11 +2,17 @@
 #include "ui_CatRunUI.h"
 #include <QEventLoop>
 #include <QTimer>
+#include <QFont>
+#include <QPrintDialog>
+#include <QInputDialog>
+#include <QDateTime>
+#include <QFile>
+#include <QTextStream>
 
 CatRunUI::CatRunUI(QWidget *parent)
 	: QDialog(parent),ui(new Ui::CatRunUI())
 {
-	ui->setupUi(this);
+	setupWidget();
 }
 
 CatRunUI::~CatRunUI()
@@ -16,7 +22,13 @@ CatRunUI::~CatRunUI()
 
 void CatRunUI::setInformation( const QString& info )
 {
-	ui->textLabel->setText(info);
+	const QString& tm = QDateTime::currentDateTime().toString(Qt::ISODate);
+	QString fmtMsg = tm + "\n" + info;
+	if(!fmtMsg.endsWith("\n")) {info + "\n";}
+
+	QTextCharFormat fmt;
+	fmt.setForeground(Qt::darkBlue);
+	ui->textEdit->textCursor().insertText(fmtMsg,fmt);
 }
 
 void CatRunUI::setImage( const QImage& img )
@@ -62,4 +74,56 @@ bool CatRunUI::wait( int sec )
 	loop.exec();
 
 	return timer.isActive();
+}
+
+void CatRunUI::setTitle( const QString& tt )
+{
+	ui->titleLabel->setText(tt);
+}
+
+void CatRunUI::print()
+{
+	const QString& checkID = QInputDialog::getText(this,tr("输入流水号"),tr("流水号"));
+	if(checkID.isEmpty()) return;
+
+	QPrintDialog prtDlg(this);
+	if(prtDlg.exec() == QDialog::Accepted)
+	{
+		setInformation(tr("检测流水号:") + checkID);
+		ui->textEdit->print(prtDlg.printer());
+	}
+}
+
+void CatRunUI::setupWidget()
+{
+	ui->setupUi(this);
+	ui->yesBtn->setVisible(false);
+	ui->noBtn->setVisible(false);
+	ui->printBtn->setVisible(false);
+	QFont font;
+	font.setFamily("Courier");
+	font.setFixedPitch(true);
+	font.setPointSize(10);
+	ui->textEdit->setFont(font);
+	connect(ui->printBtn,SIGNAL(clicked()),this,SLOT(print()));
+}
+
+void CatRunUI::checkFinished()
+{
+	ui->printBtn->setVisible(true);
+
+	QFile log(QDateTime::currentDateTime().toString(Qt::ISODate)+".log");
+	if(log.open(QIODevice::WriteOnly))
+	{
+		QTextStream tos(&log);
+		tos << ui->textEdit->toHtml();
+	}
+}
+
+void CatRunUI::checkBegin()
+{
+	ui->imgLabel->clear();
+	ui->titleLabel->clear();
+	ui->textEdit->clear();
+	ui->printBtn->setVisible(false);
 }

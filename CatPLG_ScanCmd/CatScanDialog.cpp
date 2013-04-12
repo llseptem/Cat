@@ -41,3 +41,8 @@ int CatScanDialog::waitTime() const
 {
 	return ui.waitBox->value();
 }
+
+void CatScanDialog::Clear()
+{
+	ui.portList->clear();
+}

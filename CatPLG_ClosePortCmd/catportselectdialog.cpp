@@ -28,12 +28,28 @@ void CatPortSelectDialog::addPort( const QString& pt )
 	ui.portList->addItem(pt);
 }
 
-QStringList CatPortSelectDialog::Ports() const
+QString CatPortSelectDialog::Ports() const
 {
-	QStringList ports;
-	for(int i=0; i<ui.portList->count(); ++i)
+	QString list;
+	if(ui.portList->count())
 	{
-		ports << ui.portList->item(i)->text();
+		list = ui.portList->item(0)->text();
+		for(int i=1; i<ui.portList->count(); ++i)
+		{
+			list.append(",");
+			list.append(ui.portList->item(i)->text());
+		}
 	}
-	return ports;
+	return list;
+}
+
+void CatPortSelectDialog::Clear()
+{
+	ui.portEdit->clear();
+	ui.portList->clear();
+}
+
+bool CatPortSelectDialog::isOpen() const
+{
+	return ui.isOpenBtn->isChecked();
 }

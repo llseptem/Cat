@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'CatVoltageDialog.ui'
 **
-** Created: Fri Mar 29 21:58:48 2013
+** Created: Thu Apr 11 21:33:07 2013
 **      by: Qt User Interface Compiler version 4.8.4
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!

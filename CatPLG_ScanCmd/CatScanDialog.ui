@@ -46,8 +46,14 @@
      </item>
      <item>
       <widget class="QSpinBox" name="waitBox">
+       <property name="maximum">
+        <number>100000</number>
+       </property>
+       <property name="singleStep">
+        <number>100</number>
+       </property>
        <property name="value">
-        <number>3</number>
+        <number>3000</number>
        </property>
       </widget>
      </item>

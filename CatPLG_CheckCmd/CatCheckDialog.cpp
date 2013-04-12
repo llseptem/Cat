@@ -1,9 +1,11 @@
 #include "CatCheckDialog.h"
+#include <QListWidgetItem>
 
 CatCheckDialog::CatCheckDialog(QWidget *parent)
 	: QDialog(parent)
 {
 	ui.setupUi(this);
+	connect(ui.addBtn,SIGNAL(clicked()),this,SLOT(onAdd()));
 }
 
 CatCheckDialog::~CatCheckDialog()
@@ -16,12 +18,31 @@ QString CatCheckDialog::resultType() const
 	return ui.buttonGroup->checkedButton()->text();
 }
 
-int CatCheckDialog::lowerBound() const
+void CatCheckDialog::onAdd()
 {
-	return ui.lowerBox->value();
+	const QString& cp = ui.buttonGroup_2->checkedButton()->text();
+	if(ui.lowerBox->text().isEmpty() || ui.upperBox->text().isEmpty())
+		return;
+
+	ui.rangeList->addItem(cp + "," + ui.lowerBox->text() + "," + ui.upperBox->text());
 }
 
-int CatCheckDialog::upperBound() const
+QString CatCheckDialog::ranges() const
 {
-	return ui.upperBox->value();
+	QString list;
+	if(ui.rangeList->count())
+	{
+		list = ui.rangeList->item(0)->text();
+		for(int i=1; i<ui.rangeList->count(); ++i)
+		{
+			list.append(";");
+			list.append(ui.rangeList->item(i)->text());
+		}
+	}
+	return list;
+}
+
+void CatCheckDialog::Clear()
+{
+	ui.rangeList->clear();
 }

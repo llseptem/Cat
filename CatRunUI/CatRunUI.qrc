@@ -1,6 +1,7 @@
 <RCC>
-    <qresource prefix="/icons">
-        <file>Resources/apply.png</file>
-        <file>Resources/editdelete.png</file>
-    </qresource>
+  <qresource prefix="/icons">
+    <file>Resources/printer.png</file>
+    <file>Resources/apply.png</file>
+    <file>Resources/editdelete.png</file>
+  </qresource>
 </RCC>

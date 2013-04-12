@@ -96,6 +96,7 @@ void CatMainWindow::newSolution()
 	if(maybeSave())
 	{
 		mySolutionTree->newDoc();
+		solutionPath.clear();
 	}
 }
 

@@ -14,6 +14,7 @@ public:
 
 	QString Adr34980() const;
 	QString Adr34411() const;
+	bool isUninitial() const;
 private:
 	Ui::CatInitializeDialog ui;
 };

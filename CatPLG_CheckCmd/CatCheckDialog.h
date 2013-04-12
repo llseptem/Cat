@@ -13,8 +13,10 @@ public:
 	~CatCheckDialog();
 
 	QString resultType() const;
-	int lowerBound() const;
-	int upperBound() const;
+	QString ranges() const;
+	void Clear();
+private slots:
+	void onAdd();
 private:
 	Ui::CatCheckDialog ui;
 };

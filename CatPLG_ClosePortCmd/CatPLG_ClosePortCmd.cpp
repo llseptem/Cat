@@ -15,16 +15,17 @@ CatPLG_ClosePortCmd::~CatPLG_ClosePortCmd()
 
 QString CatPLG_ClosePortCmd::title() const
 {
-	return tr("关闭端口命令");
+	return tr("打开关闭端口命令");
 }
 
 QString CatPLG_ClosePortCmd::description() const
 {
-	return tr("关闭指定的一个或多个端口");
+	return tr("永久打开或关闭指定的一个或多个端口");
 }
 
 bool CatPLG_ClosePortCmd::Configure()
 {
+	myDlg->Clear();
 	myDlg->exec();
 	return !myDlg->Ports().isEmpty();
 }
@@ -36,36 +37,31 @@ QUuid CatPLG_ClosePortCmd::Identifier() const
 
 bool CatPLG_ClosePortCmd::CreateAction( QDomElement& cmd )
 {
-	const QStringList& ports = myDlg->Ports();
-	for(int i=0; i<ports.size(); ++i)
-	{
-		cmd.setAttribute(QString("Port%1").arg(i),ports[i]);
-	}
+	const QString& ports = myDlg->Ports();
+	cmd.setAttribute("Operator", myDlg->isOpen() ? "Open" : "Close");
+	cmd.setAttribute("Ports",myDlg->Ports());
 	return true;
 }
 
 bool CatPLG_ClosePortCmd::RunAction( const QDomElement& elem,CatRunUI* ui )
 {
-	const QDomNamedNodeMap& ports = elem.attributes();
-	IAgilent34980A2Ptr ptr = CatDeviceManager::GetInstance().Get34980();
-	for(int i=0; i<ports.size(); ++i)
+	try
 	{
-		QDomNode nd = ports.namedItem(QString("Port%1").arg(i));
-		if(nd.isNull())
-			break;
+		IAgilent34980A2Ptr ptr = CatDeviceManager::GetInstance().Get34980();
+		ui->setInformation(QString("%1 Port:%2").arg(elem.attribute("Operator")).arg(elem.attribute("Ports")));
+		if(elem.attribute("Operator") == "Open")
+		{
+			ptr->Route->Close(elem.attribute("Ports").toStdString().c_str());
+		}
 		else
 		{
-			try
-			{
-				ui->setInformation(QString("Close Port:%1").arg(nd.nodeValue()));
-				ptr->Route->Close(nd.nodeValue().toStdString().c_str());
-			}
-			catch (_com_error& e)
-			{
-				ui->setInformation(QString::fromWCharArray(e.ErrorMessage()) + ":\n" + QString::fromWCharArray(e.Description()));
-				return false;
-			}
+			ptr->Route->Open(elem.attribute("Ports").toStdString().c_str());
 		}
+	}
+	catch (_com_error& e)
+	{
+		ui->setInformation(QString::fromWCharArray(e.ErrorMessage()) + ":\n" + QString::fromWCharArray(e.Description()));
+		return false;
 	}
 	return true;
 }

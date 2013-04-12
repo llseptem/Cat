@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'CatCurrentDialog.ui'
 **
-** Created: Tue Apr 2 20:43:58 2013
+** Created: Thu Apr 11 21:32:57 2013
 **      by: Qt User Interface Compiler version 4.8.4
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!

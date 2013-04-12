@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'CatScanDialog.ui'
 **
-** Created: Mon Apr 8 21:14:52 2013
+** Created: Thu Apr 11 21:41:46 2013
 **      by: Qt User Interface Compiler version 4.8.4
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
@@ -81,7 +81,9 @@ public:
 
         waitBox = new QSpinBox(CatScanDialog);
         waitBox->setObjectName(QString::fromUtf8("waitBox"));
-        waitBox->setValue(3);
+        waitBox->setMaximum(100000);
+        waitBox->setSingleStep(100);
+        waitBox->setValue(3000);
 
         horizontalLayout_2->addWidget(waitBox);
 

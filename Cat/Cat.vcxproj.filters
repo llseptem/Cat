@@ -104,6 +104,15 @@
     <ClCompile Include="GeneratedFiles\Release\moc_CatAbout.cpp">
       <Filter>Generated Files\Release</Filter>
     </ClCompile>
+    <ClCompile Include="CatGroupSelector.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Debug\moc_CatGroupSelector.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\Release\moc_CatGroupSelector.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Cat.rc" />
@@ -148,6 +157,12 @@
     <CustomBuild Include="CatAbout.ui">
       <Filter>Form Files</Filter>
     </CustomBuild>
+    <CustomBuild Include="CatGroupSelector.h">
+      <Filter>Header Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="CatGroupSelector.ui">
+      <Filter>Form Files</Filter>
+    </CustomBuild>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GeneratedFiles\ui_CatMainWindow.h">
@@ -160,6 +175,9 @@
       <Filter>Generated Files</Filter>
     </ClInclude>
     <ClInclude Include="GeneratedFiles\ui_CatAbout.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
+    <ClInclude Include="GeneratedFiles\ui_CatGroupSelector.h">
       <Filter>Generated Files</Filter>
     </ClInclude>
   </ItemGroup>

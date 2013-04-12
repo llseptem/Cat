@@ -3,6 +3,7 @@
 #include "CatSolution.h"
 #include "../CatRunUI/CatRunUI.h"
 #include "../CatDeviceManager/CatDeviceManager.h"
+#include "CatGroupSelector.h"
 #include <QDomDocument>
 #include <QStringList>
 #include <QTreeWidgetItem>
@@ -200,18 +201,44 @@ void CatSolutionTree::onCurrentChanged()
 
 void CatSolutionTree::run()
 {
-	const QList<QDomElement>& cmds = mySolution->commands();
-	if(cmds.empty()) return;
+	const QStringList& grps = mySolution->groups();
+	CatGroupSelector selGrp;
+	selGrp.addGroup(grps);
+	if(selGrp.exec() != QDialog::Accepted)
+	{
+		return;
+	}
+	const QStringList& selGrps = selGrp.groups();
+	if(selGrps.isEmpty())
+	{
+		return;
+	}
+
+	if(!CatDeviceManager::GetInstance().Initialize())
+	{
+		QMessageBox::information(this,tr("初始化设备失败"),
+			tr("请检查设备与电脑连接情况与上电情况。"));
+		CatDeviceManager::GetInstance().Uinitialize();
+		return;
+	}
 
 	CatPluginManager* mgr = CatPluginManager::GetInstance();
 	myRunUI->show();
 	myRunUI->raise();
 	myRunUI->activateWindow();
-	foreach(const QDomElement& cmd,cmds)
+	myRunUI->checkBegin();
+	foreach(const QString& grp,selGrps)
 	{
-		if(!mgr->runAction(mySolution->commandID(cmd),cmd,myRunUI))
-			break;
-		if(myRunUI->wait(1))
-			break;
+		myRunUI->setTitle(grp);
+		myRunUI->wait(1);
+		foreach(const QDomElement& cmd,mySolution->commands(grp))
+		{
+			if(!mgr->runAction(mySolution->commandID(cmd),cmd,myRunUI))
+				break;
+			if(myRunUI->wait(1))
+				break;
+		}
 	}
+	myRunUI->checkFinished();
+	CatDeviceManager::GetInstance().Uinitialize();
 }

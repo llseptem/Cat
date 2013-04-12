@@ -1,41 +1,33 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>CatPortSelectDialog</class>
- <widget class="QDialog" name="CatPortSelectDialog">
+ <class>CatGroupSelector</class>
+ <widget class="QDialog" name="CatGroupSelector">
   <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>216</width>
-    <height>300</height>
+    <width>174</width>
+    <height>95</height>
    </rect>
   </property>
   <property name="windowTitle">
-   <string>添加端口</string>
+   <string>CatGroupSelector</string>
   </property>
-  <layout class="QVBoxLayout" name="verticalLayout">
+  <layout class="QVBoxLayout" name="verticalLayout_2">
    <item>
-    <layout class="QHBoxLayout" name="horizontalLayout">
-     <item>
-      <widget class="QLineEdit" name="portEdit"/>
-     </item>
-     <item>
-      <widget class="QToolButton" name="addBtn">
-       <property name="text">
-        <string>＋</string>
-       </property>
-      </widget>
-     </item>
-    </layout>
-   </item>
-   <item>
-    <widget class="QListWidget" name="portList"/>
-   </item>
-   <item>
-    <widget class="QCheckBox" name="isOpenBtn">
-     <property name="text">
-      <string>打开端口</string>
+    <widget class="QGroupBox" name="groupBox">
+     <property name="title">
+      <string>选择要执行的组</string>
      </property>
+     <layout class="QVBoxLayout" name="verticalLayout">
+      <item>
+       <widget class="QCheckBox" name="allBox">
+        <property name="text">
+         <string>全选</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
     </widget>
    </item>
    <item>
@@ -53,15 +45,15 @@
   <connection>
    <sender>buttonBox</sender>
    <signal>accepted()</signal>
-   <receiver>CatPortSelectDialog</receiver>
+   <receiver>CatGroupSelector</receiver>
    <slot>accept()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>107</x>
-     <y>279</y>
+     <x>177</x>
+     <y>251</y>
     </hint>
     <hint type="destinationlabel">
-     <x>107</x>
+     <x>199</x>
      <y>149</y>
     </hint>
    </hints>
@@ -69,15 +61,15 @@
   <connection>
    <sender>buttonBox</sender>
    <signal>rejected()</signal>
-   <receiver>CatPortSelectDialog</receiver>
+   <receiver>CatGroupSelector</receiver>
    <slot>reject()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>107</x>
-     <y>279</y>
+     <x>177</x>
+     <y>251</y>
     </hint>
     <hint type="destinationlabel">
-     <x>107</x>
+     <x>199</x>
      <y>149</y>
     </hint>
    </hints>
