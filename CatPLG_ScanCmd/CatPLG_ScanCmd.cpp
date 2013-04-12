@@ -49,6 +49,7 @@ bool CatPLG_ScanCmd::RunAction( const QDomElement& elem,CatRunUI* ui )
 {
 	try
 	{
+		ui->setInformation(tr("Scan Ports: %1").arg(elem.attribute("Ports")));
 		IAgilent34980A2Ptr ptr = CatDeviceManager::GetInstance().Get34980();
 		ptr->Scan->ScanList = elem.attribute("Ports").toStdWString().c_str();
 		ptr->System->IO->IO->WriteString("ROUT:CHAN:ADV:SOUR EXT");

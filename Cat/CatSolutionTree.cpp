@@ -227,18 +227,27 @@ void CatSolutionTree::run()
 	myRunUI->raise();
 	myRunUI->activateWindow();
 	myRunUI->checkBegin();
+	myRunUI->setInformation(tr("Initialize Device Success\n"));
 	foreach(const QString& grp,selGrps)
 	{
 		myRunUI->setTitle(grp);
+		myRunUI->setInformation("Now,Checking " + grp);
 		myRunUI->wait(1);
 		foreach(const QDomElement& cmd,mySolution->commands(grp))
 		{
 			if(!mgr->runAction(mySolution->commandID(cmd),cmd,myRunUI))
+			{	
+				myRunUI->setInformation(tr("Checking Stoped Because of Error."));
 				break;
+			}
 			if(myRunUI->wait(1))
+			{
+				myRunUI->setInformation(tr("User Canceled"));
 				break;
+			}
 		}
 	}
+	myRunUI->setInformation(tr("Checking Finished"));
 	myRunUI->checkFinished();
 	CatDeviceManager::GetInstance().Uinitialize();
 }

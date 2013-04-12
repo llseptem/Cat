@@ -55,7 +55,6 @@ bool CatPLG_CheckCmd::RunAction( const QDomElement& elem,CatRunUI* ui )
 		CComSafeArray<double> saData1;
 		saData1.Attach(psaData1);
 		const QStringList& rgs = elem.attribute("Ranges").split(";");
-		QString info;
 		for(int i=0; i<saData1.GetCount(); ++i)
 		{
 			double val = saData1.GetAt(i);
@@ -72,21 +71,19 @@ bool CatPLG_CheckCmd::RunAction( const QDomElement& elem,CatRunUI* ui )
 					disp = disp.arg(rg[0]).arg(lower).arg(upper);
 					if(rg[0]=="Lower")
 					{
-						disp = disp.arg(val > lower ? "Pass" : "Failed");
+						ui->setInformation(disp.arg(val > lower ? "Pass" : "Failed"));
 					}
 					else if(rg[0]=="Upper")
 					{
-						disp = disp.arg(val < upper ? "Pass" : "Failed");
+						ui->setInformation(disp.arg(val < upper ? "Pass" : "Failed"));
 					}
 					else
 					{
-						disp = disp.arg((val > lower && val < upper) ? "Pass" : "Failed");
+						ui->setInformation(disp.arg((val > lower && val < upper) ? "Pass" : "Failed"));
 					}
-					info += disp + "\n";
 				}
 			}
 		}
-		ui->setInformation(info);
 		return true;
 	}
 	catch (_com_error& e)

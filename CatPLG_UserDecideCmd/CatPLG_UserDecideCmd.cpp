@@ -32,7 +32,9 @@ bool CatPLG_UserDecideCmd::RunAction( const QDomElement& elem, CatRunUI* ui )
 {
 	ui->setImage(elem.attribute("ImagePath"));
 	ui->setInformation(elem.attribute("Description"));
-	return ui->waitForDecition();
+	bool rst =  ui->waitForDecition();
+	ui->setInformation(elem.attribute("Description") + (rst ? "Yes" : "No"));
+	return rst;
 }
 
 QString CatPLG_UserDecideCmd::title() const

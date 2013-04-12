@@ -43,7 +43,7 @@ bool CatPLG_InitializeCmd::CreateAction( QDomElement& cmd )
 static const char* strStandardInitOptions = "Cache=true, InterchangeCheck=false, QueryInstrStatus=true, RangeCheck=true, RecordCoercions=false, Simulate=false";
 bool CatPLG_InitializeCmd::RunAction( const QDomElement& elem,CatRunUI* ui )
 {
-	ui->setInformation(tr("正在初始化设备"));
+	ui->setInformation(tr("Now Initialize Devices"));
 	try
 	{
 		IAgilent34980A2Ptr ptr34980 = CatDeviceManager::GetInstance().Get34980();

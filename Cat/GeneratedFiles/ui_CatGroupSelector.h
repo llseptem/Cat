@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'CatGroupSelector.ui'
 **
-** Created: Fri Apr 12 11:17:36 2013
+** Created: Fri Apr 12 12:32:10 2013
 **      by: Qt User Interface Compiler version 4.8.4
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
@@ -71,7 +71,7 @@ public:
 
     void retranslateUi(QDialog *CatGroupSelector)
     {
-        CatGroupSelector->setWindowTitle(QApplication::translate("CatGroupSelector", "CatGroupSelector", 0, QApplication::UnicodeUTF8));
+        CatGroupSelector->setWindowTitle(QApplication::translate("CatGroupSelector", "\351\200\211\346\213\251\347\273\204", 0, QApplication::UnicodeUTF8));
         groupBox->setTitle(QApplication::translate("CatGroupSelector", "\351\200\211\346\213\251\350\246\201\346\211\247\350\241\214\347\232\204\347\273\204", 0, QApplication::UnicodeUTF8));
         allBox->setText(QApplication::translate("CatGroupSelector", "\345\205\250\351\200\211", 0, QApplication::UnicodeUTF8));
     } // retranslateUi
