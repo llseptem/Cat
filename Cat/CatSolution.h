@@ -2,7 +2,7 @@
 #define CATSOLUTION_H
 
 #include <QObject>
-#include <QSet>
+#include <QList>
 #include <QDomDocument>
 
 class QUuid;
@@ -33,7 +33,7 @@ public:
 	void removeGroup(const QString& grpName);
 private:
 	QDomDocument myDoc;
-	QSet<QString> myGroups;
+	QList<QString> myGroups;
 };
 
 #endif // CATSOLUTION_H

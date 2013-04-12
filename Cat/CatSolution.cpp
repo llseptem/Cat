@@ -68,7 +68,7 @@ bool CatSolution::readFrom( const QString& pth )
 					success = false;
 					break;
 				}
-				myGroups.insert(grp.tagName());
+				myGroups.append(grp.tagName());
 				grp = grp.nextSiblingElement();
 			}
 		}
@@ -123,7 +123,7 @@ void CatSolution::createGroup( const QString& grpName )
 	{
 		QDomElement root = myDoc.documentElement();
 		root.appendChild(grp);
-		myGroups.insert(grpName);
+		myGroups.append(grpName);
 	}
 }
 
@@ -132,7 +132,7 @@ void CatSolution::removeGroup( const QString& grpName )
 	if(!hasGroup(grpName)) {return;}
 	QDomElement grp = myDoc.documentElement().firstChildElement(grpName);
 	myDoc.documentElement().removeChild(grp);
-	myGroups.remove(grpName);
+	myGroups.removeAll(grpName);
 }
 
 bool CatSolution::hasGroup( const QString& grp ) const
@@ -157,7 +157,7 @@ void CatSolution::removeCommand( const QDomElement& cmd, const QString& grp )
 
 QStringList CatSolution::groups() const
 {
-	return QStringList::fromSet(myGroups);
+	return myGroups;
 }
 
 
