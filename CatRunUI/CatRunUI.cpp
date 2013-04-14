@@ -24,7 +24,7 @@ void CatRunUI::setInformation( const QString& info )
 {
 	const QString& tm = QDateTime::currentDateTime().toString(Qt::ISODate);
 	QString fmtMsg = tm + "\n" + info;
-	if(!fmtMsg.endsWith("\n")) {info + "\n";}
+	if(!fmtMsg.endsWith("\n")) {fmtMsg += "\n";}
 
 	QTextCharFormat fmt;
 	fmt.setForeground(Qt::darkBlue);
