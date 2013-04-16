@@ -28,7 +28,9 @@ void CatRunUI::setInformation( const QString& info )
 
 	QTextCharFormat fmt;
 	fmt.setForeground(Qt::darkBlue);
+	ui->textEdit->moveCursor(QTextCursor::End);
 	ui->textEdit->textCursor().insertText(fmtMsg,fmt);
+	ui->textEdit->ensureCursorVisible();
 }
 
 void CatRunUI::setImage( const QImage& img )

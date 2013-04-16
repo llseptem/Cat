@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'CatCheckDialog.ui'
 **
-** Created: Sun Apr 14 14:15:14 2013
+** Created: Tue Apr 16 20:16:21 2013
 **      by: Qt User Interface Compiler version 4.8.4
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
@@ -50,9 +50,10 @@ public:
     QSpinBox *upperBox;
     QToolButton *addBtn;
     QListWidget *rangeList;
+    QToolButton *rmBtn;
     QDialogButtonBox *buttonBox;
-    QButtonGroup *buttonGroup;
     QButtonGroup *buttonGroup_2;
+    QButtonGroup *buttonGroup;
 
     void setupUi(QDialog *CatCheckDialog)
     {
@@ -168,6 +169,11 @@ public:
 
         verticalLayout_2->addWidget(rangeList);
 
+        rmBtn = new QToolButton(CatCheckDialog);
+        rmBtn->setObjectName(QString::fromUtf8("rmBtn"));
+
+        verticalLayout_2->addWidget(rmBtn);
+
         buttonBox = new QDialogButtonBox(CatCheckDialog);
         buttonBox->setObjectName(QString::fromUtf8("buttonBox"));
         buttonBox->setStandardButtons(QDialogButtonBox::Cancel|QDialogButtonBox::Ok);
@@ -197,6 +203,7 @@ public:
         label->setText(QApplication::translate("CatCheckDialog", "\344\270\213\351\231\220", 0, QApplication::UnicodeUTF8));
         label_2->setText(QApplication::translate("CatCheckDialog", "\344\270\212\351\231\220", 0, QApplication::UnicodeUTF8));
         addBtn->setText(QApplication::translate("CatCheckDialog", "+", 0, QApplication::UnicodeUTF8));
+        rmBtn->setText(QApplication::translate("CatCheckDialog", "-", 0, QApplication::UnicodeUTF8));
     } // retranslateUi
 
 };

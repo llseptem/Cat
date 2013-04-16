@@ -17,6 +17,7 @@ public:
 	void Clear();
 private slots:
 	void onAdd();
+	void onRemove();
 private:
 	Ui::CatCheckDialog ui;
 };

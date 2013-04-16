@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'CatScanDialog.ui'
 **
-** Created: Sun Apr 14 14:15:05 2013
+** Created: Tue Apr 16 20:16:16 2013
 **      by: Qt User Interface Compiler version 4.8.4
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
@@ -34,6 +34,7 @@ public:
     QSpinBox *portBox;
     QToolButton *addBtn;
     QListWidget *portList;
+    QToolButton *rmBtn;
     QHBoxLayout *horizontalLayout_2;
     QLabel *label;
     QSpinBox *waitBox;
@@ -70,6 +71,11 @@ public:
         portList->setObjectName(QString::fromUtf8("portList"));
 
         verticalLayout->addWidget(portList);
+
+        rmBtn = new QToolButton(CatScanDialog);
+        rmBtn->setObjectName(QString::fromUtf8("rmBtn"));
+
+        verticalLayout->addWidget(rmBtn);
 
         horizontalLayout_2 = new QHBoxLayout();
         horizontalLayout_2->setSpacing(6);
@@ -109,6 +115,7 @@ public:
     {
         CatScanDialog->setWindowTitle(QApplication::translate("CatScanDialog", "\351\205\215\347\275\256\346\211\253\346\217\217\347\253\257\345\217\243", 0, QApplication::UnicodeUTF8));
         addBtn->setText(QApplication::translate("CatScanDialog", "\346\267\273\345\212\240", 0, QApplication::UnicodeUTF8));
+        rmBtn->setText(QApplication::translate("CatScanDialog", "\347\247\273\351\231\244", 0, QApplication::UnicodeUTF8));
         label->setText(QApplication::translate("CatScanDialog", "\345\256\214\346\210\220\347\255\211\345\276\205\346\227\266\351\227\264", 0, QApplication::UnicodeUTF8));
     } // retranslateUi
 

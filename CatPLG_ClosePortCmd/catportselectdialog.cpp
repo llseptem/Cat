@@ -6,6 +6,7 @@ CatPortSelectDialog::CatPortSelectDialog(QWidget *parent)
 {
 	ui.setupUi(this);
 	connect(ui.addBtn,SIGNAL(clicked()),this,SLOT(onAdd()));
+	connect(ui.rmBtn,SIGNAL(clicked()),this,SLOT(onRemove()));
 }
 
 CatPortSelectDialog::~CatPortSelectDialog()
@@ -52,4 +53,13 @@ void CatPortSelectDialog::Clear()
 bool CatPortSelectDialog::isOpen() const
 {
 	return ui.isOpenBtn->isChecked();
+}
+
+void CatPortSelectDialog::onRemove()
+{
+	QListWidgetItem* sel = ui.portList->takeItem(ui.portList->currentRow());
+	if(sel)
+	{
+		delete sel;
+	}
 }

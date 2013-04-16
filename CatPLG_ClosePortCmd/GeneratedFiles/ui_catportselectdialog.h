@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'catportselectdialog.ui'
 **
-** Created: Sun Apr 14 14:15:06 2013
+** Created: Tue Apr 16 20:16:16 2013
 **      by: Qt User Interface Compiler version 4.8.4
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
@@ -34,6 +34,7 @@ public:
     QLineEdit *portEdit;
     QToolButton *addBtn;
     QListWidget *portList;
+    QToolButton *rmBtn;
     QCheckBox *isOpenBtn;
     QDialogButtonBox *buttonBox;
 
@@ -41,7 +42,7 @@ public:
     {
         if (CatPortSelectDialog->objectName().isEmpty())
             CatPortSelectDialog->setObjectName(QString::fromUtf8("CatPortSelectDialog"));
-        CatPortSelectDialog->resize(216, 300);
+        CatPortSelectDialog->resize(216, 347);
         verticalLayout = new QVBoxLayout(CatPortSelectDialog);
         verticalLayout->setSpacing(6);
         verticalLayout->setContentsMargins(11, 11, 11, 11);
@@ -67,6 +68,11 @@ public:
 
         verticalLayout->addWidget(portList);
 
+        rmBtn = new QToolButton(CatPortSelectDialog);
+        rmBtn->setObjectName(QString::fromUtf8("rmBtn"));
+
+        verticalLayout->addWidget(rmBtn);
+
         isOpenBtn = new QCheckBox(CatPortSelectDialog);
         isOpenBtn->setObjectName(QString::fromUtf8("isOpenBtn"));
 
@@ -90,6 +96,7 @@ public:
     {
         CatPortSelectDialog->setWindowTitle(QApplication::translate("CatPortSelectDialog", "\346\267\273\345\212\240\347\253\257\345\217\243", 0, QApplication::UnicodeUTF8));
         addBtn->setText(QApplication::translate("CatPortSelectDialog", "\357\274\213", 0, QApplication::UnicodeUTF8));
+        rmBtn->setText(QApplication::translate("CatPortSelectDialog", "-", 0, QApplication::UnicodeUTF8));
         isOpenBtn->setText(QApplication::translate("CatPortSelectDialog", "\346\211\223\345\274\200\347\253\257\345\217\243", 0, QApplication::UnicodeUTF8));
     } // retranslateUi
 

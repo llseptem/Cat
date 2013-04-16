@@ -17,6 +17,7 @@ public:
 	void Clear();
 private slots:
 	void onAddPort();
+	void onRemove();
 private:
 	Ui::CatScanDialog ui;
 };

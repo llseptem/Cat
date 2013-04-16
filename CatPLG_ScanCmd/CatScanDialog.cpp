@@ -6,6 +6,7 @@ CatScanDialog::CatScanDialog(QWidget *parent)
 {
 	ui.setupUi(this);
 	connect(ui.addBtn,SIGNAL(clicked()),this,SLOT(onAddPort()));
+	connect(ui.rmBtn,SIGNAL(clicked()),this,SLOT(onRemove()));
 }
 
 CatScanDialog::~CatScanDialog()
@@ -45,4 +46,13 @@ int CatScanDialog::waitTime() const
 void CatScanDialog::Clear()
 {
 	ui.portList->clear();
+}
+
+void CatScanDialog::onRemove()
+{
+	QListWidgetItem* sel = ui.portList->takeItem(ui.portList->currentRow());
+	if(sel)
+	{
+		delete sel;
+	}
 }

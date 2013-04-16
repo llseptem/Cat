@@ -6,6 +6,7 @@ CatCheckDialog::CatCheckDialog(QWidget *parent)
 {
 	ui.setupUi(this);
 	connect(ui.addBtn,SIGNAL(clicked()),this,SLOT(onAdd()));
+	connect(ui.addBtn,SIGNAL(clicked()),this,SLOT(onRemove()));
 }
 
 CatCheckDialog::~CatCheckDialog()
@@ -45,4 +46,13 @@ QString CatCheckDialog::ranges() const
 void CatCheckDialog::Clear()
 {
 	ui.rangeList->clear();
+}
+
+void CatCheckDialog::onRemove()
+{
+	QListWidgetItem* sel = ui.rangeList->takeItem(ui.rangeList->currentRow());
+	if(sel)
+	{
+		delete sel;
+	}
 }
