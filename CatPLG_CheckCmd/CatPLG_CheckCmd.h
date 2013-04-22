@@ -15,7 +15,7 @@ public:
 	virtual QString title() const;
 	virtual QString description() const;
 
-	virtual bool Configure();
+	virtual bool Configure(const QDomElement& elem);
 	virtual QUuid Identifier() const;
 	virtual bool CreateAction(QDomElement& cmd);
 	virtual bool RunAction(const QDomElement& elem,CatRunUI* ui);

@@ -79,10 +79,10 @@ QString CatPluginManager::pluginDescription( const QUuid& id ) const
 	return plg ? plg->description() : QString("");
 }
 
-bool CatPluginManager::configurePlugin( const QUuid& id )
+bool CatPluginManager::configurePlugin( const QUuid& id, const QDomElement& elem )
 {
 	CatActionPlugin* plg = myPlugins.value(id,0);
-	return plg ? plg->Configure() : false;
+	return plg ? plg->Configure(elem) : false;
 }
 
 bool CatPluginManager::createAction( const QUuid& id, QDomElement& cmd ) const

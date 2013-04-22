@@ -23,8 +23,13 @@ QString CatPLG_ResistenceCmd::description() const
 	return tr("设置外用表为电阻测量模式");
 }
 
-bool CatPLG_ResistenceCmd::Configure()
+bool CatPLG_ResistenceCmd::Configure(const QDomElement& elem)
 {
+	if(!elem.isNull())
+	{
+		myDlg->setFourWireMode(elem.attribute("Mode") == "FourWire");
+		myDlg->setRange(elem.attribute("Range").toInt());
+	}
 	return myDlg->exec() == QDialog::Accepted;
 }
 

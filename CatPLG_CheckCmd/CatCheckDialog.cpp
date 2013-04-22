@@ -6,7 +6,7 @@ CatCheckDialog::CatCheckDialog(QWidget *parent)
 {
 	ui.setupUi(this);
 	connect(ui.addBtn,SIGNAL(clicked()),this,SLOT(onAdd()));
-	connect(ui.addBtn,SIGNAL(clicked()),this,SLOT(onRemove()));
+	connect(ui.rmBtn,SIGNAL(clicked()),this,SLOT(onRemove()));
 }
 
 CatCheckDialog::~CatCheckDialog()
@@ -55,4 +55,21 @@ void CatCheckDialog::onRemove()
 	{
 		delete sel;
 	}
+}
+
+void CatCheckDialog::setResultType( const QString& tp )
+{
+	foreach(QAbstractButton* btn, ui.buttonGroup->buttons())
+	{
+		if(btn->text() == tp)
+		{
+			btn->setChecked(true);
+			break;
+		}
+	}
+}
+
+void CatCheckDialog::setRanges( const QString& rgs )
+{
+	ui.rangeList->addItems(rgs.split(";"));
 }

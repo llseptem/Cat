@@ -13,7 +13,9 @@ public:
 	~CatScanDialog();
 
 	QString ports() const;
+	void setPorts(const QString& pts);
 	int waitTime() const;
+	void setWaitTime(int t);
 	void Clear();
 private slots:
 	void onAddPort();

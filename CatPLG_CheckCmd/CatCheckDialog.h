@@ -13,7 +13,9 @@ public:
 	~CatCheckDialog();
 
 	QString resultType() const;
+	void setResultType(const QString& tp);
 	QString ranges() const;
+	void setRanges(const QString& rgs);
 	void Clear();
 private slots:
 	void onAdd();

@@ -23,8 +23,13 @@ QString CatPLG_CurrentCmd::description() const
 	return tr("设置万用表测量模式为电流");
 }
 
-bool CatPLG_CurrentCmd::Configure()
+bool CatPLG_CurrentCmd::Configure(const QDomElement& elem)
 {
+	if(!elem.isNull())
+	{
+		myDlg->setACMode(elem.attribute("Mode") == "AC");
+		myDlg->setRange(elem.attribute("Range").toInt());
+	}
 	return myDlg->exec() == QDialog::Accepted;
 }
 

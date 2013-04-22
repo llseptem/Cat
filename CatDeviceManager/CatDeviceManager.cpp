@@ -45,11 +45,11 @@ bool CatDeviceManager::Initialize()
 
 		char add[]="USB0::0x0957::0x0807::N5765A-US12N5190H::0::INSTR";
 
-		voltsetting=24; //in volts                   //输出电压
+		voltsetting=12; //in volts                   //输出电压
 
-		currsetting=1.5; //in amps                 //输出电流
+		currsetting=30; //in amps                 //输出电流
 
-		overvoltsetting=30;  //in volts           //输出电压保护
+		overvoltsetting=13.5;  //in volts           //输出电压保护
 
 		overcurron=1;                            //输出电流保护状态：打开
 

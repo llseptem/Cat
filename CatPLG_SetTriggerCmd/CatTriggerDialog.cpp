@@ -20,3 +20,14 @@ int CatTriggerDialog::triggerTimes() const
 {
 	return ui.triggerNum->value();
 }
+
+void CatTriggerDialog::setExtMode( bool ext /*= true*/ )
+{
+	QRadioButton* btn = ext ? ui.extMode : ui.instanceMode;
+	btn->setChecked(true);
+}
+
+void CatTriggerDialog::setTriggerTimes( int t )
+{
+	ui.triggerNum->setValue(t);
+}

@@ -13,7 +13,9 @@ public:
 	~CatTriggerDialog();
 
 	bool isExtMode() const;
+	void setExtMode(bool ext = true);
 	int triggerTimes() const;
+	void setTriggerTimes(int t);
 private:
 	Ui::CatTriggerDialog ui;
 };

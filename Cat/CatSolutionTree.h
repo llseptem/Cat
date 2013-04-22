@@ -31,6 +31,7 @@ signals:
 	void commandCanBeAdded(bool);
 private slots:
 	void onCurrentChanged();
+	void onEdit(QTreeWidgetItem* cmd);
 private://op tree
 	QTreeWidgetItem* createItem(const QString& tt,const QString& desc,
 		QTreeWidgetItem* parentItem = 0);
@@ -41,6 +42,8 @@ private://op tree
 	QTreeWidgetItem* currentGroupItem() const;
 	QTreeWidgetItem* currentCommandItem() const;
 	void clearAll();
+	void editGroup(QTreeWidgetItem* grp);
+	void editCommand(QTreeWidgetItem* cmd);
 private:
 	CatSolution* mySolution;//doc ops
 	CatRunUI* myRunUI;

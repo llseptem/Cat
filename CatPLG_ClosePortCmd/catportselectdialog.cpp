@@ -63,3 +63,13 @@ void CatPortSelectDialog::onRemove()
 		delete sel;
 	}
 }
+
+void CatPortSelectDialog::setOpenMode( bool op /*= true*/ )
+{
+	ui.isOpenBtn->setChecked(op);
+}
+
+void CatPortSelectDialog::SetPorts( const QString& ports )
+{
+	ui.portList->addItems(ports.split(","));
+}

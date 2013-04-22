@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'CatRunUI.ui'
 **
-** Created: Tue Apr 16 20:16:13 2013
+** Created: Mon Apr 22 20:02:26 2013
 **      by: Qt User Interface Compiler version 4.8.4
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
@@ -35,6 +35,7 @@ public:
     QTextEdit *textEdit;
     QVBoxLayout *verticalLayout;
     QPushButton *yesBtn;
+    QSpacerItem *verticalSpacer_2;
     QPushButton *noBtn;
     QSpacerItem *verticalSpacer;
     QPushButton *printBtn;
@@ -95,7 +96,7 @@ public:
         verticalLayout->setObjectName(QString::fromUtf8("verticalLayout"));
         yesBtn = new QPushButton(CatRunUI);
         yesBtn->setObjectName(QString::fromUtf8("yesBtn"));
-        QSizePolicy sizePolicy(QSizePolicy::Minimum, QSizePolicy::Fixed);
+        QSizePolicy sizePolicy(QSizePolicy::Minimum, QSizePolicy::Expanding);
         sizePolicy.setHorizontalStretch(0);
         sizePolicy.setVerticalStretch(0);
         sizePolicy.setHeightForWidth(yesBtn->sizePolicy().hasHeightForWidth());
@@ -107,6 +108,10 @@ public:
         yesBtn->setCheckable(true);
 
         verticalLayout->addWidget(yesBtn);
+
+        verticalSpacer_2 = new QSpacerItem(20, 40, QSizePolicy::Minimum, QSizePolicy::Expanding);
+
+        verticalLayout->addItem(verticalSpacer_2);
 
         noBtn = new QPushButton(CatRunUI);
         noBtn->setObjectName(QString::fromUtf8("noBtn"));
@@ -134,11 +139,17 @@ public:
 
         stopBtn = new QPushButton(CatRunUI);
         stopBtn->setObjectName(QString::fromUtf8("stopBtn"));
-        sizePolicy.setHeightForWidth(stopBtn->sizePolicy().hasHeightForWidth());
-        stopBtn->setSizePolicy(sizePolicy);
+        QSizePolicy sizePolicy1(QSizePolicy::Minimum, QSizePolicy::Fixed);
+        sizePolicy1.setHorizontalStretch(0);
+        sizePolicy1.setVerticalStretch(0);
+        sizePolicy1.setHeightForWidth(stopBtn->sizePolicy().hasHeightForWidth());
+        stopBtn->setSizePolicy(sizePolicy1);
 
         verticalLayout->addWidget(stopBtn);
 
+        verticalLayout->setStretch(0, 1);
+        verticalLayout->setStretch(2, 1);
+        verticalLayout->setStretch(3, 4);
 
         horizontalLayout->addLayout(verticalLayout);
 

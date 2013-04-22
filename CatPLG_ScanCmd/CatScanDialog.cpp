@@ -56,3 +56,13 @@ void CatScanDialog::onRemove()
 		delete sel;
 	}
 }
+
+void CatScanDialog::setPorts( const QString& pts )
+{
+	ui.portList->addItems(pts.split(","));
+}
+
+void CatScanDialog::setWaitTime( int t )
+{
+	ui.waitBox->setValue(t);
+}

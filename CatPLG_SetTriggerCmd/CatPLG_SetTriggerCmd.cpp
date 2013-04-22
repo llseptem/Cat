@@ -23,8 +23,13 @@ QString CatPLG_SetTriggerCmd::description() const
 	return tr("设置万能表的触发模式");
 }
 
-bool CatPLG_SetTriggerCmd::Configure()
+bool CatPLG_SetTriggerCmd::Configure(const QDomElement& elem)
 {
+	if(!elem.isNull())
+	{
+		myDlg->setExtMode(elem.attribute("TriggerSource") == "Ext");
+		myDlg->setTriggerTimes(elem.attribute("TriggerTimes").toInt());
+	}
 	return myDlg->exec() == QDialog::Accepted;
 }
 

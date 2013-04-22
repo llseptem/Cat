@@ -20,7 +20,7 @@ public:
 	virtual QUuid Identifier() const =0;
 	virtual bool CreateAction(QDomElement& cmd) =0;
 	virtual bool RunAction(const QDomElement& elem,CatRunUI* ui) =0;
-	virtual bool Configure() =0;
+	virtual bool Configure(const QDomElement& elem) =0;
 
 	virtual QString title() const =0;
 	virtual QString description() const =0;

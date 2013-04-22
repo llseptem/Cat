@@ -13,7 +13,9 @@ public:
 	~CatResistenceDialog();
 
 	bool isFourWire() const;
+	void setFourWireMode(bool f = true);
 	int rRange() const;
+	void setRange(int r);
 private:
 	Ui::CatResistenceDialog ui;
 };

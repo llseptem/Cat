@@ -25,7 +25,7 @@ public:
 	QString pluginTitle(const QUuid& id) const;
 	QString pluginDescription(const QUuid& id) const;
 
-	bool configurePlugin(const QUuid& id);//maybe ui
+	bool configurePlugin(const QUuid& id, const QDomElement& elem = QDomElement());//maybe ui
 	bool createAction(const QUuid& id, QDomElement& cmd) const;
 	bool runAction(const QUuid& id, const QDomElement& cmd, CatRunUI* ui) const;//maybe ui
 private:

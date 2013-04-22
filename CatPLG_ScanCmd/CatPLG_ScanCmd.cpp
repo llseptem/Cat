@@ -23,9 +23,14 @@ QString CatPLG_ScanCmd::description() const
 	return tr("设置扫描端口与等待时间");
 }
 
-bool CatPLG_ScanCmd::Configure()
+bool CatPLG_ScanCmd::Configure(const QDomElement& elem)
 {
 	myDlg->Clear();
+	if(!elem.isNull())
+	{
+		myDlg->setWaitTime(elem.attribute("WaitTime").toInt());
+		myDlg->setPorts(elem.attribute("Ports"));
+	}
 	if(myDlg->exec() == QDialog::Accepted)
 	{
 		return (!myDlg->ports().isEmpty());

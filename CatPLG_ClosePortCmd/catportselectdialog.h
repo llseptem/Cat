@@ -13,7 +13,9 @@ public:
 	~CatPortSelectDialog();
 
 	bool isOpen() const;
+	void setOpenMode(bool op = true);
 	QString Ports() const;
+	void SetPorts(const QString& ports);
 	void Clear();
 private slots:
 	void onAdd();

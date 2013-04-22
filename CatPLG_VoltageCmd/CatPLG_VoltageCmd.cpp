@@ -23,8 +23,13 @@ QString CatPLG_VoltageCmd::description() const
 	return tr("设置万用表测量模式为电压");
 }
 
-bool CatPLG_VoltageCmd::Configure()
+bool CatPLG_VoltageCmd::Configure(const QDomElement& elem)
 {
+	if(!elem.isNull())
+	{
+		myDlg->setACMode(elem.attribute("Mode") == "AC");
+		myDlg->setRange(elem.attribute("Range").toInt());
+	}
 	return myDlg->exec() == QDialog::Accepted;
 }
 

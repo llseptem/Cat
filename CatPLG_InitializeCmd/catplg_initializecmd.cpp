@@ -27,7 +27,7 @@ QUuid CatPLG_InitializeCmd::Identifier() const
 	return QUuid("{25C68539-94C4-4724-9491-E358C1298C1A}");
 }
 
-bool CatPLG_InitializeCmd::Configure()
+bool CatPLG_InitializeCmd::Configure(const QDomElement& elem)
 {
 	myInitDlg->exec();
 	return (!myInitDlg->Adr34980().isEmpty()) && (!myInitDlg->Adr34411().isEmpty());

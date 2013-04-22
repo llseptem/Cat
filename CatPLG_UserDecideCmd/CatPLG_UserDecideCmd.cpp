@@ -11,8 +11,13 @@ CatPLG_UserDecideCmd::~CatPLG_UserDecideCmd()
 	delete myDlg;
 }
 
-bool CatPLG_UserDecideCmd::Configure()
+bool CatPLG_UserDecideCmd::Configure(const QDomElement& elem)
 {
+	if(!elem.isNull())
+	{
+		myDlg->SetImagePath(elem.attribute("ImagePath"));
+		myDlg->SetDescription(elem.attribute("Description"));
+	}
 	return myDlg->exec() == QDialog::Accepted;
 }
 

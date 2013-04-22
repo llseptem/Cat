@@ -58,3 +58,15 @@ QString CatPresentation::description() const
 {
 	return ui.description->toPlainText();
 }
+
+void CatPresentation::SetImagePath( const QString& pth )
+{
+	ui.imgPath->setText(pth);
+	ui.imagePrev->setPixmap(QPixmap(pth));
+}
+
+void CatPresentation::SetDescription( const QString& desc )
+{
+	ui.description->clear();
+	ui.description->textCursor().insertText(desc);
+}

@@ -20,6 +20,8 @@ CatSolutionTree::CatSolutionTree(QWidget *parent)
 	mySolution = new CatSolution(this);
 	connect(this,SIGNAL(currentItemChanged(QTreeWidgetItem*,QTreeWidgetItem*)),this,
 		SLOT(onCurrentChanged()));
+	connect(this,SIGNAL(itemDoubleClicked(QTreeWidgetItem*,int)),this,
+		SLOT(onEdit(QTreeWidgetItem*)));
 	myRunUI = new CatRunUI(this);
 }
 
@@ -223,11 +225,12 @@ void CatSolutionTree::run()
 	}
 
 	CatPluginManager* mgr = CatPluginManager::GetInstance();
-	myRunUI->show();
+	myRunUI->showMaximized();
 	myRunUI->raise();
 	myRunUI->activateWindow();
 	myRunUI->checkBegin();
 	myRunUI->setInformation(tr("Initialize Device Success\n"));
+	bool needBreak = false;
 	foreach(const QString& grp,selGrps)
 	{
 		myRunUI->setTitle(grp);
@@ -238,16 +241,58 @@ void CatSolutionTree::run()
 			if(!mgr->runAction(mySolution->commandID(cmd),cmd,myRunUI))
 			{	
 				myRunUI->setInformation(tr("Checking Stoped Because of Error."));
+				needBreak = true;
 				break;
 			}
 			if(myRunUI->wait(1))
 			{
 				myRunUI->setInformation(tr("User Canceled"));
+				needBreak = true;
 				break;
 			}
 		}
+		if(needBreak) break;
 	}
 	myRunUI->setInformation(tr("Checking Finished"));
 	myRunUI->checkFinished();
 	CatDeviceManager::GetInstance().Uinitialize();
+}
+
+void CatSolutionTree::onEdit( QTreeWidgetItem* cmd )
+{
+	if(!cmd) return;
+
+	if(myGroups.contains(cmd))
+	{
+		editGroup(cmd);
+	}
+	else if(myCmdMap.contains(cmd))
+	{
+		editCommand(cmd);
+	}
+}
+
+void CatSolutionTree::editCommand( QTreeWidgetItem* cmd )
+{
+	CatPluginManager* mgr = CatPluginManager::GetInstance();
+	QDomElement elem = myCmdMap.value(cmd);
+	const QUuid& uid = QUuid(mySolution->commandID(elem));
+	if(mgr->configurePlugin(uid,myCmdMap.value(cmd)))
+	{
+		if(mgr->createAction(uid,elem))
+		{
+			qDeleteAll(cmd->takeChildren());
+			const QDomNamedNodeMap& attrs = elem.attributes();
+			for(int i=0; i<attrs.count(); ++i)
+			{
+				createItem(attrs.item(i).nodeName(),attrs.item(i).nodeValue(),cmd);
+			}
+		}
+		setWindowModified(true);
+	}
+}
+
+void CatSolutionTree::editGroup( QTreeWidgetItem* grp )
+{
+	//not yet support
 }

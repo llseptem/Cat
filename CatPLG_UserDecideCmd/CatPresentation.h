@@ -13,7 +13,9 @@ public:
 	~CatPresentation();
 
 	QString imagePath() const;
+	void SetImagePath(const QString& pth);
 	QString description() const;
+	void SetDescription(const QString& desc);
 private slots:
 	void onSelectImage();
 	void onAccepted();

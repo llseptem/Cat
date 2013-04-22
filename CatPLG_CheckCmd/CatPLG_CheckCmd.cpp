@@ -24,9 +24,14 @@ QString CatPLG_CheckCmd::description() const
 	return tr("读取测量结果并比对");
 }
 
-bool CatPLG_CheckCmd::Configure()
+bool CatPLG_CheckCmd::Configure(const QDomElement& elem)
 {
 	myDlg->Clear();
+	if(!elem.isNull())
+	{
+		myDlg->setResultType(elem.attribute("Result"));
+		myDlg->setRanges(elem.attribute("Ranges"));
+	}
 	if(myDlg->exec() == QDialog::Accepted)
 	{
 		return !myDlg->ranges().isEmpty();

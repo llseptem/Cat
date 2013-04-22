@@ -23,9 +23,14 @@ QString CatPLG_ClosePortCmd::description() const
 	return tr("永久打开或关闭指定的一个或多个端口");
 }
 
-bool CatPLG_ClosePortCmd::Configure()
+bool CatPLG_ClosePortCmd::Configure(const QDomElement& elem)
 {
 	myDlg->Clear();
+	if(!elem.isNull())
+	{
+		myDlg->setOpenMode(elem.attribute("Operator")=="Open");
+		myDlg->SetPorts(elem.attribute("Ports"));
+	}
 	myDlg->exec();
 	return !myDlg->Ports().isEmpty();
 }

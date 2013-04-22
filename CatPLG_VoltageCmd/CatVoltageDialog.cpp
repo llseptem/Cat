@@ -20,3 +20,14 @@ int CatVoltageDialog::vRange() const
 {
 	return ui.vRange->value();
 }
+
+void CatVoltageDialog::setACMode( bool ac /*= true*/ )
+{
+	QRadioButton* btn = ac ? ui.ac : ui.dc;
+	btn->setChecked(true);
+}
+
+void CatVoltageDialog::setRange( int v )
+{
+	ui.vRange->setValue(v);
+}

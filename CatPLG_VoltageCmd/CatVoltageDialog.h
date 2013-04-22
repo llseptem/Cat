@@ -13,7 +13,9 @@ public:
 	~CatVoltageDialog();
 
 	bool isAC() const;
+	void setACMode(bool ac = true);
 	int vRange() const;
+	void setRange(int v);
 private:
 	Ui::CatVoltageDialog ui;
 };

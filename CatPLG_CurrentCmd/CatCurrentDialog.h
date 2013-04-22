@@ -13,7 +13,9 @@ public:
 	~CatCurrentDialog();
 
 	bool isAC() const;
+	void setACMode(bool ac = true);
 	int cRange() const;
+	void setRange(int c);
 private:
 	Ui::CatCurrentDialog ui;
 };
