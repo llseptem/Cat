@@ -8,6 +8,8 @@
 #include <QDateTime>
 #include <QFile>
 #include <QTextStream>
+#include "CatCurveWidget.h"
+#include "CatDigitList.h"
 
 CatRunUI::CatRunUI(QWidget *parent)
 	: QDialog(parent),ui(new Ui::CatRunUI())
@@ -18,6 +20,8 @@ CatRunUI::CatRunUI(QWidget *parent)
 CatRunUI::~CatRunUI()
 {
 	delete ui;
+	delete myCurve;
+	delete myDigits;
 }
 
 void CatRunUI::setInformation( const QString& info )
@@ -108,6 +112,14 @@ void CatRunUI::setupWidget()
 	font.setPointSize(10);
 	ui->textEdit->setFont(font);
 	connect(ui->printBtn,SIGNAL(clicked()),this,SLOT(print()));
+
+	myCurve  = new CatCurveWidget();
+	myDigits = new CatDigitList();
+
+	ui->resultGrp->setLayout(new QVBoxLayout());
+	ui->resultGrp->layout()->addWidget(myDigits);
+	ui->resultGrp->layout()->addWidget(myCurve);
+	digitMode();
 }
 
 void CatRunUI::checkFinished()
@@ -127,5 +139,36 @@ void CatRunUI::checkBegin()
 	ui->imgLabel->clear();
 	ui->titleLabel->clear();
 	ui->textEdit->clear();
+	digitMode();
+	clearDigits();
 	ui->printBtn->setVisible(false);
+}
+
+void CatRunUI::digitMode()
+{
+	myDigits->setVisible(true);
+	myCurve->setVisible(false);
+}
+
+void CatRunUI::curveMode()
+{
+	myDigits->setVisible(false);
+	myCurve->setVisible(true);
+}
+
+void CatRunUI::clearDigits()
+{
+	myDigits->RemoveAll();
+}
+
+void CatRunUI::displayDigit( int wireNum,double val )
+{
+	myDigits->DisplayInfo(wireNum,val);
+}
+
+void CatRunUI::drawCurve( const QString& lb, const QPolygonF& pts )
+{
+	myCurve->setLabel(lb);
+	myCurve->setCurveData(pts);
+	myCurve->replot();
 }

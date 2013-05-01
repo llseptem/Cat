@@ -29,6 +29,8 @@ bool CatPLG_SetTriggerCmd::Configure(const QDomElement& elem)
 	{
 		myDlg->setExtMode(elem.attribute("TriggerSource") == "Ext");
 		myDlg->setTriggerTimes(elem.attribute("TriggerTimes").toInt());
+		myDlg->setSampleInterval(elem.attribute("SampleInterval").toDouble());
+		myDlg->setSampleCount(elem.attribute("SampleCount").toInt());
 	}
 	return myDlg->exec() == QDialog::Accepted;
 }
@@ -42,6 +44,8 @@ bool CatPLG_SetTriggerCmd::CreateAction( QDomElement& cmd )
 {
 	cmd.setAttribute("TriggerSource",myDlg->isExtMode() ? "Ext" : "Immediate");
 	cmd.setAttribute("TriggerTimes",myDlg->triggerTimes());
+	cmd.setAttribute("SampleCount",myDlg->sampleCount());
+	cmd.setAttribute("SampleInterval",myDlg->sampleInterval());
 	return true;
 }
 
@@ -49,20 +53,34 @@ bool CatPLG_SetTriggerCmd::RunAction( const QDomElement& elem,CatRunUI* ui )
 {
 	try
 	{
-		ui->setInformation(
-			tr("Config Trigger As %1 Mode,%2 times")
-			.arg(elem.attribute("TriggerSource"))
-			.arg(elem.attribute("TriggerTimes").toInt()));
 		IAgilent34410Ptr ptr = CatDeviceManager::GetInstance().Get34411();
 		if(elem.attribute("TriggerSource") == "Ext")
 		{
+			ui->setInformation(
+				tr("Config Trigger As %1 Mode,%2 times")
+				.arg(elem.attribute("TriggerSource"))
+				.arg(elem.attribute("TriggerTimes").toInt()));
+
 			ptr->Trigger->TriggerSource = Agilent34410TriggerSourceExternal;
 			ptr->Trigger->TriggerCount = elem.attribute("TriggerTimes").toInt();
+			ptr->Trigger->SampleCount = 1;
 			ptr->Measurement->Initiate();
 		}
 		else
 		{
+			ui->setInformation(
+				tr("Config Trigger As %1 Mode,%2 Counts,%3 Interval")
+				.arg(elem.attribute("TriggerSource"))
+				.arg(elem.attribute("SampleCount").toInt())
+				.arg(elem.attribute("SampleInterval").toDouble()));
+
 			ptr->Trigger->TriggerSource = Agilent34410TriggerSourceImmediate;
+			ptr->Trigger->TriggerCount = 1;
+			ptr->Trigger->SampleCount = elem.attribute("SampleCount").toInt();
+			ptr->Trigger->SampleInterval = elem.attribute("SampleInterval").toDouble();
+			ptr->Trigger->SampleSource = Agilent34410SampleSourceTimer;
+			ptr->DataFormat->DataFormat = Agilent34410DataFormatReal64;
+			ptr->Measurement->Initiate();
 		}
 	}
 	catch(_com_error& e)

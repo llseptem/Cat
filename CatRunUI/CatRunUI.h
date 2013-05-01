@@ -9,6 +9,8 @@ namespace Ui
 	class CatRunUI;
 }
 
+class CatCurveWidget;
+class CatDigitList;
 class CATRUNUI_EXPORT CatRunUI : public QDialog
 {
 	Q_OBJECT
@@ -25,10 +27,18 @@ public:
 	bool wait(int sec);
 	void checkBegin();
 	void checkFinished();
+
+	void digitMode();
+	void curveMode();
+	void clearDigits();
+	void displayDigit(int wireNum,double val);
+	void drawCurve(const QString& lb, const QPolygonF& pts);
 private slots:
 	void print();
 private:
 	Ui::CatRunUI* ui;
+	CatCurveWidget* myCurve;
+	CatDigitList* myDigits;
 
 	void setupWidget();
 };

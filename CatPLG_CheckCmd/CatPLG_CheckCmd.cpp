@@ -55,6 +55,9 @@ bool CatPLG_CheckCmd::RunAction( const QDomElement& elem,CatRunUI* ui )
 {
 	try
 	{
+		ui->digitMode();
+		ui->clearDigits();
+
 		IAgilent34410Ptr ptr = CatDeviceManager::GetInstance().Get34411();
 		SAFEARRAY* psaData1 = ptr->Measurement->Fetch();
 		CComSafeArray<double> saData1;
@@ -63,6 +66,7 @@ bool CatPLG_CheckCmd::RunAction( const QDomElement& elem,CatRunUI* ui )
 		for(int i=0; i<saData1.GetCount(); ++i)
 		{
 			double val = saData1.GetAt(i);
+			ui->displayDigit(i+1,val);
 			QString disp = tr("%1:%2 %3:(%4,%5) %6");
 			disp = disp.arg(elem.attribute("Result"));
 			disp = disp.arg(val);

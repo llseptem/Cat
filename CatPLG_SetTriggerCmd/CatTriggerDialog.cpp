@@ -31,3 +31,23 @@ void CatTriggerDialog::setTriggerTimes( int t )
 {
 	ui.triggerNum->setValue(t);
 }
+
+int CatTriggerDialog::sampleCount() const
+{
+	return ui.sampleNum->value();
+}
+
+void CatTriggerDialog::setSampleCount( int c )
+{
+	ui.sampleNum->setValue(c);
+}
+
+double CatTriggerDialog::sampleInterval() const
+{
+	return ui.sampleInterval->value();
+}
+
+void CatTriggerDialog::setSampleInterval( double iv )
+{
+	ui.sampleInterval->setValue(iv);
+}

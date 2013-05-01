@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'CatRunUI.ui'
 **
-** Created: Mon Apr 22 20:02:26 2013
+** Created: Wed May 1 18:19:31 2013
 **      by: Qt User Interface Compiler version 4.8.4
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
@@ -15,6 +15,7 @@
 #include <QtGui/QApplication>
 #include <QtGui/QButtonGroup>
 #include <QtGui/QDialog>
+#include <QtGui/QGroupBox>
 #include <QtGui/QHBoxLayout>
 #include <QtGui/QHeaderView>
 #include <QtGui/QLabel>
@@ -28,9 +29,11 @@ QT_BEGIN_NAMESPACE
 class Ui_CatRunUI
 {
 public:
-    QHBoxLayout *horizontalLayout;
+    QHBoxLayout *horizontalLayout_2;
     QVBoxLayout *verticalLayout_2;
+    QHBoxLayout *horizontalLayout;
     QLabel *imgLabel;
+    QGroupBox *resultGrp;
     QLabel *titleLabel;
     QTextEdit *textEdit;
     QVBoxLayout *verticalLayout;
@@ -45,21 +48,35 @@ public:
     {
         if (CatRunUI->objectName().isEmpty())
             CatRunUI->setObjectName(QString::fromUtf8("CatRunUI"));
-        CatRunUI->resize(711, 544);
+        CatRunUI->resize(914, 638);
         CatRunUI->setModal(true);
-        horizontalLayout = new QHBoxLayout(CatRunUI);
-        horizontalLayout->setSpacing(6);
-        horizontalLayout->setContentsMargins(11, 11, 11, 11);
-        horizontalLayout->setObjectName(QString::fromUtf8("horizontalLayout"));
+        horizontalLayout_2 = new QHBoxLayout(CatRunUI);
+        horizontalLayout_2->setSpacing(6);
+        horizontalLayout_2->setContentsMargins(11, 11, 11, 11);
+        horizontalLayout_2->setObjectName(QString::fromUtf8("horizontalLayout_2"));
         verticalLayout_2 = new QVBoxLayout();
         verticalLayout_2->setSpacing(6);
         verticalLayout_2->setObjectName(QString::fromUtf8("verticalLayout_2"));
+        horizontalLayout = new QHBoxLayout();
+        horizontalLayout->setSpacing(6);
+        horizontalLayout->setObjectName(QString::fromUtf8("horizontalLayout"));
         imgLabel = new QLabel(CatRunUI);
         imgLabel->setObjectName(QString::fromUtf8("imgLabel"));
         imgLabel->setFrameShape(QFrame::StyledPanel);
+        imgLabel->setScaledContents(true);
         imgLabel->setAlignment(Qt::AlignCenter);
 
-        verticalLayout_2->addWidget(imgLabel);
+        horizontalLayout->addWidget(imgLabel);
+
+        resultGrp = new QGroupBox(CatRunUI);
+        resultGrp->setObjectName(QString::fromUtf8("resultGrp"));
+
+        horizontalLayout->addWidget(resultGrp);
+
+        horizontalLayout->setStretch(0, 1);
+        horizontalLayout->setStretch(1, 1);
+
+        verticalLayout_2->addLayout(horizontalLayout);
 
         titleLabel = new QLabel(CatRunUI);
         titleLabel->setObjectName(QString::fromUtf8("titleLabel"));
@@ -86,10 +103,11 @@ public:
 
         verticalLayout_2->addWidget(textEdit);
 
-        verticalLayout_2->setStretch(0, 4);
+        verticalLayout_2->setStretch(0, 6);
         verticalLayout_2->setStretch(1, 1);
+        verticalLayout_2->setStretch(2, 3);
 
-        horizontalLayout->addLayout(verticalLayout_2);
+        horizontalLayout_2->addLayout(verticalLayout_2);
 
         verticalLayout = new QVBoxLayout();
         verticalLayout->setSpacing(6);
@@ -151,10 +169,10 @@ public:
         verticalLayout->setStretch(2, 1);
         verticalLayout->setStretch(3, 4);
 
-        horizontalLayout->addLayout(verticalLayout);
+        horizontalLayout_2->addLayout(verticalLayout);
 
-        horizontalLayout->setStretch(0, 4);
-        horizontalLayout->setStretch(1, 1);
+        horizontalLayout_2->setStretch(0, 4);
+        horizontalLayout_2->setStretch(1, 1);
 
         retranslateUi(CatRunUI);
         QObject::connect(stopBtn, SIGNAL(clicked()), CatRunUI, SLOT(reject()));
@@ -166,6 +184,7 @@ public:
     {
         CatRunUI->setWindowTitle(QApplication::translate("CatRunUI", "\347\272\277\346\235\237\346\243\200\346\265\213", 0, QApplication::UnicodeUTF8));
         imgLabel->setText(QString());
+        resultGrp->setTitle(QApplication::translate("CatRunUI", "\346\211\253\346\217\217\347\273\223\346\236\234", 0, QApplication::UnicodeUTF8));
         titleLabel->setText(QApplication::translate("CatRunUI", "TextLabel", 0, QApplication::UnicodeUTF8));
         yesBtn->setText(QApplication::translate("CatRunUI", "\346\230\257", 0, QApplication::UnicodeUTF8));
         noBtn->setText(QApplication::translate("CatRunUI", "\345\220\246", 0, QApplication::UnicodeUTF8));

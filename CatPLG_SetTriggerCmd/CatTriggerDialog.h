@@ -16,6 +16,10 @@ public:
 	void setExtMode(bool ext = true);
 	int triggerTimes() const;
 	void setTriggerTimes(int t);
+	int sampleCount() const;
+	void setSampleCount(int c);
+	double sampleInterval() const;
+	void setSampleInterval(double iv);
 private:
 	Ui::CatTriggerDialog ui;
 };

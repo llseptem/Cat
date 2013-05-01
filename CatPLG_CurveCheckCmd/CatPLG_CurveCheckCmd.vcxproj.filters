@@ -24,71 +24,53 @@
       <SourceControlFiles>False</SourceControlFiles>
     </Filter>
     <Filter Include="Generated Files\Debug">
-      <UniqueIdentifier>{482b3baf-d0a9-4cce-8ef3-d0679f78c741}</UniqueIdentifier>
+      <UniqueIdentifier>{e05a6be1-9ce9-4188-ab38-07fc72fad6cb}</UniqueIdentifier>
       <Extensions>cpp;moc</Extensions>
       <SourceControlFiles>False</SourceControlFiles>
     </Filter>
     <Filter Include="Generated Files\Release">
-      <UniqueIdentifier>{a8f0bd62-6f19-406d-a724-ef2aead072dc}</UniqueIdentifier>
+      <UniqueIdentifier>{40912cb1-dc2e-4bb9-92d6-c28a2491af41}</UniqueIdentifier>
       <Extensions>cpp;moc</Extensions>
       <SourceControlFiles>False</SourceControlFiles>
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="catrunui_global.h">
+    <ClInclude Include="catplg_curvecheckcmd_global.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="GeneratedFiles\ui_CatRunUI.h">
+    <ClInclude Include="GeneratedFiles\ui_CatCurveDialog.h">
       <Filter>Generated Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="CatRunUI.cpp">
+    <ClCompile Include="CatPLG_CurveCheckCmd.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="GeneratedFiles\Debug\moc_CatRunUI.cpp">
+    <ClCompile Include="GeneratedFiles\Debug\moc_CatPLG_CurveCheckCmd.cpp">
       <Filter>Generated Files\Debug</Filter>
     </ClCompile>
-    <ClCompile Include="GeneratedFiles\Release\moc_CatRunUI.cpp">
+    <ClCompile Include="GeneratedFiles\Release\moc_CatPLG_CurveCheckCmd.cpp">
       <Filter>Generated Files\Release</Filter>
     </ClCompile>
-    <ClCompile Include="GeneratedFiles\qrc_CatRunUI.cpp">
-      <Filter>Generated Files</Filter>
-    </ClCompile>
-    <ClCompile Include="CatCurveWidget.cpp">
+    <ClCompile Include="CatCurveDialog.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="GeneratedFiles\Debug\moc_CatCurveWidget.cpp">
+    <ClCompile Include="GeneratedFiles\Debug\moc_CatCurveDialog.cpp">
       <Filter>Generated Files\Debug</Filter>
     </ClCompile>
-    <ClCompile Include="GeneratedFiles\Release\moc_CatCurveWidget.cpp">
-      <Filter>Generated Files\Release</Filter>
-    </ClCompile>
-    <ClCompile Include="CatDigitList.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="GeneratedFiles\Debug\moc_CatDigitList.cpp">
-      <Filter>Generated Files\Debug</Filter>
-    </ClCompile>
-    <ClCompile Include="GeneratedFiles\Release\moc_CatDigitList.cpp">
+    <ClCompile Include="GeneratedFiles\Release\moc_CatCurveDialog.cpp">
       <Filter>Generated Files\Release</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <CustomBuild Include="CatRunUI.h">
+    <CustomBuild Include="CatPLG_CurveCheckCmd.h">
       <Filter>Header Files</Filter>
     </CustomBuild>
-    <CustomBuild Include="CatRunUI.ui">
+    <CustomBuild Include="CatCurveDialog.h">
+      <Filter>Header Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="CatCurveDialog.ui">
       <Filter>Form Files</Filter>
-    </CustomBuild>
-    <CustomBuild Include="CatRunUI.qrc">
-      <Filter>Resource Files</Filter>
-    </CustomBuild>
-    <CustomBuild Include="CatCurveWidget.h">
-      <Filter>Header Files</Filter>
-    </CustomBuild>
-    <CustomBuild Include="CatDigitList.h">
-      <Filter>Header Files</Filter>
     </CustomBuild>
   </ItemGroup>
 </Project>
