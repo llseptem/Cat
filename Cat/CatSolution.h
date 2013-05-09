@@ -31,6 +31,7 @@ public:
 
 	void createGroup(const QString& grpName);
 	void removeGroup(const QString& grpName);
+	void renameGroup(const QString& oldName,const QString& newName);
 private:
 	QDomDocument myDoc;
 	QList<QString> myGroups;

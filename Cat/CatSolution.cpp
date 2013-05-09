@@ -160,4 +160,14 @@ QStringList CatSolution::groups() const
 	return myGroups;
 }
 
+void CatSolution::renameGroup( const QString& oldName,const QString& newName )
+{
+	QDomElement grpNode = myDoc.documentElement().firstChildElement(oldName);
+	if(!grpNode.isNull())
+	{
+		grpNode.setTagName(newName);
+		myGroups.replace(myGroups.indexOf(oldName),newName);
+	}
+}
+
 

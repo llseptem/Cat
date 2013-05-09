@@ -9,6 +9,7 @@
 #include <QTreeWidgetItem>
 #include <QHeaderView>
 #include <QMessageBox>
+#include <QInputDialog>
 
 CatSolutionTree::CatSolutionTree(QWidget *parent)
 	: QTreeWidget(parent)
@@ -295,4 +296,12 @@ void CatSolutionTree::editCommand( QTreeWidgetItem* cmd )
 void CatSolutionTree::editGroup( QTreeWidgetItem* grp )
 {
 	//not yet support
+	const QString& grpName = QInputDialog::getText(this,tr("修改组名"),tr("输入组名"),QLineEdit::Normal,grp->text(1));
+
+	if(!mySolution->hasGroup(grpName))
+	{
+		mySolution->renameGroup(grp->text(1),grpName);
+		grp->setText(1,grpName);
+		myGroups[grp] = grpName;
+	}
 }
