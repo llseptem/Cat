@@ -50,7 +50,7 @@ bool CatPLG_ResistenceCmd::RunAction( const QDomElement& elem,CatRunUI* ui )
 	try
 	{
 		IAgilent34410Ptr ptr = CatDeviceManager::GetInstance().Get34411();
-		ui->setInformation(tr("Config As %1 Resistance Mode").arg(elem.attribute("Mode")));
+//		ui->setInformation(tr("Config As %1 Resistance Mode").arg(elem.attribute("Mode")));
 		if(elem.attribute("Mode") == "FourWire")
 		{
 			ptr->Measurement->MeasurementFunction =  Agilent34410MeasurementFunctionFResistance;

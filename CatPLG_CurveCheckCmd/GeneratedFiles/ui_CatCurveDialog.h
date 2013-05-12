@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'CatCurveDialog.ui'
 **
-** Created: Sat May 4 20:21:19 2013
+** Created: Sun May 12 19:33:16 2013
 **      by: Qt User Interface Compiler version 4.8.4
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
@@ -17,7 +17,9 @@
 #include <QtGui/QDialog>
 #include <QtGui/QDialogButtonBox>
 #include <QtGui/QGroupBox>
+#include <QtGui/QHBoxLayout>
 #include <QtGui/QHeaderView>
+#include <QtGui/QLineEdit>
 #include <QtGui/QRadioButton>
 #include <QtGui/QVBoxLayout>
 
@@ -32,6 +34,9 @@ public:
     QRadioButton *radioButton;
     QRadioButton *radioButton_2;
     QRadioButton *radioButton_3;
+    QGroupBox *groupBox_2;
+    QHBoxLayout *horizontalLayout;
+    QLineEdit *tagEdit;
     QDialogButtonBox *buttonBox;
     QButtonGroup *buttonGroup;
 
@@ -39,7 +44,7 @@ public:
     {
         if (CatCurveDialog->objectName().isEmpty())
             CatCurveDialog->setObjectName(QString::fromUtf8("CatCurveDialog"));
-        CatCurveDialog->resize(174, 139);
+        CatCurveDialog->resize(174, 197);
         verticalLayout_2 = new QVBoxLayout(CatCurveDialog);
         verticalLayout_2->setSpacing(6);
         verticalLayout_2->setContentsMargins(11, 11, 11, 11);
@@ -74,6 +79,20 @@ public:
 
         verticalLayout_2->addWidget(groupBox);
 
+        groupBox_2 = new QGroupBox(CatCurveDialog);
+        groupBox_2->setObjectName(QString::fromUtf8("groupBox_2"));
+        horizontalLayout = new QHBoxLayout(groupBox_2);
+        horizontalLayout->setSpacing(6);
+        horizontalLayout->setContentsMargins(11, 11, 11, 11);
+        horizontalLayout->setObjectName(QString::fromUtf8("horizontalLayout"));
+        tagEdit = new QLineEdit(groupBox_2);
+        tagEdit->setObjectName(QString::fromUtf8("tagEdit"));
+
+        horizontalLayout->addWidget(tagEdit);
+
+
+        verticalLayout_2->addWidget(groupBox_2);
+
         buttonBox = new QDialogButtonBox(CatCurveDialog);
         buttonBox->setObjectName(QString::fromUtf8("buttonBox"));
         buttonBox->setStandardButtons(QDialogButtonBox::Cancel|QDialogButtonBox::Ok);
@@ -95,6 +114,7 @@ public:
         radioButton->setText(QApplication::translate("CatCurveDialog", "Voltage", 0, QApplication::UnicodeUTF8));
         radioButton_2->setText(QApplication::translate("CatCurveDialog", "Resistance", 0, QApplication::UnicodeUTF8));
         radioButton_3->setText(QApplication::translate("CatCurveDialog", "Current", 0, QApplication::UnicodeUTF8));
+        groupBox_2->setTitle(QApplication::translate("CatCurveDialog", "\346\240\207\347\255\276", 0, QApplication::UnicodeUTF8));
     } // retranslateUi
 
 };

@@ -30,7 +30,7 @@ bool CatPLG_CheckCmd::Configure(const QDomElement& elem)
 	if(!elem.isNull())
 	{
 		myDlg->setResultType(elem.attribute("Result"));
-		myDlg->setRanges(elem.attribute("Ranges"));
+		myDlg->setRanges(elem.attribute("Tags"),elem.attribute("Ranges"));
 	}
 	if(myDlg->exec() == QDialog::Accepted)
 	{
@@ -47,6 +47,7 @@ QUuid CatPLG_CheckCmd::Identifier() const
 bool CatPLG_CheckCmd::CreateAction( QDomElement& cmd )
 {
 	cmd.setAttribute("Result",myDlg->resultType());
+	cmd.setAttribute("Tags",myDlg->tags());
 	cmd.setAttribute("Ranges",myDlg->ranges());
 	return true;
 }
@@ -63,12 +64,15 @@ bool CatPLG_CheckCmd::RunAction( const QDomElement& elem,CatRunUI* ui )
 		CComSafeArray<double> saData1;
 		saData1.Attach(psaData1);
 		const QStringList& rgs = elem.attribute("Ranges").split(";");
+		const QStringList& tgs = elem.attribute("Tags").split(";");
+		bool allPass = true;
 		for(int i=0; i<saData1.GetCount(); ++i)
 		{
+			QString tag = i<tgs.size() ? tgs.at(i) : tr("Result %1").arg(i);
 			double val = saData1.GetAt(i);
-			ui->displayDigit(i+1,val);
+			ui->displayDigit(tag,val);
 			QString disp = tr("%1:%2 %3:(%4,%5) %6");
-			disp = disp.arg(elem.attribute("Result"));
+			disp = disp.arg(tag);//elem.attribute("Result"));
 			disp = disp.arg(val);
 			if(i<rgs.size())
 			{
@@ -78,20 +82,27 @@ bool CatPLG_CheckCmd::RunAction( const QDomElement& elem,CatRunUI* ui )
 					int lower = rg[1].toInt();
 					int upper = rg[2].toInt();
 					disp = disp.arg(rg[0]).arg(lower).arg(upper);
-					if(rg[0]=="Lower")
+					if(rg[0]=="Lower" && val < lower)
 					{
-						ui->setInformation(disp.arg(val > lower ? "Pass" : "Failed"));
+						ui->setInformation(disp.arg("Failed"));
+						allPass = false;
 					}
-					else if(rg[0]=="Upper")
+					else if(rg[0]=="Upper" && val > upper)
 					{
-						ui->setInformation(disp.arg(val < upper ? "Pass" : "Failed"));
+						ui->setInformation(disp.arg("Failed"));
+						allPass = false;
 					}
-					else
+					else if(rg[0] == "Range" && (val > lower || val < upper))
 					{
-						ui->setInformation(disp.arg((val > lower && val < upper) ? "Pass" : "Failed"));
+						ui->setInformation(disp.arg("Failed"));
+						allPass = false;
 					}
 				}
 			}
+		}
+		if (allPass)
+		{
+			ui->setInformation("Pass");
 		}
 		return true;
 	}

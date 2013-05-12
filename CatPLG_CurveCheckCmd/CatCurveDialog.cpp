@@ -27,3 +27,13 @@ void CatCurveDialog::setType( const QString& tt )
 		}
 	}
 }
+
+QString CatCurveDialog::tag() const
+{
+	return ui.tagEdit->text();
+}
+
+void CatCurveDialog::setTag( const QString& tg )
+{
+	ui.tagEdit->setText(tg);
+}

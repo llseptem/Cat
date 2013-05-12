@@ -15,12 +15,15 @@ public:
 	QString resultType() const;
 	void setResultType(const QString& tp);
 	QString ranges() const;
-	void setRanges(const QString& rgs);
+	QString tags() const;
+	void setRanges(const QString& tgs, const QString& rgs);
 	void Clear();
 private slots:
 	void onAdd();
 	void onRemove();
 private:
+	QString tag(const QString& line) const;
+	QString range(const QString& line) const;
 	Ui::CatCheckDialog ui;
 };
 

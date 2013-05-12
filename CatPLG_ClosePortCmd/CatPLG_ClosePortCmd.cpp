@@ -53,7 +53,7 @@ bool CatPLG_ClosePortCmd::RunAction( const QDomElement& elem,CatRunUI* ui )
 	try
 	{
 		IAgilent34980A2Ptr ptr = CatDeviceManager::GetInstance().Get34980();
-		ui->setInformation(QString("%1 Port:%2").arg(elem.attribute("Operator")).arg(elem.attribute("Ports")));
+//		ui->setInformation(QString("%1 Port:%2").arg(elem.attribute("Operator")).arg(elem.attribute("Ports")));
 		if(elem.attribute("Operator") == "Open")
 		{
 			ptr->Route->Close(elem.attribute("Ports").toStdString().c_str());

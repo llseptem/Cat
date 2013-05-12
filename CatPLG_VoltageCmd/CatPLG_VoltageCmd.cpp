@@ -49,7 +49,7 @@ bool CatPLG_VoltageCmd::RunAction( const QDomElement& elem,CatRunUI* ui )
 {
 	try
 	{
-		ui->setInformation(tr("Config As %1 Voltage Mode").arg(elem.attribute("Mode")));
+//		ui->setInformation(tr("Config As %1 Voltage Mode").arg(elem.attribute("Mode")));
 		IAgilent34410Ptr ptr = CatDeviceManager::GetInstance().Get34411();
 		if(elem.attribute("Mode") == "AC")
 		{

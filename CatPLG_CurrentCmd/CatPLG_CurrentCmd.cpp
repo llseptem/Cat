@@ -50,7 +50,7 @@ bool CatPLG_CurrentCmd::RunAction( const QDomElement& elem,CatRunUI* ui )
 	try
 	{
 		IAgilent34410Ptr ptr = CatDeviceManager::GetInstance().Get34411();
-		ui->setInformation(tr("Config As %1 Current Mode").arg(elem.attribute("Mode")));
+//		ui->setInformation(tr("Config As %1 Current Mode").arg(elem.attribute("Mode")));
 		if(elem.attribute("Mode") == "AC")
 		{
 			ptr->Measurement->MeasurementFunction =  Agilent34410MeasurementFunctionACCurrent;

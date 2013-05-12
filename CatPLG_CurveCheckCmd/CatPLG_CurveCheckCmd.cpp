@@ -29,6 +29,7 @@ bool CatPLG_CurveCheckCmd::Configure( const QDomElement& elem )
 	if(!elem.isNull())
 	{
 		myDlg->setType(elem.attribute("Type"));
+		myDlg->setTag(elem.attribute("Tag"));
 	}
 	return myDlg->exec() == QDialog::Accepted;
 }
@@ -41,6 +42,7 @@ QUuid CatPLG_CurveCheckCmd::Identifier() const
 bool CatPLG_CurveCheckCmd::CreateAction( QDomElement& cmd )
 {
 	cmd.setAttribute("Type",myDlg->type());
+	cmd.setAttribute("Tag",myDlg->tag());
 	return true;
 }
 
@@ -49,7 +51,7 @@ bool CatPLG_CurveCheckCmd::RunAction( const QDomElement& elem,CatRunUI* ui )
 	try
 	{
 		ui->curveMode();
-		ui->setInformation(tr("Now drawing the %1 Curve").arg(elem.attribute("Type")));
+		ui->setInformation(tr("Now drawing the %1 %2 Curve").arg(elem.attribute("Tag")).arg(elem.attribute("Type")));
 
 		IAgilent34410Ptr ptr = CatDeviceManager::GetInstance().Get34411();
 
@@ -77,18 +79,18 @@ bool CatPLG_CurveCheckCmd::RunAction( const QDomElement& elem,CatRunUI* ui )
 				}
 
 				
-				QString info("Read:");
+//				QString info("Read:");
 				if(totalRead < saData.GetCount())
 				{
-					info.append(tr("%1").arg(saData.GetAt(totalRead)));
+//					info.append(tr("%1").arg(saData.GetAt(totalRead)));
 					pts << QPointF(static_cast<double>(totalRead)*interval, saData.GetAt(totalRead));
 				}
 				for(int i = totalRead+1; i < saData.GetCount(); ++i)
 				{
-					info.append(tr(",%1").arg(saData.GetAt(i)));
+//					info.append(tr(",%1").arg(saData.GetAt(i)));
 					pts << QPointF(static_cast<double>(i)*interval, saData.GetAt(i));
 				}
-				ui->setInformation(info);
+//				ui->setInformation(info);
 				ui->drawCurve(elem.attribute("Type"),pts);
 
 				totalRead += dataPts;
@@ -98,8 +100,10 @@ bool CatPLG_CurveCheckCmd::RunAction( const QDomElement& elem,CatRunUI* ui )
 				}
 			}
 		}
-		ui->setInformation(tr("波形正常吗？"));
-		return ui->waitForDecition();
+		ui->setMessage(tr("波形正常吗？"));
+		bool rst =  ui->waitForDecition();
+		ui->clearMessage();
+		return rst;
 	}
 	catch(_com_error& e)
 	{

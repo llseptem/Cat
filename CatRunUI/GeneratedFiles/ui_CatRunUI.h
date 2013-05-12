@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'CatRunUI.ui'
 **
-** Created: Sat May 4 21:07:45 2013
+** Created: Sun May 12 19:33:09 2013
 **      by: Qt User Interface Compiler version 4.8.4
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
@@ -103,8 +103,8 @@ public:
 
         verticalLayout_2->addWidget(textEdit);
 
-        verticalLayout_2->setStretch(0, 6);
-        verticalLayout_2->setStretch(1, 1);
+        verticalLayout_2->setStretch(0, 5);
+        verticalLayout_2->setStretch(1, 2);
         verticalLayout_2->setStretch(2, 3);
 
         horizontalLayout_2->addLayout(verticalLayout_2);

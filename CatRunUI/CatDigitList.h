@@ -13,7 +13,7 @@ public:
 	~CatDigitList();
 
 	void RemoveAll();
-	void DisplayInfo(int wireNo,double val);
+	void DisplayInfo(const QString& tag,double val);
 private:
 	QList<CatDigitItem*> myDigits;
 };

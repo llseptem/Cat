@@ -230,7 +230,7 @@ void CatSolutionTree::run()
 	myRunUI->raise();
 	myRunUI->activateWindow();
 	myRunUI->checkBegin();
-	myRunUI->setInformation(tr("Initialize Device Success\n"));
+	myRunUI->setInformation(tr("Checking Begin"));
 	bool needBreak = false;
 	foreach(const QString& grp,selGrps)
 	{
@@ -298,7 +298,7 @@ void CatSolutionTree::editGroup( QTreeWidgetItem* grp )
 	//not yet support
 	const QString& grpName = QInputDialog::getText(this,tr("修改组名"),tr("输入组名"),QLineEdit::Normal,grp->text(1));
 
-	if(!mySolution->hasGroup(grpName))
+	if(!grpName.isEmpty() && !mySolution->hasGroup(grpName))
 	{
 		mySolution->renameGroup(grp->text(1),grpName);
 		grp->setText(1,grpName);

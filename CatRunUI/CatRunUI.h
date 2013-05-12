@@ -20,6 +20,8 @@ public:
 	~CatRunUI();
 	
 	void setTitle(const QString& tt);
+	void setMessage(const QString& msg);
+	void clearMessage();
 	void setInformation(const QString& info);
 	void setImage(const QImage& img);
 	void setImage(const QString& pth);
@@ -31,7 +33,7 @@ public:
 	void digitMode();
 	void curveMode();
 	void clearDigits();
-	void displayDigit(int wireNum,double val);
+	void displayDigit(const QString& tag,double val);
 	void drawCurve(const QString& lb, const QPolygonF& pts);
 private slots:
 	void print();

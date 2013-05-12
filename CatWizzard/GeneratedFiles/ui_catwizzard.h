@@ -1,7 +1,7 @@
 /********************************************************************************
-** Form generated from reading UI file 'CatWizzard.ui'
+** Form generated from reading UI file 'catwizzard.ui'
 **
-** Created: Sat May 4 20:21:20 2013
+** Created: Sun May 12 19:33:26 2013
 **      by: Qt User Interface Compiler version 4.8.4
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
@@ -25,23 +25,20 @@ class Ui_CatWizzard
 {
 public:
     QVBoxLayout *verticalLayout;
-    QCommandLinkButton *openBtn;
     QCommandLinkButton *newBtn;
 
     void setupUi(QDialog *CatWizzard)
     {
         if (CatWizzard->objectName().isEmpty())
             CatWizzard->setObjectName(QString::fromUtf8("CatWizzard"));
-        CatWizzard->resize(446, 145);
+        CatWizzard->resize(480, 84);
+        QIcon icon;
+        icon.addFile(QString::fromUtf8(":/CatWizzard/Resources/hardware.png"), QSize(), QIcon::Normal, QIcon::Off);
+        CatWizzard->setWindowIcon(icon);
         verticalLayout = new QVBoxLayout(CatWizzard);
         verticalLayout->setSpacing(6);
         verticalLayout->setContentsMargins(11, 11, 11, 11);
         verticalLayout->setObjectName(QString::fromUtf8("verticalLayout"));
-        openBtn = new QCommandLinkButton(CatWizzard);
-        openBtn->setObjectName(QString::fromUtf8("openBtn"));
-
-        verticalLayout->addWidget(openBtn);
-
         newBtn = new QCommandLinkButton(CatWizzard);
         newBtn->setObjectName(QString::fromUtf8("newBtn"));
 
@@ -56,8 +53,6 @@ public:
     void retranslateUi(QDialog *CatWizzard)
     {
         CatWizzard->setWindowTitle(QApplication::translate("CatWizzard", "\345\220\221\345\257\274", 0, QApplication::UnicodeUTF8));
-        openBtn->setText(QApplication::translate("CatWizzard", "\346\211\223\345\274\200\345\267\262\346\234\211\346\243\200\346\265\213\346\226\271\346\241\210", 0, QApplication::UnicodeUTF8));
-        openBtn->setDescription(QApplication::translate("CatWizzard", "\346\211\223\345\274\200\345\271\266\350\277\220\350\241\214\344\270\200\344\270\252\345\267\262\347\273\217\345\255\230\345\234\250\347\232\204\350\247\243\345\206\263\346\226\271\346\241\210", 0, QApplication::UnicodeUTF8));
         newBtn->setText(QApplication::translate("CatWizzard", "\346\226\260\345\273\272\346\243\200\346\265\213\346\226\271\346\241\210", 0, QApplication::UnicodeUTF8));
         newBtn->setDescription(QApplication::translate("CatWizzard", "\346\226\260\345\273\272\345\271\266\344\277\235\345\255\230\344\270\200\344\270\252\346\226\260\347\232\204\350\247\243\345\206\263\346\226\271\346\241\210", 0, QApplication::UnicodeUTF8));
     } // retranslateUi

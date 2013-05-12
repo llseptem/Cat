@@ -9,11 +9,16 @@ class CatDigitItem : public QWidget
 	QLabel* myLabel;
 	QLCDNumber* mydigit;
 public:
-	CatDigitItem(int wireNum, double val, QWidget* parent = 0)
+	CatDigitItem(const QString& tag, double val, QWidget* parent = 0)
 		:QWidget(parent)
 	{
 		QHBoxLayout* lay = new QHBoxLayout();
-		myLabel = new QLabel(tr("ÏßºÅ:%1").arg(wireNum));
+		myLabel = new QLabel(tag);
+		QFont font;
+		font.setFamily("Courier");
+		font.setFixedPitch(true);
+		font.setPointSize(10);
+		myLabel->setFont(font);
 		lay->addWidget(myLabel);
 		mydigit = new QLCDNumber();
 		mydigit->setSegmentStyle(QLCDNumber::Flat);
@@ -27,7 +32,7 @@ public:
 	~CatDigitItem(){}
 
 	void display(double val) {mydigit->display(val);}
-	void setLabel(int wireNo) {myLabel->setText(tr("ÏßºÅ:%1").arg(wireNo));}
+	void setLabel(const QString& tag) {myLabel->setText(tag);}
 };
 
 CatDigitList::CatDigitList(QWidget *parent)
@@ -53,20 +58,21 @@ void CatDigitList::RemoveAll()
 //	myDigits.clear();
 }
 
-void CatDigitList::DisplayInfo( int wireNo,double val )
+void CatDigitList::DisplayInfo( const QString& tag,double val )
 {
 	foreach(CatDigitItem* itm,myDigits)
 	{
 		if(!itm->isVisible())
 		{
-			itm->setLabel(wireNo);
+			itm->setLabel(tag);
 			itm->display(val);
 			itm->setVisible(true);
 			return;
 		}
 	}
 
-	CatDigitItem* itm = new CatDigitItem(wireNo,val,this);
+	CatDigitItem* itm = new CatDigitItem(tag,val,this);
 	myDigits.append(itm);
 	qobject_cast<QVBoxLayout*>(layout())->addWidget(itm);
+	itm->setVisible(true);
 }

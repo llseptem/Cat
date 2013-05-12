@@ -86,15 +86,6 @@
     <ClCompile Include="GeneratedFiles\Release\moc_CatSolution.cpp">
       <Filter>Generated Files\Release</Filter>
     </ClCompile>
-    <ClCompile Include="CatWizzard.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="GeneratedFiles\Debug\moc_CatWizzard.cpp">
-      <Filter>Generated Files\Debug</Filter>
-    </ClCompile>
-    <ClCompile Include="GeneratedFiles\Release\moc_CatWizzard.cpp">
-      <Filter>Generated Files\Release</Filter>
-    </ClCompile>
     <ClCompile Include="CatAbout.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -145,12 +136,6 @@
     <CustomBuild Include="CatSolution.h">
       <Filter>Header Files</Filter>
     </CustomBuild>
-    <CustomBuild Include="CatWizzard.h">
-      <Filter>Header Files</Filter>
-    </CustomBuild>
-    <CustomBuild Include="CatWizzard.ui">
-      <Filter>Form Files</Filter>
-    </CustomBuild>
     <CustomBuild Include="CatAbout.h">
       <Filter>Header Files</Filter>
     </CustomBuild>
@@ -169,9 +154,6 @@
       <Filter>Generated Files</Filter>
     </ClInclude>
     <ClInclude Include="GeneratedFiles\ui_CatActionList.h">
-      <Filter>Generated Files</Filter>
-    </ClInclude>
-    <ClInclude Include="GeneratedFiles\ui_CatWizzard.h">
       <Filter>Generated Files</Filter>
     </ClInclude>
     <ClInclude Include="GeneratedFiles\ui_CatAbout.h">

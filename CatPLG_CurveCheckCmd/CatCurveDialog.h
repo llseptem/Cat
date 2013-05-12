@@ -14,6 +14,9 @@ public:
 
 	QString type() const;
 	void setType(const QString& tt);
+
+	QString tag() const;
+	void setTag(const QString& tg);
 private:
 	Ui::CatCurveDialog ui;
 };

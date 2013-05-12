@@ -36,9 +36,9 @@ bool CatPLG_UserDecideCmd::CreateAction( QDomElement& cmd )
 bool CatPLG_UserDecideCmd::RunAction( const QDomElement& elem, CatRunUI* ui )
 {
 	ui->setImage(elem.attribute("ImagePath"));
-	ui->setInformation(elem.attribute("Description"));
+	ui->setMessage(elem.attribute("Description"));
 	bool rst =  ui->waitForDecition();
-	ui->setInformation(elem.attribute("Description") + "?" + (rst ? "Yes" : "No"));
+	ui->clearMessage();//elem.attribute("Description") + "?" + (rst ? "Yes" : "No"));
 	return rst;
 }
 

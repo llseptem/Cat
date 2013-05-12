@@ -109,7 +109,7 @@ void CatRunUI::setupWidget()
 	QFont font;
 	font.setFamily("Courier");
 	font.setFixedPitch(true);
-	font.setPointSize(10);
+	font.setPointSize(12);
 	ui->textEdit->setFont(font);
 	connect(ui->printBtn,SIGNAL(clicked()),this,SLOT(print()));
 
@@ -161,9 +161,9 @@ void CatRunUI::clearDigits()
 	myDigits->RemoveAll();
 }
 
-void CatRunUI::displayDigit( int wireNum,double val )
+void CatRunUI::displayDigit( const QString& tag,double val )
 {
-	myDigits->DisplayInfo(wireNum,val);
+	myDigits->DisplayInfo(tag,val);
 }
 
 void CatRunUI::drawCurve( const QString& lb, const QPolygonF& pts )
@@ -171,4 +171,17 @@ void CatRunUI::drawCurve( const QString& lb, const QPolygonF& pts )
 	myCurve->setLabel(lb);
 	myCurve->setCurveData(pts);
 	myCurve->replot();
+}
+
+void CatRunUI::setMessage( const QString& msg )
+{
+	const QString& tt = ui->titleLabel->text();
+	ui->titleLabel->setText(tt + "---" + msg);
+}
+
+void CatRunUI::clearMessage()
+{
+	int pos = ui->titleLabel->text().indexOf("---");
+	const QString& tt = ui->titleLabel->text().left(pos);
+	ui->titleLabel->setText(tt);
 }

@@ -56,10 +56,10 @@ bool CatPLG_SetTriggerCmd::RunAction( const QDomElement& elem,CatRunUI* ui )
 		IAgilent34410Ptr ptr = CatDeviceManager::GetInstance().Get34411();
 		if(elem.attribute("TriggerSource") == "Ext")
 		{
-			ui->setInformation(
-				tr("Config Trigger As %1 Mode,%2 times")
-				.arg(elem.attribute("TriggerSource"))
-				.arg(elem.attribute("TriggerTimes").toInt()));
+// 			ui->setInformation(
+// 				tr("Config Trigger As %1 Mode,%2 times")
+// 				.arg(elem.attribute("TriggerSource"))
+// 				.arg(elem.attribute("TriggerTimes").toInt()));
 
 			ptr->Trigger->TriggerSource = Agilent34410TriggerSourceExternal;
 			ptr->Trigger->TriggerCount = elem.attribute("TriggerTimes").toInt();
@@ -68,11 +68,11 @@ bool CatPLG_SetTriggerCmd::RunAction( const QDomElement& elem,CatRunUI* ui )
 		}
 		else
 		{
-			ui->setInformation(
-				tr("Config Trigger As %1 Mode,%2 Counts,%3 Interval")
-				.arg(elem.attribute("TriggerSource"))
-				.arg(elem.attribute("SampleCount").toInt())
-				.arg(elem.attribute("SampleInterval").toDouble()));
+// 			ui->setInformation(
+// 				tr("Config Trigger As %1 Mode,%2 Counts,%3 Interval")
+// 				.arg(elem.attribute("TriggerSource"))
+// 				.arg(elem.attribute("SampleCount").toInt())
+// 				.arg(elem.attribute("SampleInterval").toDouble()));
 
 			ptr->Trigger->TriggerSource = Agilent34410TriggerSourceImmediate;
 			ptr->Trigger->TriggerCount = 1;
