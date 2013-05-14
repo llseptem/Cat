@@ -8,6 +8,7 @@
 #include <QDateTime>
 #include <QFile>
 #include <QTextStream>
+#include <QScrollArea>
 #include "CatCurveWidget.h"
 #include "CatDigitList.h"
 
@@ -31,7 +32,7 @@ void CatRunUI::setInformation( const QString& info )
 	if(!fmtMsg.endsWith("\n")) {fmtMsg += "\n";}
 
 	QTextCharFormat fmt;
-	fmt.setForeground(Qt::darkBlue);
+	fmt.setForeground(Qt::white);
 	ui->textEdit->moveCursor(QTextCursor::End);
 	ui->textEdit->textCursor().insertText(fmtMsg,fmt);
 	ui->textEdit->ensureCursorVisible();
@@ -109,15 +110,19 @@ void CatRunUI::setupWidget()
 	QFont font;
 	font.setFamily("Courier");
 	font.setFixedPitch(true);
-	font.setPointSize(12);
+	font.setPointSize(14);
 	ui->textEdit->setFont(font);
+	ui->textEdit->setBackgroundRole(QPalette::Dark);
 	connect(ui->printBtn,SIGNAL(clicked()),this,SLOT(print()));
 
 	myCurve  = new CatCurveWidget();
 	myDigits = new CatDigitList();
+	myDigitsContainer = new QScrollArea();
+	myDigitsContainer->setWidget(myDigits);
+	myDigitsContainer->setBackgroundRole(QPalette::Dark);
 
 	ui->resultGrp->setLayout(new QVBoxLayout());
-	ui->resultGrp->layout()->addWidget(myDigits);
+	ui->resultGrp->layout()->addWidget(myDigitsContainer);
 	ui->resultGrp->layout()->addWidget(myCurve);
 	digitMode();
 }
@@ -146,13 +151,13 @@ void CatRunUI::checkBegin()
 
 void CatRunUI::digitMode()
 {
-	myDigits->setVisible(true);
+	myDigitsContainer->setVisible(true);
 	myCurve->setVisible(false);
 }
 
 void CatRunUI::curveMode()
 {
-	myDigits->setVisible(false);
+	myDigitsContainer->setVisible(false);
 	myCurve->setVisible(true);
 }
 

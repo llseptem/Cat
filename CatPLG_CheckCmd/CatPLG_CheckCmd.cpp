@@ -92,7 +92,7 @@ bool CatPLG_CheckCmd::RunAction( const QDomElement& elem,CatRunUI* ui )
 						ui->setInformation(disp.arg("Failed"));
 						allPass = false;
 					}
-					else if(rg[0] == "Range" && (val > lower || val < upper))
+					else if(rg[0] == "Range" && (val < lower || val > upper))
 					{
 						ui->setInformation(disp.arg("Failed"));
 						allPass = false;

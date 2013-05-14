@@ -11,6 +11,7 @@ namespace Ui
 
 class CatCurveWidget;
 class CatDigitList;
+class QScrollArea;
 class CATRUNUI_EXPORT CatRunUI : public QDialog
 {
 	Q_OBJECT
@@ -41,6 +42,7 @@ private:
 	Ui::CatRunUI* ui;
 	CatCurveWidget* myCurve;
 	CatDigitList* myDigits;
+	QScrollArea* myDigitsContainer;
 
 	void setupWidget();
 };

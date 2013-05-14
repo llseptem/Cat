@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'CatRunUI.ui'
 **
-** Created: Sun May 12 19:33:09 2013
+** Created: Tue May 14 20:20:41 2013
 **      by: Qt User Interface Compiler version 4.8.4
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
@@ -42,6 +42,7 @@ public:
     QPushButton *noBtn;
     QSpacerItem *verticalSpacer;
     QPushButton *printBtn;
+    QSpacerItem *verticalSpacer_3;
     QPushButton *stopBtn;
 
     void setupUi(QDialog *CatRunUI)
@@ -119,10 +120,16 @@ public:
         sizePolicy.setVerticalStretch(0);
         sizePolicy.setHeightForWidth(yesBtn->sizePolicy().hasHeightForWidth());
         yesBtn->setSizePolicy(sizePolicy);
+        QFont font1;
+        font1.setFamily(QString::fromUtf8("\346\245\267\344\275\223"));
+        font1.setPointSize(20);
+        font1.setBold(true);
+        font1.setWeight(75);
+        yesBtn->setFont(font1);
         QIcon icon;
         icon.addFile(QString::fromUtf8(":/icons/Resources/apply.png"), QSize(), QIcon::Normal, QIcon::Off);
         yesBtn->setIcon(icon);
-        yesBtn->setIconSize(QSize(24, 24));
+        yesBtn->setIconSize(QSize(32, 32));
         yesBtn->setCheckable(true);
 
         verticalLayout->addWidget(yesBtn);
@@ -135,10 +142,11 @@ public:
         noBtn->setObjectName(QString::fromUtf8("noBtn"));
         sizePolicy.setHeightForWidth(noBtn->sizePolicy().hasHeightForWidth());
         noBtn->setSizePolicy(sizePolicy);
+        noBtn->setFont(font1);
         QIcon icon1;
         icon1.addFile(QString::fromUtf8(":/icons/Resources/editdelete.png"), QSize(), QIcon::Normal, QIcon::Off);
         noBtn->setIcon(icon1);
-        noBtn->setIconSize(QSize(24, 24));
+        noBtn->setIconSize(QSize(32, 32));
 
         verticalLayout->addWidget(noBtn);
 
@@ -148,26 +156,38 @@ public:
 
         printBtn = new QPushButton(CatRunUI);
         printBtn->setObjectName(QString::fromUtf8("printBtn"));
+        sizePolicy.setHeightForWidth(printBtn->sizePolicy().hasHeightForWidth());
+        printBtn->setSizePolicy(sizePolicy);
+        QFont font2;
+        font2.setFamily(QString::fromUtf8("\346\245\267\344\275\223"));
+        font2.setPointSize(18);
+        font2.setBold(true);
+        font2.setWeight(75);
+        printBtn->setFont(font2);
         QIcon icon2;
         icon2.addFile(QString::fromUtf8(":/icons/Resources/printer.png"), QSize(), QIcon::Normal, QIcon::Off);
         printBtn->setIcon(icon2);
-        printBtn->setIconSize(QSize(24, 24));
+        printBtn->setIconSize(QSize(32, 32));
 
         verticalLayout->addWidget(printBtn);
 
+        verticalSpacer_3 = new QSpacerItem(20, 40, QSizePolicy::Minimum, QSizePolicy::Expanding);
+
+        verticalLayout->addItem(verticalSpacer_3);
+
         stopBtn = new QPushButton(CatRunUI);
         stopBtn->setObjectName(QString::fromUtf8("stopBtn"));
-        QSizePolicy sizePolicy1(QSizePolicy::Minimum, QSizePolicy::Fixed);
-        sizePolicy1.setHorizontalStretch(0);
-        sizePolicy1.setVerticalStretch(0);
-        sizePolicy1.setHeightForWidth(stopBtn->sizePolicy().hasHeightForWidth());
-        stopBtn->setSizePolicy(sizePolicy1);
+        sizePolicy.setHeightForWidth(stopBtn->sizePolicy().hasHeightForWidth());
+        stopBtn->setSizePolicy(sizePolicy);
+        stopBtn->setFont(font2);
 
         verticalLayout->addWidget(stopBtn);
 
         verticalLayout->setStretch(0, 1);
         verticalLayout->setStretch(2, 1);
-        verticalLayout->setStretch(3, 4);
+        verticalLayout->setStretch(3, 3);
+        verticalLayout->setStretch(4, 1);
+        verticalLayout->setStretch(6, 1);
 
         horizontalLayout_2->addLayout(verticalLayout);
 

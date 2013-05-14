@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'CatCurveDialog.ui'
 **
-** Created: Sun May 12 19:33:16 2013
+** Created: Tue May 14 20:20:48 2013
 **      by: Qt User Interface Compiler version 4.8.4
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
