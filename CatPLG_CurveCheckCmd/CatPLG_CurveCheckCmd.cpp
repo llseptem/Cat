@@ -51,7 +51,6 @@ bool CatPLG_CurveCheckCmd::RunAction( const QDomElement& elem,CatRunUI* ui )
 	try
 	{
 		ui->curveMode();
-		ui->setInformation(tr("Now drawing the %1 %2 Curve").arg(elem.attribute("Tag")).arg(elem.attribute("Type")));
 
 		IAgilent34410Ptr ptr = CatDeviceManager::GetInstance().Get34411();
 
@@ -101,9 +100,11 @@ bool CatPLG_CurveCheckCmd::RunAction( const QDomElement& elem,CatRunUI* ui )
 			}
 		}
 		ui->setMessage(tr("²¨ĞÎÕı³£Âğ£¿"));
-		bool rst =  ui->waitForDecition();
+		const QString& msg = tr("%1 %2 Curve ").arg(elem.attribute("Tag")).arg(elem.attribute("Type"));
+		bool rst = ui->waitForDecition();
+		ui->setInformation(msg.arg(rst ? "Pass" : "Failed"));
 		ui->clearMessage();
-		return rst;
+		return true;
 	}
 	catch(_com_error& e)
 	{
