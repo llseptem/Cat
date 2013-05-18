@@ -77,7 +77,7 @@ void CatWizzard::onSolutionClicked()
 			foreach(const QString& grp,selGrps)
 			{
 				myRunUI->setTitle(grp);
-				myRunUI->setInformation("Now,Checking " + grp);
+				myRunUI->setInformation(grp);
 				myRunUI->wait(1);
 				foreach(const QDomElement& cmd,mySolution->commands(grp))
 				{

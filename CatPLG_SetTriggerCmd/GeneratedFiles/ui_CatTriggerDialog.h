@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'CatTriggerDialog.ui'
 **
-** Created: Tue May 14 20:32:08 2013
+** Created: Wed May 15 20:46:10 2013
 **      by: Qt User Interface Compiler version 4.8.4
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!

@@ -17,7 +17,7 @@ public:
 		QFont font;
 		font.setFamily("Courier");
 		font.setFixedPitch(true);
-		font.setPointSize(16);
+		font.setPointSize(14);
 		myLabel->setFont(font);
 		lay->addWidget(myLabel);
 		mydigit = new QLCDNumber();

@@ -28,11 +28,11 @@ CatRunUI::~CatRunUI()
 void CatRunUI::setInformation( const QString& info )
 {
 	const QString& tm = QDateTime::currentDateTime().toString(Qt::ISODate);
-	QString fmtMsg = tm + "\n" + info;
+	QString fmtMsg = tm + " " + info;
 	if(!fmtMsg.endsWith("\n")) {fmtMsg += "\n";}
 
 	QTextCharFormat fmt;
-	fmt.setForeground(Qt::white);
+	fmt.setForeground(Qt::darkBlue);
 	ui->textEdit->moveCursor(QTextCursor::End);
 	ui->textEdit->textCursor().insertText(fmtMsg,fmt);
 	ui->textEdit->ensureCursorVisible();
@@ -112,7 +112,7 @@ void CatRunUI::setupWidget()
 	font.setFixedPitch(true);
 	font.setPointSize(14);
 	ui->textEdit->setFont(font);
-	ui->textEdit->setBackgroundRole(QPalette::Dark);
+//	ui->textEdit->setBackgroundRole(QPalette::Dark);
 	connect(ui->printBtn,SIGNAL(clicked()),this,SLOT(print()));
 
 	myCurve  = new CatCurveWidget();
@@ -120,6 +120,7 @@ void CatRunUI::setupWidget()
 	myDigitsContainer = new QScrollArea();
 	myDigitsContainer->setWidget(myDigits);
 	myDigitsContainer->setBackgroundRole(QPalette::Dark);
+	myDigitsContainer->setWidgetResizable(true);
 
 	ui->resultGrp->setLayout(new QVBoxLayout());
 	ui->resultGrp->layout()->addWidget(myDigitsContainer);

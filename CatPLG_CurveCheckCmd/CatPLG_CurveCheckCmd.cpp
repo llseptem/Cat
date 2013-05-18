@@ -100,7 +100,7 @@ bool CatPLG_CurveCheckCmd::RunAction( const QDomElement& elem,CatRunUI* ui )
 			}
 		}
 		ui->setMessage(tr("²¨ĞÎÕı³£Âğ£¿"));
-		const QString& msg = tr("%1 %2 Curve ").arg(elem.attribute("Tag")).arg(elem.attribute("Type"));
+		const QString& msg = tr("%1 %2 Curve %3").arg(elem.attribute("Tag")).arg(elem.attribute("Type"));
 		bool rst = ui->waitForDecition();
 		ui->setInformation(msg.arg(rst ? "Pass" : "Failed"));
 		ui->clearMessage();
