@@ -85,7 +85,7 @@ bool CatPLG_SetTriggerCmd::RunAction( const QDomElement& elem,CatRunUI* ui )
 	}
 	catch(_com_error& e)
 	{
-		ui->setInformation(QString::fromWCharArray(e.ErrorMessage()) + ":\n" + QString::fromWCharArray(e.Description()));
+		ui->setInformation(QString::fromWCharArray(e.ErrorMessage()) + ":\n" + QString::fromWCharArray(e.Description()),true);
 		return false;
 	}
 	return true;

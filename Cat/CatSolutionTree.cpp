@@ -229,7 +229,7 @@ void CatSolutionTree::run()
 	myRunUI->showMaximized();
 	myRunUI->raise();
 	myRunUI->activateWindow();
-	myRunUI->checkBegin();
+	myRunUI->reset();
 	myRunUI->setInformation(tr("Checking Begin"));
 	bool needBreak = false;
 	foreach(const QString& grp,selGrps)
@@ -255,7 +255,7 @@ void CatSolutionTree::run()
 		if(needBreak) break;
 	}
 	myRunUI->setInformation(tr("Checking Finished"));
-	myRunUI->checkFinished();
+	myRunUI->enablePrint(true);
 	CatDeviceManager::GetInstance().Uinitialize();
 }
 

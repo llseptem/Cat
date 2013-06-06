@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'CatPresentation.ui'
 **
-** Created: Wed May 15 20:46:15 2013
+** Created: Thu Jun 6 20:54:45 2013
 **      by: Qt User Interface Compiler version 4.8.4
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
@@ -14,6 +14,7 @@
 #include <QtGui/QAction>
 #include <QtGui/QApplication>
 #include <QtGui/QButtonGroup>
+#include <QtGui/QCheckBox>
 #include <QtGui/QDialog>
 #include <QtGui/QGroupBox>
 #include <QtGui/QHBoxLayout>
@@ -43,6 +44,7 @@ public:
     QVBoxLayout *verticalLayout;
     QPlainTextEdit *description;
     QHBoxLayout *horizontalLayout_2;
+    QCheckBox *breakOnFalse;
     QSpacerItem *horizontalSpacer;
     QPushButton *okBtn;
     QPushButton *cancelBtn;
@@ -114,6 +116,11 @@ public:
         horizontalLayout_2 = new QHBoxLayout();
         horizontalLayout_2->setSpacing(6);
         horizontalLayout_2->setObjectName(QString::fromUtf8("horizontalLayout_2"));
+        breakOnFalse = new QCheckBox(CatPresentation);
+        breakOnFalse->setObjectName(QString::fromUtf8("breakOnFalse"));
+
+        horizontalLayout_2->addWidget(breakOnFalse);
+
         horizontalSpacer = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
 
         horizontalLayout_2->addItem(horizontalSpacer);
@@ -144,6 +151,7 @@ public:
         groupBox_2->setTitle(QApplication::translate("CatPresentation", "\351\200\211\346\213\251\347\244\272\346\204\217\345\233\276", 0, QApplication::UnicodeUTF8));
         selImageBtn->setText(QApplication::translate("CatPresentation", "...", 0, QApplication::UnicodeUTF8));
         groupBox->setTitle(QApplication::translate("CatPresentation", "\350\276\223\345\205\245\346\217\217\350\277\260", 0, QApplication::UnicodeUTF8));
+        breakOnFalse->setText(QApplication::translate("CatPresentation", "\347\224\250\346\210\267\351\200\211\345\220\246\346\227\266\345\201\234\346\255\242", 0, QApplication::UnicodeUTF8));
         okBtn->setText(QApplication::translate("CatPresentation", "\347\241\256\345\256\232", 0, QApplication::UnicodeUTF8));
         cancelBtn->setText(QApplication::translate("CatPresentation", "\345\217\226\346\266\210", 0, QApplication::UnicodeUTF8));
     } // retranslateUi

@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'CatRunUI.ui'
 **
-** Created: Wed May 15 20:45:59 2013
+** Created: Thu Jun 6 20:54:26 2013
 **      by: Qt User Interface Compiler version 4.8.4
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
@@ -41,6 +41,7 @@ public:
     QSpacerItem *verticalSpacer_2;
     QPushButton *noBtn;
     QSpacerItem *verticalSpacer;
+    QPushButton *continueBtn;
     QPushButton *printBtn;
     QSpacerItem *verticalSpacer_3;
     QPushButton *stopBtn;
@@ -154,15 +155,23 @@ public:
 
         verticalLayout->addItem(verticalSpacer);
 
-        printBtn = new QPushButton(CatRunUI);
-        printBtn->setObjectName(QString::fromUtf8("printBtn"));
-        sizePolicy.setHeightForWidth(printBtn->sizePolicy().hasHeightForWidth());
-        printBtn->setSizePolicy(sizePolicy);
+        continueBtn = new QPushButton(CatRunUI);
+        continueBtn->setObjectName(QString::fromUtf8("continueBtn"));
+        sizePolicy.setHeightForWidth(continueBtn->sizePolicy().hasHeightForWidth());
+        continueBtn->setSizePolicy(sizePolicy);
         QFont font2;
         font2.setFamily(QString::fromUtf8("\346\245\267\344\275\223"));
         font2.setPointSize(18);
         font2.setBold(true);
         font2.setWeight(75);
+        continueBtn->setFont(font2);
+
+        verticalLayout->addWidget(continueBtn);
+
+        printBtn = new QPushButton(CatRunUI);
+        printBtn->setObjectName(QString::fromUtf8("printBtn"));
+        sizePolicy.setHeightForWidth(printBtn->sizePolicy().hasHeightForWidth());
+        printBtn->setSizePolicy(sizePolicy);
         printBtn->setFont(font2);
         QIcon icon2;
         icon2.addFile(QString::fromUtf8(":/icons/Resources/printer.png"), QSize(), QIcon::Normal, QIcon::Off);
@@ -187,7 +196,8 @@ public:
         verticalLayout->setStretch(2, 1);
         verticalLayout->setStretch(3, 3);
         verticalLayout->setStretch(4, 1);
-        verticalLayout->setStretch(6, 1);
+        verticalLayout->setStretch(5, 1);
+        verticalLayout->setStretch(7, 1);
 
         horizontalLayout_2->addLayout(verticalLayout);
 
@@ -208,6 +218,7 @@ public:
         titleLabel->setText(QApplication::translate("CatRunUI", "TextLabel", 0, QApplication::UnicodeUTF8));
         yesBtn->setText(QApplication::translate("CatRunUI", "\346\230\257", 0, QApplication::UnicodeUTF8));
         noBtn->setText(QApplication::translate("CatRunUI", "\345\220\246", 0, QApplication::UnicodeUTF8));
+        continueBtn->setText(QApplication::translate("CatRunUI", "\347\273\247\347\273\255\346\243\200\346\265\213", 0, QApplication::UnicodeUTF8));
         printBtn->setText(QApplication::translate("CatRunUI", "\346\211\223\345\215\260\347\273\223\346\236\234", 0, QApplication::UnicodeUTF8));
         stopBtn->setText(QApplication::translate("CatRunUI", "\347\273\223\346\235\237\346\243\200\346\265\213", 0, QApplication::UnicodeUTF8));
     } // retranslateUi

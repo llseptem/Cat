@@ -17,12 +17,17 @@ public:
 private slots:
 	void onSolutionClicked();
 	void onNew();
+	void onRerun();
 private:
 	Ui::CatWizzard ui;
 	CatRunUI* myRunUI;
 	CatSolution* mySolution;
+	QString myCheckID;
+	QString mySolutionPath;
 
+	void runGroups(const QStringList& grps);
 	void setupWidget();
+	void writeLog(const QString& pth,const QString& checkid);
 };
 
 #endif // CATWIZZARD_H

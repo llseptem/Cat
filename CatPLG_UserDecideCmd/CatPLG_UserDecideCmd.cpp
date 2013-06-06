@@ -17,6 +17,7 @@ bool CatPLG_UserDecideCmd::Configure(const QDomElement& elem)
 	{
 		myDlg->SetImagePath(elem.attribute("ImagePath"));
 		myDlg->SetDescription(elem.attribute("Description"));
+		myDlg->setBreakOnFalse(elem.attribute("BreakOnFalse").toInt());
 	}
 	return myDlg->exec() == QDialog::Accepted;
 }
@@ -30,17 +31,20 @@ bool CatPLG_UserDecideCmd::CreateAction( QDomElement& cmd )
 {
 	cmd.setAttribute("ImagePath",myDlg->imagePath());
 	cmd.setAttribute("Description",myDlg->description());
+	cmd.setAttribute("BreakOnFalse",myDlg->breakOnFalse());
 	return true;
 }
 
 bool CatPLG_UserDecideCmd::RunAction( const QDomElement& elem, CatRunUI* ui )
 {
+	bool bof = elem.attribute("BreakOnFalse").toInt();
 	ui->setImage(elem.attribute("ImagePath"));
 	ui->setMessage(elem.attribute("Description"));
 	bool rst =  ui->waitForDecition();
-//	ui->setInformation(elem.attribute("Description") + "?" + (rst ? "Yes" : "No"));
+	if(!bof)
+	{ui->setInformation(elem.attribute("Description") + "?" + (rst ? "Yes" : "No"), !rst);}
 	ui->clearMessage();
-	return rst;
+	return bof ? rst : true;
 }
 
 QString CatPLG_UserDecideCmd::title() const

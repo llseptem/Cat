@@ -70,3 +70,13 @@ void CatPresentation::SetDescription( const QString& desc )
 	ui.description->clear();
 	ui.description->textCursor().insertText(desc);
 }
+
+bool CatPresentation::breakOnFalse() const
+{
+	return ui.breakOnFalse->isChecked();
+}
+
+void CatPresentation::setBreakOnFalse( bool bof )
+{
+	ui.breakOnFalse->setChecked(bof);
+}

@@ -25,14 +25,14 @@ CatRunUI::~CatRunUI()
 	delete myDigits;
 }
 
-void CatRunUI::setInformation( const QString& info )
+void CatRunUI::setInformation( const QString& info, bool err )
 {
 	const QString& tm = QDateTime::currentDateTime().toString(Qt::ISODate);
 	QString fmtMsg = tm + " " + info;
 	if(!fmtMsg.endsWith("\n")) {fmtMsg += "\n";}
 
 	QTextCharFormat fmt;
-	fmt.setForeground(Qt::darkBlue);
+	fmt.setForeground( err ? Qt::red : Qt::darkBlue);
 	ui->textEdit->moveCursor(QTextCursor::End);
 	ui->textEdit->textCursor().insertText(fmtMsg,fmt);
 	ui->textEdit->ensureCursorVisible();
@@ -90,13 +90,9 @@ void CatRunUI::setTitle( const QString& tt )
 
 void CatRunUI::print()
 {
-	const QString& checkID = QInputDialog::getText(this,tr("输入流水号"),tr("流水号"));
-	if(checkID.isEmpty()) return;
-
 	QPrintDialog prtDlg(this);
 	if(prtDlg.exec() == QDialog::Accepted)
 	{
-		setInformation(tr("检测流水号:") + checkID);
 		ui->textEdit->print(prtDlg.printer());
 	}
 }
@@ -114,6 +110,7 @@ void CatRunUI::setupWidget()
 	ui->textEdit->setFont(font);
 //	ui->textEdit->setBackgroundRole(QPalette::Dark);
 	connect(ui->printBtn,SIGNAL(clicked()),this,SLOT(print()));
+	connect(ui->continueBtn,SIGNAL(clicked()),this,SIGNAL(reRun()));
 
 	myCurve  = new CatCurveWidget();
 	myDigits = new CatDigitList();
@@ -128,26 +125,20 @@ void CatRunUI::setupWidget()
 	digitMode();
 }
 
-void CatRunUI::checkFinished()
+void CatRunUI::enablePrint(bool able)
 {
-	ui->printBtn->setVisible(true);
-
-	QFile log(QDateTime::currentDateTime().toString(Qt::ISODate)+".log");
-	if(log.open(QIODevice::WriteOnly))
-	{
-		QTextStream tos(&log);
-		tos << ui->textEdit->toHtml();
-	}
+	ui->printBtn->setVisible(able);
 }
 
-void CatRunUI::checkBegin()
+void CatRunUI::reset()
 {
 	ui->imgLabel->clear();
 	ui->titleLabel->clear();
 	ui->textEdit->clear();
 	digitMode();
 	clearDigits();
-	ui->printBtn->setVisible(false);
+	enablePrint(false);
+	enableRerun(false);
 }
 
 void CatRunUI::digitMode()
@@ -190,4 +181,20 @@ void CatRunUI::clearMessage()
 	int pos = ui->titleLabel->text().indexOf("---");
 	const QString& tt = ui->titleLabel->text().left(pos);
 	ui->titleLabel->setText(tt);
+}
+
+bool CatRunUI::writeLog( const QString& xml )
+{
+	QFile log(QDateTime::currentDateTime().toString(Qt::ISODate)+".html");
+	if(log.open(QIODevice::WriteOnly))
+	{
+		QTextStream tos(&log);
+		tos << ui->textEdit->toHtml();
+	}
+	return log.isOpen();
+}
+
+void CatRunUI::enableRerun( bool able )
+{
+	ui->continueBtn->setVisible(able);
 }

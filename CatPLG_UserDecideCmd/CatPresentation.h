@@ -16,6 +16,8 @@ public:
 	void SetImagePath(const QString& pth);
 	QString description() const;
 	void SetDescription(const QString& desc);
+	bool breakOnFalse() const;
+	void setBreakOnFalse(bool bof);
 private slots:
 	void onSelectImage();
 	void onAccepted();

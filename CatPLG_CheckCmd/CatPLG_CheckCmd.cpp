@@ -84,17 +84,17 @@ bool CatPLG_CheckCmd::RunAction( const QDomElement& elem,CatRunUI* ui )
 					disp = disp.arg(rg[0]).arg(lower).arg(upper);
 					if(rg[0]=="Lower" && val < lower)
 					{
-						ui->setInformation(disp.arg("Failed"));
+						ui->setInformation(disp.arg("Failed"),true);
 						allPass = false;
 					}
 					else if(rg[0]=="Upper" && val > upper)
 					{
-						ui->setInformation(disp.arg("Failed"));
+						ui->setInformation(disp.arg("Failed"),true);
 						allPass = false;
 					}
 					else if(rg[0] == "Range" && (val < lower || val > upper))
 					{
-						ui->setInformation(disp.arg("Failed"));
+						ui->setInformation(disp.arg("Failed"),true);
 						allPass = false;
 					}
 				}
@@ -108,7 +108,7 @@ bool CatPLG_CheckCmd::RunAction( const QDomElement& elem,CatRunUI* ui )
 	}
 	catch (_com_error& e)
 	{
-		ui->setInformation(QString::fromWCharArray(e.ErrorMessage()) + ":\n" + QString::fromWCharArray(e.Description()));
+		ui->setInformation(QString::fromWCharArray(e.ErrorMessage()) + ":\n" + QString::fromWCharArray(e.Description()),true);
 		return false;
 	}
 }

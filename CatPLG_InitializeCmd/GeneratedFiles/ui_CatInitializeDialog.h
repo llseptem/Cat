@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'CatInitializeDialog.ui'
 **
-** Created: Wed May 15 20:46:10 2013
+** Created: Thu Jun 6 20:54:44 2013
 **      by: Qt User Interface Compiler version 4.8.4
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!

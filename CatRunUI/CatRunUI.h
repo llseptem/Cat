@@ -23,19 +23,24 @@ public:
 	void setTitle(const QString& tt);
 	void setMessage(const QString& msg);
 	void clearMessage();
-	void setInformation(const QString& info);
+	void setInformation(const QString& info, bool err = false);
 	void setImage(const QImage& img);
 	void setImage(const QString& pth);
 	bool waitForDecition();
 	bool wait(int sec);
-	void checkBegin();
-	void checkFinished();
+	void reset();
+	void enablePrint(bool able);
+	void enableRerun(bool able);
 
 	void digitMode();
 	void curveMode();
 	void clearDigits();
 	void displayDigit(const QString& tag,double val);
 	void drawCurve(const QString& lb, const QPolygonF& pts);
+
+	bool writeLog(const QString& xml);
+signals:
+	void reRun();
 private slots:
 	void print();
 private:
