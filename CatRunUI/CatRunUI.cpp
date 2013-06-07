@@ -185,7 +185,7 @@ void CatRunUI::clearMessage()
 
 bool CatRunUI::writeLog( const QString& xml )
 {
-	QFile log(QDateTime::currentDateTime().toString(Qt::ISODate)+".html");
+	QFile log(xml + ".html");
 	if(log.open(QIODevice::WriteOnly))
 	{
 		QTextStream tos(&log);
